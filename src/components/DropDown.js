@@ -25,6 +25,7 @@ const DropDown = ({
                         setCountry(e.target.value)
                         getCountryData(country)
                     }}>
+                    <option hidden></option>
                     {countries.map(c => (
                         <option key={c.name} value={c.iso}>{c.name}</option>
                     ))}

@@ -12,6 +12,7 @@ const GlobalStatistics = ({
 
     return (
         <div>
+            <h2>Global covid stats</h2>
             {loading ? <div>loading...</div>
                 : data ? < div >
                     <li>Total confirmed cases: {data.confirmed}</li>

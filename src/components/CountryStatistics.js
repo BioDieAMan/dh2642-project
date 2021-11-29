@@ -18,7 +18,7 @@ const CountryStatistics = ({
 
 const mapStateToProps = state => {
     return {
-        loadingCountries: state.countries.loadingCountries,
+        loadingCurrentCountry: state.currentCountry.loadingCurrentCountry,
         country: state.currentCountry.country,
         countryData: state.currentCountry.countryData
     }
