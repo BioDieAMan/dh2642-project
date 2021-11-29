@@ -8,8 +8,6 @@ const DropDown = ({
     getListOfCountries,
     loadingCountries,
     getCountryData,
-    loadingCurrentCountry,
-    countryData,
     country,
     setCountry
 }) => {
@@ -21,19 +19,16 @@ const DropDown = ({
     return (
         <div>
             {loadingCountries ? <div>loading...</div>
-                : <select id="dropdown">
+                : <select
+                    id="dropdown"
+                    onChange={e => {
+                        setCountry(e.target.value)
+                        getCountryData(country)
+                    }}>
                     {countries.map(c => (
                         <option key={c.name} value={c.iso}>{c.name}</option>
                     ))}
                 </select>}
-            <button onClick={() => {
-                setCountry(document.getElementById("dropdown").value)
-                getCountryData(country)
-            }}>Set country</button>
-            <h2>{country}</h2>
-            {loadingCurrentCountry ? <div>loading...</div>
-                : countryData ? <div>Total confirmed cases: {countryData[0].confirmed}</div> : <div>nothing</div> /*wrong right now, doesn't add regions together for countries only shows first one*/
-            }
         </div >
     )
 }
@@ -42,9 +37,7 @@ const mapStateToProps = state => {
     return {
         countries: state.countries.listOfCountries,
         loadingCountries: state.countries.loadingCountries,
-        loadingCurrentCountry: state.currentCountry.loadingCurrentCountry,
         country: state.currentCountry.country,
-        countryData: state.currentCountry.countryData
     }
 }
 
