@@ -1,11 +1,12 @@
 import React from 'react'
-import DropDown from '../components/DropDown';
-import CountryStatistics from '../components/CountryStatistics';
+import MonthlyDataTest from '../components/MonthlyDataTest';
+import MonthlyStatistics from '../components/MonthlyStatistics';
+
 const DetailPage = () => {
     return (
         <div>
-            <DropDown />
-            <CountryStatistics />
+            <MonthlyDataTest />
+            <MonthlyStatistics />
         </div>
     )
 }

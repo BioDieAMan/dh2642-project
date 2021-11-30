@@ -1,5 +1,6 @@
 import counterReducer from "./counterReducer";
 // import countriesReducer from "./countriesReducer";
+//import detailsReducer from "./detailsReducer";
 import globalDataReducer from "./globalDataReducer";
 import countryReducer from "./countryReducer";
 import { combineReducers } from "redux";
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   globalData: globalDataReducer,
   country: countryReducer,
   twitter: twitterReducer,
+  //details: detailsReducer
 });
 
 export default rootReducer;

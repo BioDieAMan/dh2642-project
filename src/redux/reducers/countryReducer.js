@@ -1,12 +1,14 @@
 const initialState = {
     listOfCountries: null,
     currentCountry: null,
-    countryData: {},
-    loadingCurrentCountry: false,
+    currentData: {},
+    monthlyData: {},
+    loadingCurrent: false,
+    loadingMonthly: false,
     error: null
 }
 
-const currentCountryReducer = (state = initialState, action) => {
+const countryReducer = (state = initialState, action) => {
     switch (action.type) {
         case "getListOfCountries":
             return {
@@ -18,22 +20,34 @@ const currentCountryReducer = (state = initialState, action) => {
                 ...state,
                 currentCountry: action.payload
             }
-        case "getCountryData":
+        case "getCurrentData":
             return {
                 ...state,
-                countryData: { ...state.countryData, [state.currentCountry]: action.payload },
-                loadingCurrentCountry: false
+                currentData: { ...state.currentData, [state.currentCountry]: action.payload },
+                loadingCurrent: false
             }
-        case "startSearchCountry":
+        case "startSearchCurrentData":
             return {
                 ...state,
-                loadingCurrentCountry: true,
+                loadingCurrent: true,
                 error: null
             }
-        case "currentCountryError":
+        case "startSearchMonthlyData":
             return {
                 ...state,
-                loadingCurrentCountry: false,
+                loadingMonthly: true,
+                error: null
+            }
+        case "getMonthlyData":
+            return {
+                ...state,
+                monthlyData: { ...state.monthlyData, [state.currentCountry]: action.payload },
+                loadingMonthly: false
+            }
+        case "countryError":
+            return {
+                ...state,
+                loadingCurrent: false,
                 error: action.payload
             }
         default:
@@ -41,4 +55,4 @@ const currentCountryReducer = (state = initialState, action) => {
     }
 }
 
-export default currentCountryReducer
+export default countryReducer

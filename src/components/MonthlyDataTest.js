@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react'
-import { connect } from "react-redux";
-import { setCountry, getCurrentData, getListOfCountries } from '../redux/actions/countryActions';
+import React, { useEffect } from 'react';
+import { getListOfCountries, getMonthlyData, setCountry } from '../redux/actions/countryActions';
+import { connect } from "react-redux"
 
-const DropDown = ({
+const MonthlyDataTest = ({
     countries,
     getListOfCountries,
-    getCurrentData,
     setCountry,
+    getMonthlyData
 }) => {
     useEffect(() => {
         if (countries)
@@ -20,7 +20,7 @@ const DropDown = ({
                     id="dropdown"
                     onChange={e => {
                         setCountry(e.target.value)
-                        getCurrentData(e.target.value)
+                        getMonthlyData(e.target.value)
                     }}>
                     <option hidden></option>
                     {countries.map(c => (
@@ -41,8 +41,9 @@ const mapDispatchToProps = dispatch => {
     return {
         getListOfCountries: () => dispatch(getListOfCountries()),
         setCountry: (country) => dispatch(setCountry(country)),
-        getCurrentData: (country) => dispatch(getCurrentData(country))
+        getMonthlyData: (country) => dispatch(getMonthlyData(country))
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DropDown)
+export default connect(mapStateToProps, mapDispatchToProps)(MonthlyDataTest)
+

@@ -8,6 +8,7 @@ import Counter from "./components/Counter";
 import Homepage from "./Pages/Homepage";
 import DetailPage from "./Pages/DetailPage";
 import Navbar from "./components/Navbar";
+import MapPage from "./Pages/MapPage"
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Homepage />} />
         <Route path="/counter" element={<Counter />} />
-        {/* <Route path="/map" element={<MapPage />} /> */}
+        <Route path="/map" element={<MapPage />} />
         <Route path="/details" element={<DetailPage />} />
         {/* <Route path="/comparison" element={<Comparison/>}/> */}
       </Routes>

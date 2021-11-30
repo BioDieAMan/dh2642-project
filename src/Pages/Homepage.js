@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import GlobalStatistics from "../components/GlobalStatistics";
 import TwitterFeed from "../components/TwitterFeed";
 

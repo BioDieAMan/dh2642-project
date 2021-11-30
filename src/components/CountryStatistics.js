@@ -3,14 +3,14 @@ import { connect } from "react-redux"
 
 const CountryStatistics = ({
     currentCountry,
-    loadingCurrentCountry,
-    countryData
+    loadingCurrent,
+    currentData
 }) => {
     return (
         <div>
-            <h2>{currentCountry}</h2>
-            {loadingCurrentCountry ? <div>loading...</div>
-                : countryData[currentCountry] ? <div>Total confirmed cases: {countryData[currentCountry].confirmed}</div> : <div></div>
+            <h3>Current stats</h3>
+            {loadingCurrent ? <div>loading...</div>
+                : currentData[currentCountry] ? <div>Total confirmed cases: {currentData[currentCountry].confirmed}</div> : <div></div>
             }
         </div>
     )
@@ -18,9 +18,9 @@ const CountryStatistics = ({
 
 const mapStateToProps = state => {
     return {
-        loadingCurrentCountry: state.country.loadingCurrentCountry,
+        loadingCurrent: state.country.loadingCurrent,
         currentCountry: state.country.currentCountry,
-        countryData: state.country.countryData
+        currentData: state.country.currentData
     }
 }
 
