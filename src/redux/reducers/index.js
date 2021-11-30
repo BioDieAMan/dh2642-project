@@ -1,18 +1,19 @@
 import counterReducer from "./counterReducer";
-import countriesReducer from "./countriesReducer";
+// import countriesReducer from "./countriesReducer";
 import globalDataReducer from "./globalDataReducer";
-import currentCountryReducer from "./currentCountryReducer";
+//import currentCountryReducer from "./currentCountryReducer";
 import globalCovidNewsReducer from "./globalCovidNewsReducer";
+import countryReducer from "./countryReducer";
 import { combineReducers } from "redux";
+import twitterReducer from "./twitterReducer";
 
 const rootReducer = combineReducers({
-    counter: counterReducer,
+  counter: counterReducer,
+  //countries: countriesReducer,
+  globalData: globalDataReducer,
+  country: countryReducer,
+  globalCovidNews: globalCovidNewsReducer,
+  twitter: twitterReducer,
+});
 
-    countries: countriesReducer,
-    globalData: globalDataReducer,
-    currentCountry: currentCountryReducer,
-
-    globalCovidNews: globalCovidNewsReducer
-})
-
-export default rootReducer
+export default rootReducer;

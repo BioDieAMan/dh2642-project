@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react'
-import { getListOfCountries } from '../redux/actions/countriesActions';
 import { connect } from "react-redux";
-import { setCountry, getCountryData } from '../redux/actions/currentCountryActions';
+import { setCountry, getCountryData, getListOfCountries } from '../redux/actions/countryActions';
 
 const DropDown = ({
     countries,
     getListOfCountries,
-    loadingCountries,
     getCountryData,
-    country,
     setCountry
 }) => {
     useEffect(() => {
@@ -18,12 +15,12 @@ const DropDown = ({
     }, [])
     return (
         <div>
-            {loadingCountries ? <div>loading...</div>
+            {!countries ? <div></div>
                 : <select
                     id="dropdown"
                     onChange={e => {
                         setCountry(e.target.value)
-                        getCountryData(country)
+                        getCountryData(e.target.value)
                     }}>
                     <option hidden></option>
                     {countries.map(c => (
@@ -36,9 +33,7 @@ const DropDown = ({
 
 const mapStateToProps = state => {
     return {
-        countries: state.countries.listOfCountries,
-        loadingCountries: state.countries.loadingCountries,
-        country: state.currentCountry.country,
+        countries: state.country.listOfCountries,
     }
 }
 

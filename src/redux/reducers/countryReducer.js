@@ -1,28 +1,33 @@
 const initialState = {
-    country: null,
-    countryData: null,
+    listOfCountries: null,
+    currentCountry: null,
+    countryData: {},
     loadingCurrentCountry: false,
     error: null
 }
 
 const currentCountryReducer = (state = initialState, action) => {
     switch (action.type) {
+        case "getListOfCountries":
+            return {
+                ...state,
+                listOfCountries: action.payload,
+            }
         case "setCountry":
             return {
                 ...state,
-                country: action.payload
+                currentCountry: action.payload
             }
         case "getCountryData":
             return {
                 ...state,
-                countryData: action.payload,
+                countryData: { ...state.countryData, [state.currentCountry]: action.payload },
                 loadingCurrentCountry: false
             }
-        case "clearCountryData":
+        case "startSearchCountry":
             return {
                 ...state,
                 loadingCurrentCountry: true,
-                countryData: null,
                 error: null
             }
         case "currentCountryError":
