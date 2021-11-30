@@ -2,3 +2,53 @@
     display:flex;
     justify-content:space-evenly;
 }
+
+.newsCard{
+    height: 100px;
+    width: 500px;
+    padding: 10px;
+}
+
+.newsCard:hover{
+    background-color: #F0F8FF;
+}
+
+.newsCard a{
+    color: black;
+    text-decoration: none;
+}
+
+.newsCard img{
+    float: left;
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.newsCard div{
+    margin-left: 160px;
+}
+
+.newsCard h4{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    margin: 0 0 5px 0;
+}
+
+.newsCard p{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    margin: 0 0 5px 0;
+}
+
+.newsProvider{
+    float: left;
+}
+
+.newsDate{
+    float: right;
+}
