@@ -3,7 +3,7 @@ import counterReducer from "./counterReducer";
 //import detailsReducer from "./detailsReducer";
 import globalDataReducer from "./globalDataReducer";
 //import currentCountryReducer from "./currentCountryReducer";
-import globalCovidNewsReducer from "./globalCovidNewsReducer";
+import covidNewsReducer from "./covidNewsReducer";
 import countryReducer from "./countryReducer";
 import { combineReducers } from "redux";
 import twitterReducer from "./twitterReducer";
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   //countries: countriesReducer,
   globalData: globalDataReducer,
   country: countryReducer,
-  globalCovidNews: globalCovidNewsReducer,
+  covidNews: covidNewsReducer,
   twitter: twitterReducer,
   //details: detailsReducer
 });
