@@ -90,8 +90,8 @@ export const getMonthlyData = (country) => async dispatch => {
     }
     try {
         const monthlyData = {};
-        for (let i = 0; i < 30; i++) {
-            date.setDate(date.getDate() - 1)
+        for (let i = 0; i < 15; i++) {
+            date.setDate(date.getDate() - 2)
             options = { ...options, params: { ...options.params, date: dateformat(date, "isoDate") } }
             const response = await axios.request(options)
             const aggregatedData = {

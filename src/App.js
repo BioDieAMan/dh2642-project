@@ -5,6 +5,7 @@ import {
 } from "react-router-dom";
 import "./index.css"
 import "./utils/css/news.css"
+import "./utils/css/chart.css"
 import Counter from "./components/Counter";
 import Homepage from "./Pages/Homepage";
 import DetailPage from "./Pages/DetailPage";

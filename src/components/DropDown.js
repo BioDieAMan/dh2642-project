@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux";
-import { setCountry, getCurrentData, getListOfCountries } from '../redux/actions/countryActions';
+import { setCountry, getCurrentData, getListOfCountries, getMonthlyData } from '../redux/actions/countryActions';
 
 const DropDown = ({
     countries,
     getListOfCountries,
     getCurrentData,
+    getMonthlyData,
     setCountry,
 }) => {
     useEffect(() => {
@@ -21,6 +22,7 @@ const DropDown = ({
                     onChange={e => {
                         setCountry(e.target.value)
                         getCurrentData(e.target.value)
+                        getMonthlyData(e.target.value)
                     }}>
                     <option hidden></option>
                     {countries.map(c => (
@@ -41,7 +43,8 @@ const mapDispatchToProps = dispatch => {
     return {
         getListOfCountries: () => dispatch(getListOfCountries()),
         setCountry: (country) => dispatch(setCountry(country)),
-        getCurrentData: (country) => dispatch(getCurrentData(country))
+        getCurrentData: (country) => dispatch(getCurrentData(country)),
+        getMonthlyData: (country) => dispatch(getMonthlyData(country))
     }
 }
 

@@ -1,13 +1,13 @@
 import React from 'react'
+import LineChart from '../components/LineChart';
 import LocalNewsFeed from '../components/LocalNewsFeed';
-import MonthlyDataTest from '../components/MonthlyDataTest';
-import MonthlyStatistics from '../components/MonthlyStatistics';
+import DropDown from '../components/DropDown';
 
 const DetailPage = () => {
     return (
         <div>
-            <MonthlyDataTest />
-            <MonthlyStatistics />
+            <DropDown />
+            <LineChart />
             <LocalNewsFeed />
         </div>
     )
