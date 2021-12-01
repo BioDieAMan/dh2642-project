@@ -3,8 +3,10 @@ const initialState = {
     currentCountry: null,
     currentData: {},
     monthlyData: {},
+    sixMonthData: {},
     loadingCurrent: false,
     loadingMonthly: false,
+    loadingSixMonth: false,
     error: null
 }
 
@@ -38,11 +40,23 @@ const countryReducer = (state = initialState, action) => {
                 loadingMonthly: true,
                 error: null
             }
+        case "startSearchSixMonthData":
+            return {
+                ...state,
+                loadingSixMonth: true,
+                error: null
+            }
         case "getMonthlyData":
             return {
                 ...state,
                 monthlyData: { ...state.monthlyData, [state.currentCountry]: action.payload },
                 loadingMonthly: false
+            }
+        case "getSixMonthData":
+            return {
+                ...state,
+                sixMonthData: { ...state.sixMonthData, [state.currentCountry]: action.payload },
+                loadingSixMonth: false
             }
         case "countryError":
             return {

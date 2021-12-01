@@ -5,11 +5,14 @@ import { connect } from "react-redux";
 const LineChart = ({
     currentCountry,
     monthlyData,
-    loadingMonthly
+    sixMonthData,
+    loadingMonthly,
+    loadingSixMonth
 }) => {
-    const [graphType, setGraphType] = useState("cases")
+    const [graphType, setGraphType] = useState("cases");
+    const [interval, setInterval] = useState("monthly");
 
-    const dataCases = {
+    const monthlyDataCases = {
         labels: [],
         datasets: [
             {
@@ -22,7 +25,32 @@ const LineChart = ({
         ]
     }
 
-    const dataDeaths = {
+    const monthlyDataDeaths = {
+        labels: [],
+        datasets: [
+            {
+                label: "deaths",
+                lineTension: 0.1,
+                data: [],
+                fill: false,
+                borderColor: "black"
+            }
+        ]
+    }
+    const sixMonthDataCases = {
+        labels: [],
+        datasets: [
+            {
+                label: "confirmed cases",
+                lineTension: 0.1,
+                data: [],
+                fill: false,
+                borderColor: "black"
+            },
+        ]
+    }
+
+    const sixMonthDataDeaths = {
         labels: [],
         datasets: [
             {
@@ -37,10 +65,18 @@ const LineChart = ({
 
     if (monthlyData[currentCountry]) {
         Object.entries(monthlyData[currentCountry]).forEach(entry => {
-            dataCases.labels.unshift(entry[0].slice(4, 15));
-            dataCases.datasets[0].data.unshift(entry[1].confirmed)
-            dataDeaths.labels.unshift(entry[0].slice(4, 15));
-            dataDeaths.datasets[0].data.unshift(entry[1].deaths)
+            monthlyDataCases.labels.unshift(entry[0].slice(4, 15));
+            monthlyDataCases.datasets[0].data.unshift(entry[1].confirmed)
+            monthlyDataDeaths.labels.unshift(entry[0].slice(4, 15));
+            monthlyDataDeaths.datasets[0].data.unshift(entry[1].deaths)
+        })
+    }
+    if (sixMonthData[currentCountry]) {
+        Object.entries(sixMonthData[currentCountry]).forEach(entry => {
+            sixMonthDataCases.labels.unshift(entry[0].slice(4, 15));
+            sixMonthDataCases.datasets[0].data.unshift(entry[1].confirmed)
+            sixMonthDataDeaths.labels.unshift(entry[0].slice(4, 15));
+            sixMonthDataDeaths.datasets[0].data.unshift(entry[1].deaths)
         })
     }
     return (
@@ -48,9 +84,13 @@ const LineChart = ({
             <h1>{currentCountry}</h1>
             <div className="lineChart">
                 <button onClick={() => graphType === "cases" ? setGraphType("deaths") : setGraphType("cases")}>{graphType === "cases" ? "Deaths" : "Cases"}</button>
+                <button onClick={() => interval === "monthly" ? setInterval("sixMonth") : setInterval("monthly")}>{interval === "monthly" ? "Six Months" : "Last Month"}</button>
                 {loadingMonthly ? <div>loading...</div>
                     : monthlyData[currentCountry] ?
-                        <Line data={graphType === "cases" ? dataCases : dataDeaths} />
+                        <Line data={
+                            graphType === "cases" ? (interval === "monthly" ? monthlyDataCases : sixMonthDataCases)
+                                : (interval === "monthly" ? monthlyDataDeaths : sixMonthDataDeaths)
+                        } />
                         : <div></div>}
             </div>
         </div>
@@ -62,7 +102,9 @@ const mapStateToProps = state => {
     return {
         loadingMonthly: state.country.loadingMonthly,
         currentCountry: state.country.currentCountry,
-        monthlyData: state.country.monthlyData
+        monthlyData: state.country.monthlyData,
+        sixMonthData: state.country.sixMonthData,
+        loadingSixMonth: state.country.loadingSixMonth
     }
 }
 
