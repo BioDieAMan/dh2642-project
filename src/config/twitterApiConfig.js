@@ -5,10 +5,11 @@ const TWITTER_API_BEARER_TOKEN =
   "AAAAAAAAAAAAAAAAAAAAALaOWAEAAAAAUL%2Bj4L24CQXNQbD3ROAsc0Z9kzY%3Dryy59yYIQX5VW2HpJjyIHNzQhUaNT3JIrB7NVomwbL7XUg4I09";
 
 const twitterConfig = {
-  header: {
-    Authorization: TWITTER_API_BEARER_TOKEN,
+  headers: {
+    "User-Agent": "v2TweetLookupJS",
+    authorization: `Bearer ${TWITTER_API_BEARER_TOKEN}`,
   },
-  Url: "https://api.twitter.com/2/tweets/search/recent?query=from:folkhalsomynd",
+  Url: "http://api.twitter.com/2/tweets/search/",
 };
 
 export default twitterConfig;

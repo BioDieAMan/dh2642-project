@@ -6,13 +6,13 @@ export const getTweets = () => async (dispatch) => {
     method: "GET",
     url: twitterConfig.Url,
     params: {},
-    headers: twitterConfig.header,
+    headers: twitterConfig.headers,
   };
   try {
     const response = await axios.request(options);
     dispatch({
       type: "getTweets",
-      payload: response.data.data,
+      payload: response.data,
     });
   } catch (e) {
     dispatch({
