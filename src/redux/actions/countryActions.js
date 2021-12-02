@@ -28,6 +28,20 @@ export const removeSelectedCountry = (country) => {
     }
 }
 
+export const addWatchCountry = (country) => {
+    return {
+        type: "addWatchCountry",
+        payload: country
+    }
+}
+
+export const removeWatchCountry = (country) => {
+    return {
+        type: "removeWatchCountry",
+        payload: country
+    }
+}
+
 export const getListOfCountries = () => async dispatch => {
     const options = {
         method: "GET",
