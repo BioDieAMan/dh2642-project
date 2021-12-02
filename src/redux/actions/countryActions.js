@@ -2,14 +2,16 @@ import config from "../../config/covidApiConfig";
 import axios from "axios";
 import dateformat from "dateformat";
 
-
-export const setCountry = (country) => {
-    return {
+export const setCountry = (country) => (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase()
+    firebase.database().ref("current").set({
+        country: country
+    })
+    dispatch({
         type: "setCountry",
         payload: country
-    }
+    })
 }
-
 const sortCountries = (a, b) => {
     return (a.name < b.name) ? -1 : (b.name < a.name) ? 1 : 0
 }
