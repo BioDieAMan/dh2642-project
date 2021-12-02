@@ -64,6 +64,7 @@ const LineChart = ({
         ]
     }
 
+
     if (monthlyData[currentCountry]) {
         Object.entries(monthlyData[currentCountry]).forEach(entry => {
             monthlyDataCases.labels.unshift(entry[0].slice(4, 15));
@@ -82,7 +83,7 @@ const LineChart = ({
     }
     return (
         <div>
-            <h1>{listOfCountries[currentCountry]}</h1>
+            {listOfCountries ? <h1>{listOfCountries[currentCountry]}</h1> : <div>Choose a country</div>}
             <div className="lineChart">
                 {!monthlyData[currentCountry] && !loadingMonthly ? <h1>Choose a country</h1>
                     : loadingMonthly ? <h1>Loading...</h1>

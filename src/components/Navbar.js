@@ -27,6 +27,9 @@ const Navbar = () => {
           <Button variant="text" component={Link} to="/details">
             Details
           </Button>
+          <Button variant="text" component={Link} to="/compare">
+            Comparison
+          </Button>
           <Button variant="text" component={Link} to="/map">
             Map
           </Button>

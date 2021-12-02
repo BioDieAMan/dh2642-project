@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import { connect } from "react-redux";
-import { getLocalCovidNews } from '../redux/actions/covidNewsActions';
+import { getGlobalCovidNews } from '../../redux/actions/covidNewsActions';
 
-const LocalNewsFeed = ({
+const GlobalNewsFeed = ({
     data,
     loading,
-    getLocalCovidNews
+    getGlobalCovidNews
 }) => {
     useEffect(() => {
-        getLocalCovidNews()
+        getGlobalCovidNews()
     }, [])
 
     return (
@@ -44,15 +44,15 @@ const LocalNewsFeed = ({
 
 const mapStateToProps = state => {
     return {
-        data: state.covidNews.localCovidNews,
+        data: state.covidNews.globalCovidNews,
         loading: state.covidNews.loading
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        getLocalCovidNews: () => dispatch(getLocalCovidNews())
+        getGlobalCovidNews: () => dispatch(getGlobalCovidNews())
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocalNewsFeed)
+export default connect(mapStateToProps, mapDispatchToProps)(GlobalNewsFeed)
