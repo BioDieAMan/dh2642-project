@@ -24,9 +24,10 @@ export const getListOfCountries = () => async dispatch => {
     try {
         const response = await axios.request(options)
         const sortedCountries = response.data.data.sort(sortCountries)
+        const obj = sortedCountries.reduce((obj, item) => (obj[item.iso] = item.name, obj), {})
         dispatch({
             type: "getListOfCountries",
-            payload: sortedCountries
+            payload: obj
         })
     }
     catch (e) {

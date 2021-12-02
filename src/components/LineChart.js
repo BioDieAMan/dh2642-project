@@ -82,7 +82,7 @@ const LineChart = ({
     }
     return (
         <div>
-            <h1>{currentCountry}</h1>
+            <h1>{listOfCountries[currentCountry]}</h1>
             <div className="lineChart">
                 {!monthlyData[currentCountry] && !loadingMonthly ? <h1>Choose a country</h1>
                     : loadingMonthly ? <h1>Loading...</h1>
