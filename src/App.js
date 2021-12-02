@@ -7,6 +7,7 @@ import "./utils/css/map.css";
 import Homepage from "./Pages/Homepage";
 import DetailPage from "./Pages/DetailPage";
 import MapPage from "./Pages/MapPage";
+import ComparePage from "./Pages/ComparePage"
 
 import { Typography, CssBaseline, Container } from "@mui/material";
 
@@ -32,7 +33,7 @@ function App() {
                 <Route exact path="/" element={<Homepage />} />
                 <Route path="/map" element={<MapPage />} />
                 <Route path="/details" element={<DetailPage />} />
-                {/* <Route path="/comparison" element={<Comparison/>}/> */}
+                <Route path="/compare" element={<ComparePage />} />
               </Routes>
             </BrowserRouter>
           </Container>
