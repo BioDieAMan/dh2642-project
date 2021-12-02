@@ -16,6 +16,34 @@ const sortCountries = (a, b) => {
     return (a.name < b.name) ? -1 : (b.name < a.name) ? 1 : 0
 }
 
+export const addSelectedCountry = (country) => {
+    return {
+        type: "addSelectedCountry",
+        payload: country
+    }
+}
+
+export const removeSelectedCountry = (country) => {
+    return {
+        type: "removeSelectedCountry",
+        payload: country
+    }
+}
+
+export const addWatchCountry = (country) => {
+    return {
+        type: "addWatchCountry",
+        payload: country
+    }
+}
+
+export const removeWatchCountry = (country) => {
+    return {
+        type: "removeWatchCountry",
+        payload: country
+    }
+}
+
 export const getListOfCountries = () => async dispatch => {
     const options = {
         method: "GET",
