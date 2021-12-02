@@ -2,22 +2,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import "./utils/css/news.css";
 import "./utils/css/chart.css";
+import "./utils/css/flex.css";
+import "./utils/css/map.css";
 import Homepage from "./Pages/Homepage";
 import DetailPage from "./Pages/DetailPage";
 import MapPage from "./Pages/MapPage";
 
-import {
-  Typography,
-  AppBar,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  CssBaseline,
-  Grid,
-  Container,
-} from "@mui/material";
-import CoronavirusIcon from "@mui/icons-material/Coronavirus";
+import { Typography, CssBaseline, Container } from "@mui/material";
 
 function App() {
   return (
