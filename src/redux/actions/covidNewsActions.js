@@ -31,14 +31,14 @@ export const getGlobalCovidNews = () => async dispatch => {
     }
 }
 
-export const getLocalCovidNews = () => async dispatch => {
+export const getLocalCovidNews = () => async (dispatch, getState) => {
     dispatch({ type: "clearLocalNews" })
     
     const options = {
         method: "GET",
         url: config.searchUrl,
         params: {
-            q: 'covid sweden',
+            q: `covid ${getState().country.currentCountry}`,
             count: '3',
             setLang: 'en',
             //mkt: 'sv-SE',

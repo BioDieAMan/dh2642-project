@@ -1,11 +1,10 @@
 import React from 'react'
-import LineChart from '../components/LineChart';
-import LocalNewsFeed from '../components/LocalNewsFeed';
-import DropDown from '../components/DropDown';
+import CountryToggle from '../components/CountryToggle';
 
 const ComparePage = () => {
     return (
         <div>
+            <CountryToggle />
         </div>
     )
 }

@@ -1,6 +1,7 @@
 const initialState = {
     listOfCountries: null,
     currentCountry: null,
+    selectedCountries: [],
     currentData: {},
     monthlyData: {},
     sixMonthData: {},
@@ -27,6 +28,16 @@ const countryReducer = (state = initialState, action) => {
                 ...state,
                 currentData: { ...state.currentData, [state.currentCountry]: action.payload },
                 loadingCurrent: false
+            }
+        case "addSelectedCountry":
+            return {
+                ...state,
+                selectedCountries: [...state.selectedCountries, action.payload]
+            }
+        case "removeSelectedCountry":
+            return {
+                ...state,
+                selectedCountries: state.selectedCountries.filter(element => element !== action.payload)
             }
         case "startSearchCurrentData":
             return {

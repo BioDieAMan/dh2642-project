@@ -1,0 +1,25 @@
+.countryContainer{
+    width: 40vh;
+    height: 100vh;
+    overflow:hidden;
+    overflow-y:scroll;
+    margin: 0;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.countryContainer::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.countryItem{
+    padding: 5px;
+}
+
+.countryItem:hover{
+    background-color: #6495ED;
+}
+
+.selectedCountryItem{
+    background-color: #6497ED;
+}
