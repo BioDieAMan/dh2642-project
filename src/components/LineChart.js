@@ -7,7 +7,8 @@ const LineChart = ({
     monthlyData,
     sixMonthData,
     loadingMonthly,
-    loadingSixMonth
+    loadingSixMonth,
+    listOfCountries
 }) => {
     const [graphType, setGraphType] = useState("cases");
     const [interval, setInterval] = useState("monthly");
@@ -83,15 +84,11 @@ const LineChart = ({
         <div>
             <h1>{currentCountry}</h1>
             <div className="lineChart">
-                <button onClick={() => graphType === "cases" ? setGraphType("deaths") : setGraphType("cases")}>{graphType === "cases" ? "Deaths" : "Cases"}</button>
-                <button onClick={() => interval === "monthly" ? setInterval("sixMonth") : setInterval("monthly")}>{interval === "monthly" ? "Six Months" : "Last Month"}</button>
-                {loadingMonthly ? <div>loading...</div>
-                    : monthlyData[currentCountry] ?
-                        <Line data={
-                            graphType === "cases" ? (interval === "monthly" ? monthlyDataCases : sixMonthDataCases)
-                                : (interval === "monthly" ? monthlyDataDeaths : sixMonthDataDeaths)
-                        } />
-                        : <div></div>}
+                {!monthlyData[currentCountry] && !loadingMonthly ? <h1>Choose a country</h1>
+                    : loadingMonthly ? <h1>Loading...</h1>
+                        : <div><Line data={graphType === "cases" ? interval === "monthly" ? monthlyDataCases : sixMonthDataCases : interval === "monthly" ? monthlyDataDeaths : sixMonthDataDeaths} />
+                            <button onClick={() => graphType === "cases" ? setGraphType("deaths") : setGraphType("cases")}>{graphType === "cases" ? "Deaths" : "Cases"}</button>
+                            <button onClick={() => interval === "monthly" ? setInterval("sixMonth") : setInterval("monthly")}>{interval === "monthly" ? "Six Months" : "Last Month"}</button></div>}
             </div>
         </div>
 
@@ -104,7 +101,8 @@ const mapStateToProps = state => {
         currentCountry: state.country.currentCountry,
         monthlyData: state.country.monthlyData,
         sixMonthData: state.country.sixMonthData,
-        loadingSixMonth: state.country.loadingSixMonth
+        loadingSixMonth: state.country.loadingSixMonth,
+        listOfCountries: state.country.listOfCountries
     }
 }
 

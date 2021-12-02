@@ -60,10 +60,20 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
                 aggregatedData.confirmed_diff += region.confirmed_diff;
                 aggregatedData.deaths_diff += region.deaths_diff;
             })
-            dispatch({
-                type: "getCurrentData",
-                payload: aggregatedData
-            })
+            if (getState().country.currentCountry === country) {
+                if (aggregatedData.confirmed === 0) {
+                    dispatch({
+                        type: "getCurrentData",
+                        payload: null
+                    })
+                }
+                else {
+                    dispatch({
+                        type: "getCurrentData",
+                        payload: aggregatedData
+                    })
+                }
+            }
         }
         catch (e) {
             dispatch({
@@ -109,10 +119,12 @@ export const getMonthlyData = (country) => async (dispatch, getState) => {
                 monthlyData[date] = aggregatedData
                 date.setDate(date.getDate() - 2)
             }
-            dispatch({
-                type: "getMonthlyData",
-                payload: monthlyData
-            })
+            if (getState().country.currentCountry === country) {
+                dispatch({
+                    type: "getMonthlyData",
+                    payload: monthlyData
+                })
+            }
         }
         catch (e) {
             dispatch({
@@ -157,10 +169,12 @@ export const getSixMonthData = (country) => async (dispatch, getState) => {
                 sixMonthData[date] = aggregatedData
                 date.setDate(date.getDate() - 12)
             }
-            dispatch({
-                type: "getSixMonthData",
-                payload: sixMonthData
-            })
+            if (getState().country.currentCountry === country) {
+                dispatch({
+                    type: "getSixMonthData",
+                    payload: sixMonthData
+                })
+            }
         }
         catch (e) {
             dispatch({

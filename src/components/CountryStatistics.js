@@ -8,10 +8,10 @@ const CountryStatistics = ({
 }) => {
     return (
         <div>
-            <h3>Current stats for {currentCountry}</h3>
-            {loadingCurrent ? <div>loading...</div>
-                : currentData[currentCountry] ? <div>Total confirmed cases: {currentData[currentCountry].confirmed}</div> : <div></div>
-            }
+            {currentCountry ?
+                <div><h3>Current stats for {currentCountry}</h3> {loadingCurrent ? <div>loading...</div> : currentData[currentCountry] ? <div>Total confirmed cases: {currentData[currentCountry].confirmed}</div>
+                    : <div>No data for this country</div>}</div>
+                : <div></div>}
         </div>
     )
 }
