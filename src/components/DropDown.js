@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux";
-import { setCountry, getCurrentData, getListOfCountries, getMonthlyData, getSixMonthData } from '../redux/actions/countryActions';
+import { setCountry, getCurrentData, getMonthlyData, getSixMonthData, getListOfCountries } from '../redux/actions/countryActions';
 
 const DropDown = ({
     countries,
@@ -27,8 +27,8 @@ const DropDown = ({
                         getSixMonthData(e.target.value)
                     }}>
                     <option hidden></option>
-                    {countries.map(c => (
-                        <option key={c.name} value={c.iso}>{c.name}</option>
+                    {Object.entries(countries).map(c => (
+                        <option key={c[1]} value={c[0]}>{c[1]}</option>
                     ))}
                 </select>}
         </div >

@@ -7,6 +7,9 @@ import "./index.css"
 import "./utils/css/news.css"
 import "./utils/css/chart.css"
 import "./utils/css/countryToggle.css"
+import "./utils/css/flex.css"
+import "./utils/css/map.css"
+import Counter from "./components/Counter";
 import Homepage from "./Pages/Homepage";
 import ComparePage from "./Pages/ComparePage";
 import DetailPage from "./Pages/DetailPage";
