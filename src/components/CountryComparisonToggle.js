@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux";
-import { getListOfCountries, addSelectedCountry, removeSelectedCountry, addWatchCountry, removeWatchCountry } from '../../redux/actions/countryActions';
+import { getListOfCountries, addSelectedCountry, removeSelectedCountry, addWatchCountry, removeWatchCountry } from '../redux/actions/countryActions';
 
-const CountryToggle = ({
+const CountryComparisonToggle = ({
     countries,
     getListOfCountries,
     selectedCountries,
@@ -59,4 +59,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CountryToggle)
+export default connect(mapStateToProps, mapDispatchToProps)(CountryComparisonToggle)

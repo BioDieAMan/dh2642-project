@@ -1,12 +1,12 @@
 import React from 'react'
-import CountryToggle from '../components/compareComponents/CountryToggle';
+import CountryComparisonToggle from '../components/CountryComparisonToggle';
 import Navbar from "../components/Navbar";
 
 const ComparePage = () => {
     return (
         <div>
             <Navbar />
-            <CountryToggle />
+            <CountryComparisonToggle />
         </div>
     )
 }
