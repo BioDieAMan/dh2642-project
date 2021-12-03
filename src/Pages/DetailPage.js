@@ -9,8 +9,8 @@ const DetailPage = () => {
     <div>
       <Navbar />
       <DropDown />
-      <LineChart />
       <LocalNewsFeed />
+      <LineChart />
     </div>
   );
 };
