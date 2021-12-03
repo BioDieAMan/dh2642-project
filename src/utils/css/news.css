@@ -1,5 +1,5 @@
 .newsCard{
-    width: 300px;
+    width: 200px;
     height: 100px;
     display: inline-block;
     margin: 10px;
@@ -13,7 +13,7 @@
 .newsImage {
     display: block;
     width: 100%;
-    height: 180px;
+    height: 100px;
     object-fit: cover;
 }
   
@@ -27,7 +27,7 @@
     width: 100%;
     opacity: 0;
     transition: .5s ease;
-    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(21,35,85,1) 47%, rgba(0,212,255,0) 100%);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(21,35,85,1) 50%, rgba(0,212,255,0) 100%);
 }
   
 .newsContainer:hover .newsOverlay {
@@ -36,9 +36,9 @@
   
 .newsText {
     color: white;
-    font-size: 12px;
+    font-size: 10px;
     position: absolute;
-    top: 60%;
+    top: 50%;
     left: 10%;
     -webkit-transform: translate(-10%, -10%);
     -ms-transform: translate(-10%, -10%);
@@ -57,15 +57,15 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     margin: 10px 0 0 0;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .newsCard p{
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    margin: 0 0 5px 0;
+    margin: 0 0 0 0;
 }
 
 .newsProvider{
