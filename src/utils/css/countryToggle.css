@@ -13,11 +13,16 @@
     scrollbar-width: none;  /* Firefox */
 }
 
+.countryContainer p{
+    display: inline;
+}
+
 .countryContainer::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
 
 .countryItem{
+    display: inline;
     padding: 5px;
     margin: 0;
 }
@@ -27,9 +32,11 @@
 }
 
 .selectedCountryItem{
+    display: inline;
     padding: 5px;
     margin: 0;
     background-color: #39e600;
+    width: 300px;
 }
 
 .selectedCountryItem:hover{
@@ -37,15 +44,18 @@
 }
 
 .countryText{
-    margin: 0;
+    margin: 0 0 0 0;
     display: inline;
-    font-size: 18px;
-    margin-right: auto;
+    font-size: 10px;
+    margin: 100px;
+    width: 300px;
+    height: 200px;
+
 }
 
 .countryStar{
-    margin: 0;
+    margin: 0 0 0 0;
     display: inline;
-    font-size: 20px;
+    font-size: 10px;
     float: right;
 }

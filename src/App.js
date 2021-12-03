@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Typography, CssBaseline, Container } from "@mui/material";
 import "./index.css";
 import "./utils/css/news.css";
 import "./utils/css/chart.css";
@@ -9,7 +10,6 @@ import DetailPage from "./Pages/DetailPage";
 import MapPage from "./Pages/MapPage";
 import ComparePage from "./Pages/ComparePage"
 
-import { Typography, CssBaseline, Container } from "@mui/material";
 
 function App() {
   return (

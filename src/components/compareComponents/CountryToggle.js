@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux";
-import { getListOfCountries, addSelectedCountry, removeSelectedCountry, addWatchCountry, removeWatchCountry } from '../redux/actions/countryActions';
+import { getListOfCountries, addSelectedCountry, removeSelectedCountry, addWatchCountry, removeWatchCountry } from '../../redux/actions/countryActions';
 
 const CountryToggle = ({
     countries,
@@ -22,30 +22,19 @@ const CountryToggle = ({
         <div>
             <input className="countrySearch" placeholder="Search for country..."/>
             {!countries ? <div></div>:
-                <div className="countryContainer">{Object.keys(countries).map(cKey => selectedCountries.some(scKey => scKey === cKey)?
-                    <div    className={ "selectedCountryItem" }
-                            key={countries[cKey]}
-                            value={cKey}
-                            onClick={() => removeSelectedCountry(cKey)}>
-                        <p className="countryText">{countries[cKey]}</p>
+                <div className="countryContainer">{Object.keys(countries).map(cKey =>
+                    <div className={selectedCountries.some(scKey => scKey === cKey) ? "selectedCountryItem":"countryItem"}>
                         {watchCountries.some(wcKey => wcKey === cKey)?
-                            <p className="countryStar" onClick={() => removeWatchCountry(cKey)}>&#9733;</p>:
-                            <p className="countryStar" onClick={() => addWatchCountry(cKey)}>&#9734;</p>
+                            <span className="countryStar" onClick={() => removeWatchCountry(cKey)}>&#9733; </span>:
+                            <span className="countryStar" onClick={() => addWatchCountry(cKey)}>&#9734; </span>
                         }
-                    </div>:
-                    <div    className={ "countryItem" }
-                            key={countries[cKey]}
-                            value={cKey}
-                            onClick={() => addSelectedCountry(cKey)}>
-                        <p className="countryText">{countries[cKey]}</p>
-                        {watchCountries.some(wcKey => wcKey === cKey)?
-                            <p className="countryStar" onClick={() => removeWatchCountry(cKey)}>&#9733;</p>:
-                            <p className="countryStar" onClick={() => addWatchCountry(cKey)}>&#9734;</p>
+
+                        {selectedCountries.some(scKey => scKey === cKey)?
+                            <span className="countryText" key={countries[cKey]} value={cKey} onClick={() => removeSelectedCountry(cKey)}>{countries[cKey]}</span>:
+                            <span className="countryText" key={countries[cKey]} value={cKey} onClick={() => addSelectedCountry(cKey)}>{countries[cKey]}</span>
                         }
                     </div>
                     )}
-
-                    
                 </div>
             }
         </div >
