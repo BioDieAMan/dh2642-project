@@ -2,6 +2,7 @@ const initialState = {
     listOfCountries: null,
     currentCountry: null,
     selectedCountries: [],
+    selectedCountriesData: [],
     watchCountries: [],
     currentData: {},
     monthlyData: {},
@@ -29,6 +30,11 @@ const countryReducer = (state = initialState, action) => {
                 ...state,
                 currentData: { ...state.currentData, [state.currentCountry]: action.payload },
                 loadingCurrent: false
+            }
+        case "getSelectedCountriesData":
+            return {
+                ...state,
+                selectedCountriesData: [...state.selectedCountriesData]
             }
         case "addSelectedCountry":
             return {
