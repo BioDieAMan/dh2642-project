@@ -1,11 +1,45 @@
 .newsCard{
     width: 200px;
-    height: 100px;
+    height: auto;
     display: inline-block;
     margin: 10px;
+    padding: 10px;
 }
 
-.newsContainer {
+.newsContent{
+    padding: 0;
+}
+
+.newsImage{
+    height: 100px;
+}
+
+.newsTitle{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin: 10px 0 0 0;
+    font-size: 16px;
+    padding: 0;
+}
+
+.newsDescription{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.newsProvider{
+    float: left;
+}
+
+.newsDate{
+    float: right;
+} 
+
+/* .newsContainer {
     position: relative;
     width: 100%;
 }
@@ -58,20 +92,4 @@
     -webkit-box-orient: vertical;
     margin: 10px 0 0 0;
     font-size: 16px;
-}
-
-.newsCard p{
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    margin: 0 0 0 0;
-}
-
-.newsProvider{
-    float: left;
-}
-
-.newsDate{
-    float: right;
-} 
+} */
