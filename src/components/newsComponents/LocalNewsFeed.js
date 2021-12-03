@@ -5,11 +5,12 @@ import { getLocalCovidNews } from '../../redux/actions/covidNewsActions';
 const LocalNewsFeed = ({
     data,
     loading,
-    getLocalCovidNews
+    getLocalCovidNews,
+    currentCountry
 }) => {
     useEffect(() => {
         getLocalCovidNews()
-    }, [])
+    }, [currentCountry])
 
     return (
         <div>
@@ -45,7 +46,8 @@ const LocalNewsFeed = ({
 const mapStateToProps = state => {
     return {
         data: state.covidNews.localCovidNews,
-        loading: state.covidNews.loading
+        loading: state.covidNews.loading,
+        currentCountry: state.country.currentCountry
     }
 }
 

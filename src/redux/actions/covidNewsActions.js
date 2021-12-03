@@ -3,7 +3,7 @@ import axios from "axios"
 
 export const getGlobalCovidNews = () => async dispatch => {
     dispatch({ type: "clearGlobalCovidNews" })
-    
+
     const options = {
         method: "GET",
         url: config.searchUrl,
@@ -13,7 +13,8 @@ export const getGlobalCovidNews = () => async dispatch => {
             setLang: 'EN',
             originalImg: 'true',
             offset: '0',
-            safeSearch: 'Off'},
+            safeSearch: 'Off'
+        },
         headers: config.headers
     }
     try {
@@ -33,19 +34,20 @@ export const getGlobalCovidNews = () => async dispatch => {
 
 export const getLocalCovidNews = () => async (dispatch, getState) => {
     dispatch({ type: "clearLocalNews" })
-    
+
     const options = {
         method: "GET",
         url: config.searchUrl,
         params: {
-            q: `covid ${getState().country.currentCountry}`,
+            q: `covid ${getState().country.listOfCountries[getState().country.currentCountry]}`,
             count: '3',
             setLang: 'en',
             //mkt: 'sv-SE',
             //cc: 'RU',
             //originalImg: 'true',
             offset: '0',
-            safeSearch: 'Off'},
+            safeSearch: 'Off'
+        },
         headers: config.headers
     }
     try {
