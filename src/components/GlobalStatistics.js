@@ -18,22 +18,20 @@ const GlobalStatistics = ({ data, loading, getGlobalData }) => {
   }, []);
 
   return (
-    <Container fixed>
-      <div>
-        <h2>Global covid stats</h2>
-        {loading ? (
-          <div>loading...</div>
-        ) : data ? (
-          <div>
-            <li>Total confirmed cases: {data.confirmed}</li>
-            <li>Increase in cases since yesterday: {data.confirmed_diff}</li>
-            <li>Total confirmed deaths: {data.deaths}</li>
-            <li>Increase in deaths since yesterday: {data.deaths_diff}</li>
-          </div>
-        ) : (
-          <div></div>
-        )}
-      </div>
+    <Container maxWidth="lg" align="center">
+      <Typography variant="h3">Global covid stats</Typography>
+      {loading ? (
+        <div>loading...</div>
+      ) : data ? (
+        <div>
+          <li>Total confirmed cases: {data.confirmed}</li>
+          <li>Increase in cases since yesterday: {data.confirmed_diff}</li>
+          <li>Total confirmed deaths: {data.deaths}</li>
+          <li>Increase in deaths since yesterday: {data.deaths_diff}</li>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </Container>
   );
 };

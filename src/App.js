@@ -7,6 +7,7 @@ import "./utils/css/map.css";
 import Homepage from "./Pages/Homepage";
 import DetailPage from "./Pages/DetailPage";
 import MapPage from "./Pages/MapPage";
+import ComparePage from "./Pages/ComparePage";
 
 import { Typography, CssBaseline, Container } from "@mui/material";
 
@@ -26,12 +27,13 @@ function App() {
               Covindex
             </Typography>
           </Container>
-          <Container maxWidth="lg">
+          <Container maxWidth="xl">
             <BrowserRouter>
               <Routes>
                 <Route exact path="/" element={<Homepage />} />
                 <Route path="/map" element={<MapPage />} />
                 <Route path="/details" element={<DetailPage />} />
+                <Route path="/compare" element={<ComparePage />} />
                 {/* <Route path="/comparison" element={<Comparison/>}/> */}
               </Routes>
             </BrowserRouter>

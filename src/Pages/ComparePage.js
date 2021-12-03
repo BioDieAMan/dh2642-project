@@ -1,12 +1,15 @@
-import React from 'react'
-import CountryToggle from '../components/CountryToggle';
+import React from "react";
+import CountryToggle from "../components/CountryToggle";
+import Navbar from "../components/Navbar";
+import { Container } from "@mui/material";
 
 const ComparePage = () => {
-    return (
-        <div>
-            <CountryToggle />
-        </div>
-    )
-}
+  return (
+    <Container>
+      <Navbar />
+      <CountryToggle />
+    </Container>
+  );
+};
 
-export default ComparePage
+export default ComparePage;
