@@ -3,6 +3,8 @@ import GlobalStatistics from "../components/GlobalStatistics";
 import GlobalNewsFeed from "../components/newsComponents/GlobalNewsFeed";
 import TwitterFeed from "../components/TwitterFeed";
 import Navbar from "../components/Navbar";
+import Signup from "../components/Signup";
+import Signin from "../components/Signin";
 
 const Homepage = () => {
     return (
@@ -11,6 +13,8 @@ const Homepage = () => {
             <GlobalStatistics />
             <GlobalNewsFeed />
             <TwitterFeed />
+            <Signin />
+            <Signup />
         </div>
     );
 };

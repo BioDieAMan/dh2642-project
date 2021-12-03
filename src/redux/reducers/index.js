@@ -4,7 +4,8 @@ import covidNewsReducer from "./covidNewsReducer";
 import countryReducer from "./countryReducer";
 import { combineReducers } from "redux";
 import twitterReducer from "./twitterReducer";
-import firebaseReducer from "react-redux-firebase"
+import { firebaseReducer } from "react-redux-firebase";
+import authenticationReducer from "./authenticationReducer";
 
 
 const rootReducer = combineReducers({
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   country: countryReducer,
   covidNews: covidNewsReducer,
   twitter: twitterReducer,
-  firebase: firebaseReducer
+  firebase: firebaseReducer,
+  authentication: authenticationReducer
 });
 
 export default rootReducer;

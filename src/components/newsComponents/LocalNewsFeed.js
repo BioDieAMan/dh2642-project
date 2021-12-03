@@ -9,7 +9,7 @@ const LocalNewsFeed = ({
     currentCountry
 }) => {
     useEffect(() => {
-        getLocalCovidNews()
+        currentCountry && getLocalCovidNews()
     }, [currentCountry])
 
     return (
