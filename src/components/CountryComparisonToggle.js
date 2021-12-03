@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux";
 import { getListOfCountries, addSelectedCountry, removeSelectedCountry, addWatchCountry, removeWatchCountry } from '../redux/actions/countryActions';
+import { Input, Box, List, ListItemText, ListItemButton, ListItemIcon } from '@mui/material';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 
 const CountryComparisonToggle = ({
     countries,
@@ -19,25 +22,32 @@ const CountryComparisonToggle = ({
         getListOfCountries()
     }, [])
     return (
-        <div>
-            <input className="countrySearch" placeholder="Search for country..."/>
-            {!countries ? <div></div>:
-                <div className="countryContainer">{Object.keys(countries).map(cKey =>
-                    <div className={selectedCountries.some(scKey => scKey === cKey) ? "selectedCountryItem":"countryItem"}>
-                        {watchCountries.some(wcKey => wcKey === cKey)?
-                            <span className="countryStar" onClick={() => removeWatchCountry(cKey)}>&#9733; </span>:
-                            <span className="countryStar" onClick={() => addWatchCountry(cKey)}>&#9734; </span>
-                        }
+        <Box sx={{ width: '100%', maxWidth: 300, bgcolor: 'background.paper' }}>
+            <Input placeholder="Search for country..." />
+            <div className="scrollBar">
+                {!countries?
+                    <List></List>:
+                    <List>
+                        {Object.keys(countries).map(cKey =>
+                            <ListItemButton
+                                selected={selectedCountries.some(scKey => scKey === cKey)}
+                                onClick={() => selectedCountries.some(scKey => scKey === cKey)?removeSelectedCountry(cKey):addSelectedCountry(cKey)}
+                            >
+                                <ListItemText>{countries[cKey]}</ListItemText>
 
-                        {selectedCountries.some(scKey => scKey === cKey)?
-                            <span className="countryText" key={countries[cKey]} value={cKey} onClick={() => removeSelectedCountry(cKey)}>{countries[cKey]}</span>:
-                            <span className="countryText" key={countries[cKey]} value={cKey} onClick={() => addSelectedCountry(cKey)}>{countries[cKey]}</span>
-                        }
-                    </div>
-                    )}
-                </div>
-            }
-        </div >
+                                <ListItemButton sx={{ padding: '0', maxWidth: '24px' }}
+                                                onClick={() => watchCountries.some(wcKey => wcKey === cKey)?removeWatchCountry(cKey):addWatchCountry(cKey)}>
+                                    {watchCountries.some(wcKey => wcKey === cKey)?
+                                        <StarIcon />:
+                                        <StarBorderIcon />
+                                    }
+                                </ListItemButton>
+                            </ListItemButton>
+                        )}z
+                    </List>
+                }
+            </div>
+        </Box>
     )
 }
 
