@@ -1,17 +1,22 @@
 import React from 'react'
-import CountryComparisonToggle from '../components/CountryComparisonToggle';
+import CountryComparisonList from '../components/CountryComparisonList';
 import CountryComparisonTable from '../components/CountryComparisonTable';
 import Navbar from "../components/Navbar";
 import LineChart from "../components/LineChart";
 
 const ComparePage = () => {
     return (
-        <div>
+        <div className="container">
             <Navbar />
-            {/* <LineChart />
-            <LineChart />*/}
-            <CountryComparisonTable />
-            <CountryComparisonToggle />
+            <div className="leftContent">
+                <CountryComparisonList />
+            </div>
+            <div className="mainContent">
+                {/* <LineChart /> */}
+                <CountryComparisonTable />
+            </div>
+            
+            
         </div>
     )
 }
