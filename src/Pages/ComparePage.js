@@ -8,10 +8,15 @@ const ComparePage = () => {
     return (
         <div>
             <Navbar />
-            {/* <LineChart />
-            <LineChart />*/}
-            <CountryComparisonTable />
-            <CountryComparisonToggle />
+            {/* <LineChart /> */}
+            <div>
+                <div className='comparisonTable'>
+                    <CountryComparisonTable />
+                </div>
+                <div className='comparisonToggle'>
+                    <CountryComparisonToggle />
+                </div>
+            </div>
         </div>
     )
 }

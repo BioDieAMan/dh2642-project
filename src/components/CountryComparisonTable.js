@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from "react-redux";
-import { getCurrentData } from '../redux/actions/countryActions';
+import { getCurrentData, setCountry } from '../redux/actions/countryActions';
 import { TableContainer, Table, TableBody, TableHead, TableRow, TableCell, Paper } from '@mui/material';
 
 const CountryComparisonTable = ({
@@ -8,7 +8,8 @@ const CountryComparisonTable = ({
     listOfCountries,
     loadingCurrent,
     currentData,
-    
+    getCurrentData,
+    setCountry
 }) => {
     return (
         <TableContainer component={Paper}>
@@ -25,16 +26,22 @@ const CountryComparisonTable = ({
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {selectedCountries.map(scKey => 
-                        <TableRow>
-                            <TableCell>{listOfCountries[scKey]}</TableCell>
-                            <TableCell>TODO</TableCell>
-                            <TableCell>TODO</TableCell>
-                            <TableCell>TODO</TableCell>
-                            <TableCell>TODO</TableCell>
-                            <TableCell>TODO</TableCell>
-                            <TableCell>TODO</TableCell>
-                        </TableRow>
+                    {selectedCountries.map(scKey => {
+                        setCountry(scKey);
+                        getCurrentData(scKey);
+                        if (currentData[scKey]) {
+                            return (
+                                <TableRow>
+                                    <TableCell>{listOfCountries[scKey]}</TableCell>
+                                    <TableCell>{currentData[scKey].confirmed}</TableCell>
+                                    <TableCell>TODO</TableCell>
+                                    <TableCell>TODO</TableCell>
+                                    <TableCell>TODO</TableCell>
+                                    <TableCell>{currentData[scKey].deaths}</TableCell>
+                                    <TableCell>TODO</TableCell>
+                                </TableRow>)
+                        }
+                    }
                     )}
                 </TableBody>
             </Table>
@@ -46,12 +53,14 @@ const mapStateToProps = state => {
     return {
         selectedCountries: state.country.selectedCountries,
         listOfCountries: state.country.listOfCountries,
-        currentData: state.country.currentData,
+        currentData: state.country.currentData
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
+        setCountry: (country) => dispatch(setCountry(country)),
+        getCurrentData: (country) => dispatch(getCurrentData(country))
     }
 }
 

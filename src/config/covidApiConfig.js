@@ -1,7 +1,7 @@
 const config = {
     headers: {
         'x-rapidapi-host': 'covid-19-statistics.p.rapidapi.com',
-        'x-rapidapi-key': 'd27a2ec547mshda21218582db22bp139cd2jsn81ffe228f1c1',
+        'x-rapidapi-key': '431eca30d7msh56744f6cae1cfa5p1162c8jsn5c090ac6de9b',
     },
     globalUrl: 'https://covid-19-statistics.p.rapidapi.com/reports/total',
     countryUrl: 'https://covid-19-statistics.p.rapidapi.com/reports',

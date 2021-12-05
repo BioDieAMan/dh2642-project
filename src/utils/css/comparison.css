@@ -1,0 +1,9 @@
+.comparisonTable {
+    width:70%;
+    float:right;
+}
+
+.comparisonToggle{
+    width:30%;
+    float:left;
+}
