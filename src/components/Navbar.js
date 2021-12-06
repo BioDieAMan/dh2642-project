@@ -33,6 +33,9 @@ const Navbar = () => {
           <Button variant="text" component={Link} to="/map">
             Map
           </Button>
+          <Button variant="text" component={Link} to="/account">
+            Log in
+          </Button>
         </Typography>
       </Toolbar>
     </AppBar>

@@ -15,8 +15,6 @@ const Homepage = () => {
             <GlobalStatistics />
             <GlobalNewsFeed />
             <TwitterFeed />
-            <SignIn />
-            <SignUp />
           </Container>
         </div>
     );

@@ -8,6 +8,7 @@ import "./utils/css/map.css";
 import "./utils/css/compare.css";
 import "./utils/css/logIn.css";
 import Homepage from "./Pages/Homepage";
+import AccountPage from "./Pages/AccountPage";
 import DetailPage from "./Pages/DetailPage";
 import MapPage from "./Pages/MapPage";
 import ComparePage from "./Pages/ComparePage";
@@ -32,6 +33,7 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route exact path="/" element={<Homepage />} />
+                <Route path="/account" element={<AccountPage />} />
                 <Route path="/map" element={<MapPage />} />
                 <Route path="/details" element={<DetailPage />} />
                 <Route path="/compare" element={<ComparePage />} />
