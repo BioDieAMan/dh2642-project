@@ -1,12 +1,64 @@
-# Getting Started with Create React App
+# Covindex
+
+This project is to showcase the spread of Covid-19, show news about covid and display a map to make comparisons between countries.
+
+This project is available at https://covindex-dh2642-project.web.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+---
+
+The project is set up with React and Redux for state-management. We've also implemented Material UI for the layout/design.
+
+The main views of the application are these 5 pages.
+
+/Pages/Homepage.js - Landing page, displaying global stats, News and Twitterfeed(todo).
+/Pages/DetailPage.js - Detailed view with a graph and local news for selected country.
+/Pages/ComparePage.js - A page where you can compare countries in a list, graphs(todo).
+/Pages/MapPage.js - A page displaying a map where you can pick countrie from the interactive map.
+/Pages/AccountPage.js - A page for login/signup.
+
+---
+
+/Components
+
+We made different componenents that makes up the different pages and placed them in a separate folder.
+
+---
+
+/Redux/actions - This where we've placed all action-creators to change the application-state.
+
+/Redux/reducers - This is where we've placed all the reducers that make up the application-state.
+
+### Done
+
+- Implemented Covid-API
+- Implemented News-API
+- Comparison Page
+- Login/Sign Up
+- Started implementing Material UI
+- Interactable Map
+- Added redux state-management with actions and reducers
+- Firebase-deployment
+- Added react-redux connection to Firebase
+- Started using Trello to track different tasks
+
+### Todo
+
+- Overall design
+- Design Logn/Sign up
+- Implement Twitter-API
+- Clean-up code, duplicate code etc.
+- Show user-specific content
+- Implement persistent-state for data in general
+- Add a spinner-image/loading placerholder when waiting for data.
+- Iterate on user-feeback.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn start`
+### `yarn start` or `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -28,43 +80,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
