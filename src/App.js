@@ -10,7 +10,7 @@ import "./utils/css/logIn.css";
 import Homepage from "./Pages/Homepage";
 import DetailPage from "./Pages/DetailPage";
 import MapPage from "./Pages/MapPage";
-import ComparePage from "./Pages/ComparePage"
+import ComparePage from "./Pages/ComparePage";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
               Covindex
             </Typography>
           </Container>
-          <Container maxWidth="lg">
+          <Container maxWidth="xl">
             <BrowserRouter>
               <Routes>
                 <Route exact path="/" element={<Homepage />} />
