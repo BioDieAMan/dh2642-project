@@ -1,3 +1,5 @@
+// import LockOutlinedIcon from '@mui/icons/LockOutlined';
+import { Avatar, FormControlLabel, Grid, TextField, Typography, Button, Link, Paper, Checkbox } from '@mui/material';
 import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { signIn, signOut } from '../redux/actions/authenticationActions';
@@ -15,14 +17,39 @@ const Signin = ({
     const [password, setPassword] = useState("");
 
     return (
+        <div>
+        <Grid>
+            <Paper className="logInPaper" elevation={10}>
+                <Grid align="center">
+                   <Avatar className="logInAvatar">
+                        {/* <LockOutlinedIcon /> */}
+                   </Avatar>
+                    <h2>Sign In</h2>
+                </Grid>
+                <TextField placeholder="Username" label="Username" fullWidth required />
+                <TextField placeholder="Password" label="Password" type="password" fullWidth required />
+                <FormControlLabel control={
+                    <Checkbox name="checkedB" color="primary" /> 
+                }
+                label="Remember me"
+                />
+                <Button className="logInButton" type="submit" color="primary" variant="contained" fullWidth>Sign in</Button>
+                <Typography>
+                    <Link href="#">Forgot password?</Link>
+                </Typography>
+                <Typography>
+                    <Link href="#">Register an account</Link>
+                </Typography>
+            </Paper>
+        </Grid>
         <>
             {uid ? <div>Signed in as {signedInEmail} <button onClick={() => signOut()}>Sign out</button></div>
-                :
-                <div>
-                    <h2>Sign in</h2>
+             :
+                 <div>
+                     <h2>Sign in</h2>
                     {signinError ? <p>{signinError}</p> : <div></div>}
                     {signoutError ? <p>{signoutError}</p> : <div></div>}
-                    <input
+                   <input
                         onChange={(e) => setEmail(e.target.value)}
                         type="email" />
                     <input
@@ -31,6 +58,7 @@ const Signin = ({
                     <button onClick={() => signIn(email, password)}>Sign in</button>
                 </div>}
         </>
+        </div>
     )
 }
 

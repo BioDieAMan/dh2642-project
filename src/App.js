@@ -6,11 +6,11 @@ import "./utils/css/chart.css";
 import "./utils/css/flex.css";
 import "./utils/css/map.css";
 import "./utils/css/compare.css";
+import "./utils/css/logIn.css";
 import Homepage from "./Pages/Homepage";
 import DetailPage from "./Pages/DetailPage";
 import MapPage from "./Pages/MapPage";
 import ComparePage from "./Pages/ComparePage"
-
 
 function App() {
   return (
