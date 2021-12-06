@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { signUp } from '../redux/actions/authenticationActions';
 
-const Signup = ({
+const SignUp = ({
     signUp,
     signupError
 }) => {
@@ -37,4 +37,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

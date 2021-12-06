@@ -8,16 +8,16 @@ import SignUp from "../components/SignUp";
 import SignIn from "../components/SignIn";
 
 const Homepage = () => {
-    return (
-        <div>
-          <Container>
-            <Navbar />
-            <GlobalStatistics />
-            <GlobalNewsFeed />
-            <TwitterFeed />
-          </Container>
-        </div>
-    );
+  return (
+    <div>
+      <Container>
+        <Navbar />
+        <GlobalStatistics />
+        <GlobalNewsFeed />
+        <TwitterFeed />
+      </Container>
+    </div>
+  );
 };
 
 export default Homepage;

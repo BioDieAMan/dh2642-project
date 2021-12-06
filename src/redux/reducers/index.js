@@ -1,4 +1,3 @@
-import counterReducer from "./counterReducer";
 import globalDataReducer from "./globalDataReducer";
 import covidNewsReducer from "./covidNewsReducer";
 import countryReducer from "./countryReducer";
@@ -9,7 +8,6 @@ import authenticationReducer from "./authenticationReducer";
 
 
 const rootReducer = combineReducers({
-  counter: counterReducer,
   globalData: globalDataReducer,
   country: countryReducer,
   covidNews: covidNewsReducer,
