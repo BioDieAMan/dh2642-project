@@ -17,31 +17,28 @@ function App() {
   return (
     <>
       <CssBaseline />
-      <main>
-        <div>
-          <Container maxWidth="sm">
-            <Typography
-              variant="h2"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              Covindex
-            </Typography>
-          </Container>
-          <Container maxWidth="xl">
-            <BrowserRouter>
-              <Routes>
-                <Route exact path="/" element={<Homepage />} />
-                <Route path="/account" element={<AccountPage />} />
-                <Route path="/map" element={<MapPage />} />
-                <Route path="/details" element={<DetailPage />} />
-                <Route path="/compare" element={<ComparePage />} />
-              </Routes>
-            </BrowserRouter>
-          </Container>
-        </div>
-      </main>
+
+      <Container maxWidth="sm">
+        <Typography
+          variant="h2"
+          align="center"
+          color="textPrimary"
+          gutterBottom
+        >
+          Covindex
+        </Typography>
+      </Container>
+      <Container maxWidth="xl">
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={<Homepage />} />
+            <Route path="/account" element={<AccountPage />} />
+            <Route path="/map" element={<MapPage />} />
+            <Route path="/details" element={<DetailPage />} />
+            <Route path="/compare" element={<ComparePage />} />
+          </Routes>
+        </BrowserRouter>
+      </Container>
     </>
   );
 }

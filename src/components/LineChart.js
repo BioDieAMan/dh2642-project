@@ -82,51 +82,41 @@ const LineChart = ({
   }
   return (
     <Container>
-      {!listOfCountries ? (
-        <Typography variant="h5">Choose a country</Typography>
-      ) : (
-        <Container id="Chart">
-          {!monthlyData[currentCountry] && !loadingMonthly ? (
-            <h1>Choose a country</h1>
-          ) : loadingMonthly ? (
-            <h1>Loading...</h1>
-          ) : (
-            <div>
-              <Line
-                data={
-                  graphType === "cases"
-                    ? interval === "monthly"
-                      ? monthlyDataCases
-                      : sixMonthDataCases
-                    : interval === "monthly"
-                    ? monthlyDataDeaths
-                    : sixMonthDataDeaths
-                }
-              />
-              <Button
-                variant="contained"
-                onClick={() =>
-                  graphType === "cases"
-                    ? setGraphType("deaths")
-                    : setGraphType("cases")
-                }
-              >
-                {graphType === "cases" ? "Deaths" : "Cases"}
-              </Button>
-              <Button
-                variant="contained"
-                onClick={() =>
-                  interval === "monthly"
-                    ? setInterval("sixMonth")
-                    : setInterval("monthly")
-                }
-              >
-                {interval === "monthly" ? "Six Months" : "Last Month"}
-              </Button>
-            </div>
-          )}
-        </Container>
-      )}
+      <Container>
+        <Line
+          data={
+            graphType === "cases"
+              ? interval === "monthly"
+                ? monthlyDataCases
+                : sixMonthDataCases
+              : interval === "monthly"
+              ? monthlyDataDeaths
+              : sixMonthDataDeaths
+          }
+        />
+      </Container>
+      <Container>
+        <Button
+          variant="contained"
+          onClick={() =>
+            graphType === "cases"
+              ? setGraphType("deaths")
+              : setGraphType("cases")
+          }
+        >
+          {graphType === "cases" ? "Deaths" : "Cases"}
+        </Button>
+        <Button
+          variant="contained"
+          onClick={() =>
+            interval === "monthly"
+              ? setInterval("sixMonth")
+              : setInterval("monthly")
+          }
+        >
+          {interval === "monthly" ? "Six Months" : "Last Month"}
+        </Button>
+      </Container>
     </Container>
   );
 };

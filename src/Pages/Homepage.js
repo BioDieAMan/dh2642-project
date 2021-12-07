@@ -9,14 +9,12 @@ import SignIn from "../components/SignIn";
 
 const Homepage = () => {
   return (
-    <div>
-      <Container>
-        <Navbar />
-        <GlobalStatistics />
-        <GlobalNewsFeed />
-        <TwitterFeed />
-      </Container>
-    </div>
+    <Container>
+      <Navbar />
+      <GlobalStatistics />
+      <GlobalNewsFeed />
+      <TwitterFeed />
+    </Container>
   );
 };
 

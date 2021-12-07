@@ -10,7 +10,12 @@ const DetailPage = () => {
   return (
     <Container>
       <Navbar />
-      <DropDown />
+      <DropDown
+        style={{
+          display: "flex",
+          alignItems: "Left",
+        }}
+      />
       <LocalNewsFeed />
       <LineChart />
     </Container>

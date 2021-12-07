@@ -9,6 +9,7 @@ import {
   CardContent,
   CardMedia,
   Button,
+  Container,
 } from "@mui/material";
 
 const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews }) => {
@@ -17,80 +18,68 @@ const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews }) => {
   }, []);
 
   return (
-    <div>
-      <h2>Covid News</h2>
+    <Container>
+      <Container>
+        <Typography variant="h6" align="left" color="textPrimary" gutterBottom>
+          Covid News
+        </Typography>
+      </Container>
+
       {loading ? (
-        <div>loading...</div>
-      ) : data ? (
-        <div>
-          <Typography
-            variant="h6"
-            align="left"
-            color="textPrimary"
-            gutterBottom
-          >
-            Covid News
-          </Typography>
-
-          {loading ? (
-            <div>Loading</div>
-          ) : !data ? (
-            <div>No data</div>
-          ) : (
-            data.map((article) => (
-              <Card className="newsCard">
-                <CardActionArea>
-                  <CardMedia
-                    className="newsImage"
-                    component="img"
-                    height="100"
-                    image={
-                      article.image
-                        ? article.image.thumbnail.contentUrl
-                        : "https://nbhc.ca/sites/default/files/styles/article/public/default_images/news-default-image%402x_0.png?itok=B4jML1jF"
-                    }
-                  />
-
-                  <CardContent className="newsContent">
-                    <Typography
-                      className="newsTitle"
-                      gutterBottom
-                      variant="h6"
-                      component="div"
-                    >
-                      {article.name}
-                    </Typography>
-                    <Typography
-                      className="newsDescription"
-                      variant="body2"
-                      color="text.secondary"
-                    >
-                      {article.description}
-                    </Typography>
-                    <Typography
-                      className="newsProvider"
-                      variant="body2"
-                      color="text.secondary"
-                    >
-                      {article.provider[0].name}
-                    </Typography>
-                    <Typography
-                      className="newsDate"
-                      variant="body2"
-                      color="text.secondary"
-                    >
-                      {article.datePublished.slice(0, 10)}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
-            ))
-          )}
-        </div>
+        <Container>Loading</Container>
+      ) : !data ? (
+        <Container>No data</Container>
       ) : (
-        <div>No data</div>
+        data.map((article) => (
+          <Card className="newsCard">
+            <CardActionArea>
+              <CardMedia
+                className="newsImage"
+                component="img"
+                height="100"
+                image={
+                  article.image
+                    ? article.image.thumbnail.contentUrl
+                    : "https://nbhc.ca/sites/default/files/styles/article/public/default_images/news-default-image%402x_0.png?itok=B4jML1jF"
+                }
+              />
+
+              <CardContent className="newsContent">
+                <Typography
+                  className="newsTitle"
+                  gutterBottom
+                  variant="h6"
+                  component="div"
+                >
+                  {article.name}
+                </Typography>
+                <Typography
+                  className="newsDescription"
+                  variant="body2"
+                  color="text.secondary"
+                >
+                  {article.description}
+                </Typography>
+                <Typography
+                  className="newsProvider"
+                  variant="body2"
+                  color="text.secondary"
+                >
+                  {article.provider[0].name}
+                </Typography>
+                <Typography
+                  className="newsDate"
+                  variant="body2"
+                  color="text.secondary"
+                >
+                  {article.datePublished.slice(0, 10)}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        ))
       )}
-    </div>
+    </Container>
   );
 };
 

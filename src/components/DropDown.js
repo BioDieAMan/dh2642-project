@@ -14,8 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import { Container } from "@mui/material";
-import Box from "@mui/material/Box";
+import { Container, Typography } from "@mui/material";
 
 const DropDown = ({
   countries,
@@ -30,38 +29,36 @@ const DropDown = ({
     getListOfCountries();
   }, []);
   return (
-    <div>
+    <Container>
       {!countries ? (
-        <div></div>
-      ) : (
         <Container>
-          <Box sx={{ minWidth: 100 }}>
-            <FormControl size="mediumd">
-              <InputLabel id="select-country">Country</InputLabel>
-              <Select
-                id="dropdown"
-                onChange={(event) => {
-                  setCountry(event.target.value);
-                  getCurrentData(event.target.value);
-                  getMonthlyData(event.target.value);
-                  getSixMonthData(event.target.value);
-                }}
-              >
-                <MenuItem hidden></MenuItem>
-                {Object.entries(countries).map((c) => (
-                  <MenuItem key={c[1]} value={c[0]}>
-                    {c[1]}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Box>
+          <Typography variant="h7">Choose a Country</Typography>
         </Container>
+      ) : (
+        <FormControl sx={{ m: 1, minWidth: 180 }}>
+          <InputLabel id="select-country">Country</InputLabel>
+          <Select
+            id="dropdown"
+            label="Country"
+            onChange={(event) => {
+              setCountry(event.target.value);
+              getCurrentData(event.target.value);
+              getMonthlyData(event.target.value);
+              getSixMonthData(event.target.value);
+            }}
+          >
+            <MenuItem hidden></MenuItem>
+            {Object.entries(countries).map((c) => (
+              <MenuItem key={c[1]} value={c[0]}>
+                {c[1]}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       )}
-    </div>
+    </Container>
   );
 };
-
 const mapStateToProps = (state) => {
   return {
     countries: state.country.listOfCountries,
