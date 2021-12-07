@@ -12,3 +12,7 @@
 .logInButton{
     margin: 8px 0;
 }
+
+.loginNavBar{
+    float: right;
+}
