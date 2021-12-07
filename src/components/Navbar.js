@@ -11,6 +11,7 @@ const Navbar = ({
   uid,
   signedInEmail,
   signOut,
+  signoutError,
 }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -43,6 +44,7 @@ const Navbar = ({
             </Tooltip>
             </span>:
             <span className="loginNavBar">
+              {signoutError ? {signoutError}: <span></span>}
               <Button variant="text" component={Link} to="/account">Sign in</Button>
             </span>
           }
@@ -130,6 +132,7 @@ const mapStateToProps = state => {
   return {
     uid: state.firebase.auth.uid,
     signedInEmail: state.firebase.auth.email,
+    signoutError: state.authentication.signoutError
   }
 }
 

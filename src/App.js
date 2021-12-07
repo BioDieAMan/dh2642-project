@@ -12,6 +12,8 @@ import AccountPage from "./Pages/AccountPage";
 import DetailPage from "./Pages/DetailPage";
 import MapPage from "./Pages/MapPage";
 import ComparePage from "./Pages/ComparePage";
+import history from './history';
+
 
 function App() {
   return (
@@ -30,7 +32,7 @@ function App() {
       </Container>
       <Container maxWidth="xl">
         <BrowserRouter>
-          <Routes>
+          <Routes history={history}>
             <Route exact path="/" element={<Homepage />} />
             <Route path="/account" element={<AccountPage />} />
             <Route path="/map" element={<MapPage />} />
