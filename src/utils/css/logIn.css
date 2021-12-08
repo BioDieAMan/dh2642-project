@@ -1,16 +1,12 @@
 .logInPaper{
     padding: 20px;
-    height: 70vh;
+    height: 60vh;
     width: 300px;
     margin: 20px auto;
 }
 
 .logInAvatar{
     background-color: azure;
-}
-
-.logInButton{
-    margin: 8px 0;
 }
 
 .loginNavBar{

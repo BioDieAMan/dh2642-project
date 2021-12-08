@@ -24,15 +24,19 @@ const Navbar = ({
         <Typography sx={{ minWidth: 100 }}>
           <Button variant="text" component={Link} to="/">Home</Button>
         </Typography>
+
         <Typography sx={{ minWidth: 100 }}>
           <Button variant="text" component={Link} to="/details">Details</Button>
         </Typography>
+
         <Typography sx={{ minWidth: 100 }}>
           <Button variant="text" component={Link} to="/compare">Comparison</Button>
         </Typography>
+
         <Typography sx={{ minWidth: 100 }}>
           <Button variant="text" component={Link} to="/map">Map</Button>
         </Typography>
+
         <Typography sx={{ minWidth: 100, position: "absolute", right: "10%"}}>
           {uid ?
             <span>
@@ -49,6 +53,7 @@ const Navbar = ({
             </span>
           }
         </Typography>
+
         <Menu anchorEl={anchorEl}
               open={open}
               onClose={handleClose}
@@ -61,25 +66,10 @@ const Navbar = ({
               transformOrigin={{ horizontal: 'right', vertical: 'top' }}
               anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-          <MenuItem>
-            <Avatar /> Profile
-          </MenuItem>
-          <MenuItem>
+          <MenuItem component={Link} to="/account">
             <Avatar /> My account
           </MenuItem>
           <Divider />
-          <MenuItem>
-            <ListItemIcon>
-              <PersonAdd fontSize="small" />
-            </ListItemIcon>
-            Add another account
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <Settings fontSize="small" />
-            </ListItemIcon>
-            Settings
-          </MenuItem>
           <MenuItem onClick={() => signOut()} variant="text">
             <ListItemIcon>
               <Logout fontSize="small" />
