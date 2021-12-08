@@ -1,5 +1,5 @@
 // import LockOutlinedIcon from '@mui/icons/LockOutlined';
-import { Avatar, FormControlLabel, Grid, TextField, Typography, Button, Link, Paper, Checkbox } from '@mui/material';
+import { Box, Avatar, FormControlLabel, Grid, TextField, Typography, Button, Link, Paper, Checkbox } from '@mui/material';
 import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { signIn, signOut } from '../redux/actions/authenticationActions';
@@ -25,9 +25,50 @@ const SignIn = ({
                     <h2>Sign In</h2>
                 </Grid>
 
-                {signinError ? {signinError}: <span></span>}
-                <TextField sx={{mb: '10px'}} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" label="Email" fullWidth required />
-                <TextField sx={{mb: '10px'}} onChange={(e) => setPassword(e.target.value)} placeholder="Password" label="Password" type="password" fullWidth required />
+                <Box    component="form"
+                        sx={{'& .MuiTextField-root': { mb: "10px", mt: "10px"},}}
+                        noValidate
+                        autoComplete="off"
+                >
+                    {signinError?
+                        <div>
+                            <TextField  onChange={(e) => setEmail(e.target.value)}
+                                        type="email"
+                                        placeholder="Email"
+                                        label="Email"
+                                        fullWidth required
+                                        error
+                                        id="outlined-error"
+                            />
+                            <TextField  onChange={(e) => setPassword(e.target.value)}
+                                        type="password"
+                                        placeholder="Password"
+                                        label="Password"
+                                        fullWidth required
+                                        error
+                                        id="outlined-error-helper-text"
+                                        helperText={signinError}
+                            />
+                        </div>:
+                        <div>
+                            <TextField  onChange={(e) => setEmail(e.target.value)}
+                                        type="email"
+                                        placeholder="Email"
+                                        label="Email"
+                                        fullWidth required
+                            />
+                            <TextField  onChange={(e) => setPassword(e.target.value)}
+                                        type="password"
+                                        placeholder="Password"
+                                        label="Password"
+                                        fullWidth required
+                            />
+                        </div>
+                    }
+                </Box>
+
+                {/* <TextField sx={{mb: '10px'}} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" label="Email" fullWidth required />
+                <TextField sx={{mb: '10px'}} onChange={(e) => setPassword(e.target.value)} placeholder="Password" label="Password" type="password" fullWidth required /> */}
                 {/* <FormControlLabel control={
                     <Checkbox name="checkedB" color="primary" />
                 }
