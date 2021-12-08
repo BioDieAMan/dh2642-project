@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import { Container } from "@mui/material";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
+import User from "../components/User";
 
 
 const AccountPage = ({
@@ -13,15 +14,8 @@ const AccountPage = ({
         <Container>
             <Navbar />
             {uid ?
-                <span>
-                    You are signed in!
-                </span>:
-                <span>
-                    {window.location.hash === '#SignUp'?
-                        <SignUp />:
-                        <SignIn />
-                    }
-                </span>
+                <User />:
+                window.location.hash === '#SignUp'?<SignUp />:<SignIn />
             }
         </Container>
     );
