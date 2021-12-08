@@ -17,16 +17,6 @@ const MapPage = () => {
           <Map setTooltip={setTooltip} />
           <ReactTooltip>{tooltip}</ReactTooltip>
         </Container>
-        <Container style={{ textAlign: "center" }}>
-          <Typography
-            variant="h7"
-            textAlign="center"
-            color="textPrimary"
-            gutterBottom
-          >
-            Click a country to see current information about the situation
-          </Typography>
-        </Container>
       </Container>
     </Container>
   );

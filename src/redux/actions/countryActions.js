@@ -4,7 +4,8 @@ import dateformat from "dateformat";
 
 export const setCountry = (country) => (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase()
-    firebase.database().ref("current").set({
+    const userId = getState().firebase.auth.uid
+    firebase.database().ref(`${userId}`).set({
         country: country
     })
     dispatch({
@@ -12,6 +13,7 @@ export const setCountry = (country) => (dispatch, getState, { getFirebase }) => 
         payload: country
     })
 }
+
 const sortCountries = (a, b) => {
     return (a.name < b.name) ? -1 : (b.name < a.name) ? 1 : 0
 }
@@ -91,19 +93,17 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
                 aggregatedData.confirmed_diff += region.confirmed_diff;
                 aggregatedData.deaths_diff += region.deaths_diff;
             })
-            if (getState().country.currentCountry === country) {
-                if (aggregatedData.confirmed === 0) {
-                    dispatch({
-                        type: "getCurrentData",
-                        payload: null
-                    })
-                }
-                else {
-                    dispatch({
-                        type: "getCurrentData",
-                        payload: aggregatedData
-                    })
-                }
+            if (aggregatedData.confirmed === 0) {
+                dispatch({
+                    type: "getCurrentData",
+                    payload: [country, null]
+                })
+            }
+            else {
+                dispatch({
+                    type: "getCurrentData",
+                    payload: [country, aggregatedData]
+                })
             }
         }
         catch (e) {
@@ -150,12 +150,10 @@ export const getMonthlyData = (country) => async (dispatch, getState) => {
                 monthlyData[date] = aggregatedData
                 date.setDate(date.getDate() - 2)
             }
-            if (getState().country.currentCountry === country) {
-                dispatch({
-                    type: "getMonthlyData",
-                    payload: monthlyData
-                })
-            }
+            dispatch({
+                type: "getMonthlyData",
+                payload: [country, monthlyData]
+            })
         }
         catch (e) {
             dispatch({
@@ -200,12 +198,11 @@ export const getSixMonthData = (country) => async (dispatch, getState) => {
                 sixMonthData[date] = aggregatedData
                 date.setDate(date.getDate() - 12)
             }
-            if (getState().country.currentCountry === country) {
-                dispatch({
-                    type: "getSixMonthData",
-                    payload: sixMonthData
-                })
-            }
+            dispatch({
+                type: "getSixMonthData",
+                payload: [country, sixMonthData]
+            })
+
         }
         catch (e) {
             dispatch({
@@ -215,3 +212,4 @@ export const getSixMonthData = (country) => async (dispatch, getState) => {
         }
     }
 }
+

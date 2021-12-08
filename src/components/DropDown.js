@@ -14,7 +14,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, CircularProgress } from "@mui/material";
 
 const DropDown = ({
   countries,
@@ -23,6 +23,7 @@ const DropDown = ({
   getMonthlyData,
   getSixMonthData,
   setCountry,
+  currentCountry
 }) => {
   useEffect(() => {
     if (countries) return;
@@ -31,9 +32,7 @@ const DropDown = ({
   return (
     <Container>
       {!countries ? (
-        <Container>
-          <Typography variant="h7">Choose a Country</Typography>
-        </Container>
+        <CircularProgress />
       ) : (
         <FormControl sx={{ m: 1, minWidth: 180 }}>
           <InputLabel id="select-country">Country</InputLabel>
@@ -56,12 +55,14 @@ const DropDown = ({
           </Select>
         </FormControl>
       )}
+      {currentCountry ? <h2>{countries[currentCountry]}</h2> : <h2>Select a country</h2>}
     </Container>
   );
 };
 const mapStateToProps = (state) => {
   return {
     countries: state.country.listOfCountries,
+    currentCountry: state.country.currentCountry
   };
 };
 

@@ -1,21 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Typography, CssBaseline, Container } from "@mui/material";
 import "./index.css";
-import "./utils/css/news.css";
-import "./utils/css/chart.css";
-import "./utils/css/flex.css";
-import "./utils/css/map.css";
-import "./utils/css/compare.css";
-import "./utils/css/logIn.css";
 import Homepage from "./Pages/Homepage";
 import AccountPage from "./Pages/AccountPage";
 import DetailPage from "./Pages/DetailPage";
 import MapPage from "./Pages/MapPage";
 import ComparePage from "./Pages/ComparePage";
 import history from './history';
-
+import { useSelector } from "react-redux"
 
 function App() {
+  const loggedIn = useSelector(state => state.firebase.auth.isLoaded && !state.firebase.auth.isEmpty)
   return (
     <>
       <CssBaseline />

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
-import { Container, Typography, Button } from "@mui/material";
+import { Container, Typography, Button, CircularProgress } from "@mui/material";
 const LineChart = ({
   currentCountry,
   monthlyData,
   sixMonthData,
   loadingMonthly,
-  loadingSixMonth,
-  listOfCountries,
+  currentData
 }) => {
   const [graphType, setGraphType] = useState("cases");
   const [interval, setInterval] = useState("monthly");
@@ -80,6 +79,25 @@ const LineChart = ({
       sixMonthDataDeaths.datasets[0].data.unshift(entry[1].deaths);
     });
   }
+
+  if (loadingMonthly) {
+    return (
+      <CircularProgress />
+    )
+  }
+
+  if (!currentCountry) {
+    return (
+      <div></div>
+    )
+  }
+
+  if (!currentData[currentCountry] && currentCountry) {
+    return (
+      <h2>No data for this country, try another one</h2>
+    )
+  }
+
   return (
     <Container>
       <Container>
@@ -90,8 +108,8 @@ const LineChart = ({
                 ? monthlyDataCases
                 : sixMonthDataCases
               : interval === "monthly"
-              ? monthlyDataDeaths
-              : sixMonthDataDeaths
+                ? monthlyDataDeaths
+                : sixMonthDataDeaths
           }
         />
       </Container>
@@ -127,8 +145,7 @@ const mapStateToProps = (state) => {
     currentCountry: state.country.currentCountry,
     monthlyData: state.country.monthlyData,
     sixMonthData: state.country.sixMonthData,
-    loadingSixMonth: state.country.loadingSixMonth,
-    listOfCountries: state.country.listOfCountries,
+    currentData: state.country.currentData
   };
 };
 

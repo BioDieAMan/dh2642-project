@@ -10,6 +10,7 @@ import {
   CardMedia,
   Button,
   Container,
+  CircularProgress
 } from "@mui/material";
 
 const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews }) => {
@@ -26,12 +27,14 @@ const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews }) => {
       </Container>
 
       {loading ? (
-        <Container>Loading</Container>
+        <CircularProgress />
       ) : !data ? (
         <Container>No data</Container>
       ) : (
         data.map((article) => (
-          <Card className="newsCard">
+          <Card
+            className="newsCard"
+            key={article.url}>
             <CardActionArea>
               <CardMedia
                 className="newsImage"

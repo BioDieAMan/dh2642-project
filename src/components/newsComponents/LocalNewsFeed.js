@@ -9,6 +9,7 @@ import {
   CardContent,
   CardMedia,
   Button,
+  CircularProgress,
   Container,
 } from "@mui/material";
 
@@ -31,7 +32,7 @@ const LocalNewsFeed = ({
       </Container>
 
       {loading ? (
-        <Container>Loading</Container>
+        <CircularProgress />
       ) : !data ? (
         <Container>No data</Container>
       ) : (

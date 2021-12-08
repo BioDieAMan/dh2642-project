@@ -75,8 +75,8 @@ const CountryComparisonToggle = ({
                     </ListItemButton>
                   </ListItemButton>
                 ) : !countries[cKey]
-                    .toLowerCase()
-                    .includes(countryFilter.toLowerCase()) ? (
+                  .toLowerCase()
+                  .includes(countryFilter.toLowerCase()) ? (
                   <span></span>
                 ) : (
                   <ListItemButton

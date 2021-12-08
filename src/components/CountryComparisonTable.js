@@ -20,6 +20,12 @@ const CountryComparisonTable = ({
   getCurrentData,
   setCountry,
 }) => {
+  useEffect(() => {
+    selectedCountries.forEach(country => {
+      if (!currentData[country])
+        getCurrentData(country)
+    })
+  }, [selectedCountries])
   return (
     <Container>
       <TableContainer component={Paper}>
@@ -37,8 +43,6 @@ const CountryComparisonTable = ({
           </TableHead>
           <TableBody>
             {selectedCountries.map((scKey) => {
-              setCountry(scKey);
-              getCurrentData(scKey);
               if (currentData[scKey]) {
                 return (
                   <TableRow>

@@ -11,6 +11,7 @@ import {
   CssBaseline,
   Grid,
   Container,
+  CircularProgress
 } from "@mui/material";
 const GlobalStatistics = ({ data, loading, getGlobalData }) => {
   useEffect(() => {
@@ -21,13 +22,16 @@ const GlobalStatistics = ({ data, loading, getGlobalData }) => {
     <Container maxWidth="lg" align="center">
       <Typography variant="h3">Global Covid-19 stats</Typography>
       {loading ? (
-        <div>loading...</div>
+        <CircularProgress />
       ) : data ? (
         <Container>
-          <li>Total confirmed cases: {data.confirmed}</li>
-          <li>Increase in cases since yesterday: {data.confirmed_diff}</li>
-          <li>Total confirmed deaths: {data.deaths}</li>
-          <li>Increase in deaths since yesterday: {data.deaths_diff}</li>
+          <div>
+            Total confirmed cases: {data.confirmed}<br />
+            Increase in cases since yesterday: {data.confirmed_diff}<br />
+            Total confirmed deaths: {data.deaths}<br />
+            Increase in deaths since yesterday: {data.deaths_diff}<br />
+            <br />Last updated: {data.last_update}<br />
+          </div>
         </Container>
       ) : (
         <div></div>

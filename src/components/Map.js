@@ -17,6 +17,7 @@ const Map = ({
   setTooltip,
   getListOfCountries,
   countries,
+  currentCountry
 }) => {
   useEffect(() => {
     if (countries) return;
@@ -27,7 +28,7 @@ const Map = ({
     "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 
   return (
-    <ComposableMap data-tip="" projectionConfig={{ scale: 150 }}>
+    <ComposableMap data-tip="" projectionConfig={{ scale: 150 }} className="map">
       <Geographies geography={geograpgyUrl}>
         {({ geographies }) =>
           geographies.map((g) => (

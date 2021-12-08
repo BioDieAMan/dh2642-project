@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Typography, Container } from "@mui/material";
+import { Typography, Container, CircularProgress } from "@mui/material";
 
 const CountryStatistics = ({
   currentCountry,
@@ -8,24 +8,29 @@ const CountryStatistics = ({
   loadingCurrent,
   currentData,
 }) => {
+
   return (
     <Container>
       {currentCountry ? (
         <Container style={{ textAlign: "center" }}>
           <h3>Current stats for {listOfCountries[currentCountry]}</h3>{" "}
           {loadingCurrent ? (
-            <div>loading...</div>
+            <CircularProgress />
           ) : currentData[currentCountry] ? (
             <div>
-              Total confirmed cases: {currentData[currentCountry].confirmed}
+              Total confirmed cases: {currentData[currentCountry].confirmed}<br />
+              Increase in cases since yesterday: {currentData[currentCountry].confirmed_diff}<br />
+              Total confirmed deaths: {currentData[currentCountry].deaths}<br />
+              Increase in deaths since yesterday: {currentData[currentCountry].deaths_diff}<br />
             </div>
           ) : (
             <div>No data for this country</div>
           )}
         </Container>
       ) : (
-        <div></div>
-      )}
+        <Container style={{ textAlign: "center" }}>
+          <div>Choose a country to see the current status</div>
+        </Container>)}
     </Container>
   );
 };
