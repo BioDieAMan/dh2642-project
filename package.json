@@ -16,6 +16,7 @@
     "dateformat": "^5.0.2",
     "firebase": "^9.5.0",
     "history": "^5.1.0",
+    "millify": "^4.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-chartjs-2": "^2.11.2",
