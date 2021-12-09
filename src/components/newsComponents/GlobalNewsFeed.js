@@ -32,54 +32,56 @@ const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews }) => {
         <Container>No data</Container>
       ) : (
         data.map((article) => (
-          <Card
-            className="newsCard"
-            key={article.url}>
-            <CardActionArea>
-              <CardMedia
-                className="newsImage"
-                component="img"
-                height="100"
-                image={
-                  article.image
-                    ? article.image.thumbnail.contentUrl
-                    : "https://nbhc.ca/sites/default/files/styles/article/public/default_images/news-default-image%402x_0.png?itok=B4jML1jF"
-                }
-              />
+          <a href={article.url} rel="noreferrer" target="_blank">
+            <Card
+              className="newsCard"
+              key={article.url}>
+              <CardActionArea>
+                <CardMedia
+                  className="newsImage"
+                  component="img"
+                  height="100"
+                  image={
+                    article.image
+                      ? article.image.thumbnail.contentUrl
+                      : "https://nbhc.ca/sites/default/files/styles/article/public/default_images/news-default-image%402x_0.png?itok=B4jML1jF"
+                  }
+                />
 
-              <CardContent className="newsContent">
-                <Typography
-                  className="newsTitle"
-                  gutterBottom
-                  variant="h6"
-                  component="div"
-                >
-                  {article.name}
-                </Typography>
-                <Typography
-                  className="newsDescription"
-                  variant="body2"
-                  color="text.secondary"
-                >
-                  {article.description}
-                </Typography>
-                <Typography
-                  className="newsProvider"
-                  variant="body2"
-                  color="text.secondary"
-                >
-                  {article.provider[0].name}
-                </Typography>
-                <Typography
-                  className="newsDate"
-                  variant="body2"
-                  color="text.secondary"
-                >
-                  {article.datePublished.slice(0, 10)}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
+                <CardContent className="newsContent">
+                  <Typography
+                    className="newsTitle"
+                    gutterBottom
+                    variant="h6"
+                    component="div"
+                  >
+                    {article.name}
+                  </Typography>
+                  <Typography
+                    className="newsDescription"
+                    variant="body2"
+                    color="text.secondary"
+                  >
+                    {article.description}
+                  </Typography>
+                  <Typography
+                    className="newsProvider"
+                    variant="body2"
+                    color="text.secondary"
+                  >
+                    {article.provider[0].name}
+                  </Typography>
+                  <Typography
+                    className="newsDate"
+                    variant="body2"
+                    color="text.secondary"
+                  >
+                    {article.datePublished.slice(0, 10)}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </a>
         ))
       )}
     </Container>
