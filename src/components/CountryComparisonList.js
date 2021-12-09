@@ -4,8 +4,6 @@ import {
   getListOfCountries,
   addSelectedCountry,
   removeSelectedCountry,
-  addWatchCountry,
-  removeWatchCountry,
 } from "../redux/actions/countryActions";
 import {
   Input,
@@ -13,11 +11,8 @@ import {
   List,
   ListItemText,
   ListItemButton,
-  ListItemIcon,
   Container,
 } from "@mui/material";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
-import StarIcon from "@mui/icons-material/Star";
 
 const CountryComparisonToggle = ({
   countries,
@@ -25,9 +20,6 @@ const CountryComparisonToggle = ({
   selectedCountries,
   addSelectedCountry,
   removeSelectedCountry,
-  watchCountries,
-  addWatchCountry,
-  removeWatchCountry,
 }) => {
   const [countryFilter, setCountryFilter] = useState("");
 
@@ -58,25 +50,10 @@ const CountryComparisonToggle = ({
                     }
                   >
                     <ListItemText>{countries[cKey]}</ListItemText>
-
-                    <ListItemButton
-                      sx={{ padding: "0", maxWidth: "24px" }}
-                      onClick={() =>
-                        watchCountries.some((wcKey) => wcKey === cKey)
-                          ? removeWatchCountry(cKey)
-                          : addWatchCountry(cKey)
-                      }
-                    >
-                      {watchCountries.some((wcKey) => wcKey === cKey) ? (
-                        <StarIcon />
-                      ) : (
-                        <StarBorderIcon />
-                      )}
-                    </ListItemButton>
                   </ListItemButton>
                 ) : !countries[cKey]
-                  .toLowerCase()
-                  .includes(countryFilter.toLowerCase()) ? (
+                    .toLowerCase()
+                    .includes(countryFilter.toLowerCase()) ? (
                   <span></span>
                 ) : (
                   <ListItemButton
@@ -88,21 +65,6 @@ const CountryComparisonToggle = ({
                     }
                   >
                     <ListItemText>{countries[cKey]}</ListItemText>
-
-                    <ListItemButton
-                      sx={{ padding: "0", maxWidth: "24px" }}
-                      onClick={() =>
-                        watchCountries.some((wcKey) => wcKey === cKey)
-                          ? removeWatchCountry(cKey)
-                          : addWatchCountry(cKey)
-                      }
-                    >
-                      {watchCountries.some((wcKey) => wcKey === cKey) ? (
-                        <StarIcon />
-                      ) : (
-                        <StarBorderIcon />
-                      )}
-                    </ListItemButton>
                   </ListItemButton>
                 )
               )}
@@ -118,7 +80,6 @@ const mapStateToProps = (state) => {
   return {
     countries: state.country.listOfCountries,
     selectedCountries: state.country.selectedCountries,
-    watchCountries: state.country.watchCountries,
   };
 };
 
@@ -128,8 +89,6 @@ const mapDispatchToProps = (dispatch) => {
     addSelectedCountry: (country) => dispatch(addSelectedCountry(country)),
     removeSelectedCountry: (country) =>
       dispatch(removeSelectedCountry(country)),
-    addWatchCountry: (country) => dispatch(addWatchCountry(country)),
-    removeWatchCountry: (country) => dispatch(removeWatchCountry(country)),
   };
 };
 

@@ -23,7 +23,7 @@ const DropDown = ({
   getMonthlyData,
   getSixMonthData,
   setCountry,
-  currentCountry
+  currentCountry,
 }) => {
   useEffect(() => {
     if (countries) return;
@@ -35,10 +35,10 @@ const DropDown = ({
         <CircularProgress />
       ) : (
         <FormControl sx={{ m: 1, minWidth: 180 }}>
-          <InputLabel id="select-country">Country</InputLabel>
+          <InputLabel id="select-country">Select Country</InputLabel>
           <Select
             id="dropdown"
-            label="Country"
+            label="Select Country"
             onChange={(event) => {
               setCountry(event.target.value);
               getCurrentData(event.target.value);
@@ -55,14 +55,13 @@ const DropDown = ({
           </Select>
         </FormControl>
       )}
-      {currentCountry ? <h2>{countries[currentCountry]}</h2> : <h2>Select a country</h2>}
     </Container>
   );
 };
 const mapStateToProps = (state) => {
   return {
     countries: state.country.listOfCountries,
-    currentCountry: state.country.currentCountry
+    currentCountry: state.country.currentCountry,
   };
 };
 

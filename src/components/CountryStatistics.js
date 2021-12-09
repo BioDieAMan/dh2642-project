@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Typography, Container, CircularProgress } from "@mui/material";
-import millify from "millify"
+import millify from "millify";
 
 const CountryStatistics = ({
   currentCountry,
@@ -9,7 +9,6 @@ const CountryStatistics = ({
   loadingCurrent,
   currentData,
 }) => {
-
   return (
     <Container>
       {currentCountry ? (
@@ -19,19 +18,26 @@ const CountryStatistics = ({
             <CircularProgress />
           ) : currentData[currentCountry] ? (
             <div>
-              Total confirmed cases: {millify(currentData[currentCountry].confirmed)}<br />
-              Increase in cases since yesterday: {millify(currentData[currentCountry].confirmed_diff)}<br />
-              Total confirmed deaths: {millify(currentData[currentCountry].deaths)}<br />
-              Increase in deaths since yesterday: {currentData[currentCountry].deaths_diff}<br />
+              Total confirmed cases:{" "}
+              {millify(currentData[currentCountry].confirmed)}
+              <br />
+              Increase in cases since yesterday:{" "}
+              {millify(currentData[currentCountry].confirmed_diff)}
+              <br />
+              Total confirmed deaths:{" "}
+              {millify(currentData[currentCountry].deaths)}
+              <br />
+              Increase in deaths since yesterday:{" "}
+              {currentData[currentCountry].deaths_diff}
+              <br />
             </div>
           ) : (
             <div>No data for this country</div>
           )}
         </Container>
       ) : (
-        <Container style={{ textAlign: "center" }}>
-          <div>Choose a country to see the current status</div>
-        </Container>)}
+        <div></div>
+      )}
     </Container>
   );
 };

@@ -2,18 +2,15 @@ import globalDataReducer from "./globalDataReducer";
 import covidNewsReducer from "./covidNewsReducer";
 import countryReducer from "./countryReducer";
 import { combineReducers } from "redux";
-import twitterReducer from "./twitterReducer";
 import { firebaseReducer } from "react-redux-firebase";
 import authenticationReducer from "./authenticationReducer";
-
 
 const rootReducer = combineReducers({
   globalData: globalDataReducer,
   country: countryReducer,
   covidNews: covidNewsReducer,
-  twitter: twitterReducer,
   firebase: firebaseReducer,
-  authentication: authenticationReducer
+  authentication: authenticationReducer,
 });
 
 export default rootReducer;

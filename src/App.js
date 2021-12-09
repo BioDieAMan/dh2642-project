@@ -6,11 +6,14 @@ import AccountPage from "./Pages/AccountPage";
 import DetailPage from "./Pages/DetailPage";
 import MapPage from "./Pages/MapPage";
 import ComparePage from "./Pages/ComparePage";
-import history from './history';
-import { useSelector } from "react-redux"
+import Navbar from "./components/Navbar";
+import history from "./history";
+import { useSelector } from "react-redux";
 
 function App() {
-  const loggedIn = useSelector(state => state.firebase.auth.isLoaded && !state.firebase.auth.isEmpty)
+  const loggedIn = useSelector(
+    (state) => state.firebase.auth.isLoaded && !state.firebase.auth.isEmpty
+  );
   return (
     <>
       <CssBaseline />
@@ -27,6 +30,7 @@ function App() {
       </Container>
       <Container maxWidth="xl">
         <BrowserRouter>
+          <Navbar />
           <Routes history={history}>
             <Route exact path="/" element={<Homepage />} />
             <Route path="/account" element={<AccountPage />} />
