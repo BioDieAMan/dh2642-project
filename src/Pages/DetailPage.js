@@ -4,6 +4,7 @@ import LocalNewsFeed from "../components/newsComponents/LocalNewsFeed";
 import DropDown from "../components/DropDown";
 import Navbar from "../components/Navbar";
 import { Container } from "@mui/material";
+import CountryStatistics from "../components/CountryStatistics";
 //import DropDownMaterial from "../components/DropDownMaterial";
 
 const DetailPage = () => {
@@ -17,6 +18,7 @@ const DetailPage = () => {
         }}
       />
       <LocalNewsFeed />
+      <CountryStatistics />
       <LineChart />
     </Container>
   );

@@ -55,11 +55,18 @@ export const getListOfCountries = () => async dispatch => {
     }
     try {
         const response = await axios.request(options)
-        const sortedCountries = response.data.data.sort(sortCountries)
-        const obj = sortedCountries.reduce((obj, item) => (obj[item.iso] = item.name, obj), {})
+        const filteredCountries = response.data.data.filter(country => (
+            country.name !== "Cruise Ship"
+            && country.name !== "Diamond Princess"
+            && country.name !== "MS Zaandam"
+            && country.name !== "Others"
+            && country.name !== "Reunion"
+        ))
+        const sortedCountries = filteredCountries.sort(sortCountries)
+        const sortedCountriesObject = sortedCountries.reduce((obj, item) => (obj[item.iso] = item.name, obj), {})
         dispatch({
             type: "getListOfCountries",
-            payload: obj
+            payload: sortedCountriesObject
         })
     }
     catch (e) {
@@ -120,7 +127,7 @@ export const getMonthlyData = (country) => async (dispatch, getState) => {
     if (!getState().country.monthlyData[country]) {
         dispatch({ type: "startSearchMonthlyData" })
         const date = new Date()
-        date.setDate(date.getDate() - 1)
+        date.setDate(date.getDate() - 2)
         let options = {
             method: "GET",
             url: config.countryUrl,
@@ -168,7 +175,7 @@ export const getSixMonthData = (country) => async (dispatch, getState) => {
     if (!getState().country.sixMonthData[country]) {
         dispatch({ type: "startSearchSixMonthData" })
         const date = new Date()
-        date.setDate(date.getDate() - 1)
+        date.setDate(date.getDate() - 2)
         let options = {
             method: "GET",
             url: config.countryUrl,
