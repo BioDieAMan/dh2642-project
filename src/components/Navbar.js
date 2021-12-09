@@ -33,9 +33,9 @@ const Navbar = ({
           <Button variant="text" component={Link} to="/compare">Comparison</Button>
         </Typography>
 
-        <Typography sx={{ minWidth: 100 }}>
+        {/* <Typography sx={{ minWidth: 100 }}>
           <Button variant="text" component={Link} to="/map">Map</Button>
-        </Typography>
+        </Typography> */}
 
         <Typography sx={{ minWidth: 100, position: "absolute", right: "10%" }}>
           {uid ?
@@ -81,41 +81,6 @@ const Navbar = ({
         </Menu>
       </Box>
     </React.Fragment>
-    // <AppBar position="relative" color="transparent" elevation={0}>
-    //   <CssBaseline />
-    //   <Toolbar
-    //     style={{
-    //       float: "none",
-    //       width: "auto",
-    //       marginLeft: "auto",
-    //       marginRight: "auto",
-    //     }}
-    //   >
-    //     <Typography variant="h6">
-    //       <Button variant="text" component={Link} to="/">
-    //         Home
-    //       </Button>
-    //       <Button variant="text" component={Link} to="/details">
-    //         Details
-    //       </Button>
-    //       <Button variant="text" component={Link} to="/compare">
-    //         Comparison
-    //       </Button>
-    //       <Button variant="text" component={Link} to="/map">
-    //         Map
-    //       </Button>
-    //       {uid ?
-    //         <span>
-    //           <Button variant="text" >Hello {signedInEmail.substring(0, signedInEmail.lastIndexOf('@'))}!</Button>
-    //           <Button onClick={() => signOut()} variant="text">Sign out</Button>
-    //         </span>:
-    //         <span>
-    //           <Button variant="text" component={Link} to="/account">Sign in</Button>
-    //         </span>
-    //       }
-    //     </Typography>
-    //   </Toolbar>
-    // </AppBar>
   );
 };
 

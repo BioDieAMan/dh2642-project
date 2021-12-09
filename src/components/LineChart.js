@@ -7,7 +7,8 @@ const LineChart = ({
   monthlyData,
   sixMonthData,
   loadingMonthly,
-  currentData
+  currentData,
+  listOfCountries
 }) => {
   const [graphType, setGraphType] = useState("cases");
   const [interval, setInterval] = useState("monthly");
@@ -16,7 +17,7 @@ const LineChart = ({
     labels: [],
     datasets: [
       {
-        label: "confirmed cases",
+        label: "",
         lineTension: 0.1,
         data: [],
         fill: false,
@@ -29,7 +30,7 @@ const LineChart = ({
     labels: [],
     datasets: [
       {
-        label: "deaths",
+        label: "",
         lineTension: 0.1,
         data: [],
         fill: false,
@@ -41,7 +42,7 @@ const LineChart = ({
     labels: [],
     datasets: [
       {
-        label: "confirmed cases",
+        label: "",
         lineTension: 0.1,
         data: [],
         fill: false,
@@ -54,7 +55,7 @@ const LineChart = ({
     labels: [],
     datasets: [
       {
-        label: "deaths",
+        label: "",
         lineTension: 0.1,
         data: [],
         fill: false,
@@ -67,16 +68,20 @@ const LineChart = ({
     Object.entries(monthlyData[currentCountry]).forEach((entry) => {
       monthlyDataCases.labels.unshift(entry[0].slice(4, 15));
       monthlyDataCases.datasets[0].data.unshift(entry[1].confirmed);
+      monthlyDataCases.datasets[0].label = `confirmed cases in ${listOfCountries[currentCountry]}`
       monthlyDataDeaths.labels.unshift(entry[0].slice(4, 15));
       monthlyDataDeaths.datasets[0].data.unshift(entry[1].deaths);
+      monthlyDataDeaths.datasets[0].label = `confirmed deaths in ${listOfCountries[currentCountry]}`
     });
   }
   if (sixMonthData[currentCountry]) {
     Object.entries(sixMonthData[currentCountry]).forEach((entry) => {
       sixMonthDataCases.labels.unshift(entry[0].slice(4, 15));
       sixMonthDataCases.datasets[0].data.unshift(entry[1].confirmed);
+      sixMonthDataCases.datasets[0].label = `confirmed cases in ${listOfCountries[currentCountry]}`
       sixMonthDataDeaths.labels.unshift(entry[0].slice(4, 15));
       sixMonthDataDeaths.datasets[0].data.unshift(entry[1].deaths);
+      sixMonthDataDeaths.datasets[0].label = `confirmed deaths in ${listOfCountries[currentCountry]}`
     });
   }
 
@@ -93,9 +98,14 @@ const LineChart = ({
   }
 
   if (!currentData[currentCountry] && currentCountry) {
-    return (
-      <h2>No data for this country, try another one</h2>
-    )
+    const noData = {
+      label: `No data for ${listOfCountries[currentCountry]}`,
+      data: []
+    }
+    monthlyDataCases.datasets[0] = noData
+    monthlyDataDeaths.datasets[0] = noData
+    sixMonthDataDeaths.datasets[0] = noData
+    sixMonthDataCases.datasets[0] = noData
   }
 
   return (
@@ -145,7 +155,8 @@ const mapStateToProps = (state) => {
     currentCountry: state.country.currentCountry,
     monthlyData: state.country.monthlyData,
     sixMonthData: state.country.sixMonthData,
-    currentData: state.country.currentData
+    currentData: state.country.currentData,
+    listOfCountries: state.country.listOfCountries
   };
 };
 

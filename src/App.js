@@ -6,6 +6,7 @@ import AccountPage from "./Pages/AccountPage";
 import DetailPage from "./Pages/DetailPage";
 import MapPage from "./Pages/MapPage";
 import ComparePage from "./Pages/ComparePage";
+// import ComparePage from "./Pages/ComparePage";
 import Navbar from "./components/Navbar";
 import history from "./history";
 import { useSelector } from "react-redux";
@@ -34,7 +35,7 @@ function App() {
           <Routes history={history}>
             <Route exact path="/" element={<Homepage />} />
             <Route path="/account" element={<AccountPage />} />
-            <Route path="/map" element={<MapPage />} />
+            {/* <Route path="/map" element={<MapPage />} /> */}
             <Route path="/details" element={<DetailPage />} />
             <Route path="/compare" element={<ComparePage />} />
           </Routes>

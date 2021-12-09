@@ -10,13 +10,13 @@ import {
 import { connect } from "react-redux";
 
 const Map = ({
-  setCountry,
   getCurrentData,
   getMonthlyData,
   getSixMonthData,
   setTooltip,
   getListOfCountries,
   countries,
+  setCountry,
   currentCountry
 }) => {
   useEffect(() => {
@@ -59,7 +59,7 @@ const Map = ({
 };
 const mapStateToProps = (state) => {
   return {
-    currentCountry: state.country.currentCountry,
+    currentCountry: state.country.currentCountries,
     currentData: state.country.currentData,
     countries: state.country.listOfCountries,
   };

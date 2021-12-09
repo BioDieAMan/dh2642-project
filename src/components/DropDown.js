@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
-  setCountry,
   getCurrentData,
   getMonthlyData,
   getSixMonthData,
   getListOfCountries,
+  setCountry
 } from "../redux/actions/countryActions";
 import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -23,7 +23,6 @@ const DropDown = ({
   getMonthlyData,
   getSixMonthData,
   setCountry,
-  currentCountry,
 }) => {
   useEffect(() => {
     if (countries) return;
@@ -40,7 +39,7 @@ const DropDown = ({
             id="dropdown"
             label="Select Country"
             onChange={(event) => {
-              setCountry(event.target.value);
+              setCountry(event.target.value)
               getCurrentData(event.target.value);
               getMonthlyData(event.target.value);
               getSixMonthData(event.target.value);

@@ -1,49 +1,24 @@
 import config from "../../config/covidApiConfig";
+import vacConfig from "../../config/vaccinatedDataConfig"
 import axios from "axios";
 import dateformat from "dateformat";
 
 export const setCountry = (country) => (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase()
-    const userId = getState().firebase.auth.uid
-    firebase.database().ref(`${userId}`).set({
-        country: country
-    })
+    // const firebase = getFirebase()
+    // const userId = getState().firebase.auth.uid
+    // firebase.database().ref(`${userId}`).set({
+    //     country: country
+    // })
+    //const currentCountries = [country, getState().country.currentCountries[1]]
     dispatch({
         type: "setCountry",
         payload: country
     })
 }
 
+
 const sortCountries = (a, b) => {
     return (a.name < b.name) ? -1 : (b.name < a.name) ? 1 : 0
-}
-
-export const addSelectedCountry = (country) => {
-    return {
-        type: "addSelectedCountry",
-        payload: country
-    }
-}
-
-export const removeSelectedCountry = (country) => {
-    return {
-        type: "removeSelectedCountry",
-        payload: country
-    }
-}
-
-export const addWatchCountry = (country) => {
-    return {
-        type: "addWatchCountry",
-        payload: country
-    }
-}
-
-export const removeWatchCountry = (country) => {
-    return {
-        type: "removeWatchCountry",
-        payload: country
-    }
 }
 
 export const getListOfCountries = () => async dispatch => {
@@ -86,13 +61,23 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
             params: { iso: country },
             headers: config.headers
         }
+        const vacOptions = {
+            method: "GET",
+            url: vacConfig.homeUrl,
+            params: { iso: country },
+            headers: vacConfig.headers
+        }
         try {
             const response = await axios.request(options)
+            const vacResponse = await axios.request(vacOptions)
+            const vacdata = vacResponse.data.slice(-1)[0];
             const aggregatedData = {
                 confirmed: 0,
                 deaths: 0,
                 confirmed_diff: 0,
-                deaths_diff: 0
+                deaths_diff: 0,
+                vaccinated: 0,
+                vaccinated_per_hundred: 0
             }
             response.data.data.forEach((region) => {
                 aggregatedData.confirmed += region.confirmed;
@@ -100,6 +85,8 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
                 aggregatedData.confirmed_diff += region.confirmed_diff;
                 aggregatedData.deaths_diff += region.deaths_diff;
             })
+            aggregatedData.vaccinated += parseInt(vacdata.people_fully_vaccinated);
+            aggregatedData.vaccinated_per_hundred += parseFloat(vacdata.people_fully_vaccinated_per_hundred);
             if (aggregatedData.confirmed === 0) {
                 dispatch({
                     type: "getCurrentData",
@@ -220,3 +207,31 @@ export const getSixMonthData = (country) => async (dispatch, getState) => {
     }
 }
 
+
+export const addSelectedCountry = (country) => {
+    return {
+        type: "addSelectedCountry",
+        payload: country
+    }
+}
+
+export const removeSelectedCountry = (country) => {
+    return {
+        type: "removeSelectedCountry",
+        payload: country
+    }
+}
+
+// export const addWatchCountry = (country) => {
+//     return {
+//         type: "addWatchCountry",
+//         payload: country
+//     }
+// }
+
+// export const removeWatchCountry = (country) => {
+//     return {
+//         type: "removeWatchCountry",
+//         payload: country
+//     }
+// }

@@ -20,7 +20,7 @@ const GlobalStatistics = ({ data, loading, getGlobalData }) => {
   }, []);
 
   return (
-    <Container maxWidth="lg" align="center">
+    <Container>
       <Typography variant="h4">Global Covid-19 stats</Typography>
       {loading ? (
         <CircularProgress />
