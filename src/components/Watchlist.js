@@ -23,7 +23,13 @@ const Watchlist = ({
 
     if (!uid) {
         return (
-            <div>Log in to add countries to your watchlist and display them on the homepage</div>
+            <Card className='watchlistCard'>
+                <CardContent>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        Log in to add countries to your watchlist and display them on the homepage
+                    </Typography>
+                </CardContent>
+            </Card>
         )
     }
 
