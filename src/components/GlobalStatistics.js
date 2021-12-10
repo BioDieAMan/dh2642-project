@@ -1,16 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import millify from "millify";
 import { getGlobalData } from "../redux/actions/globalDataActions";
 import {
   Typography,
-  AppBar,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
-  CssBaseline,
-  Grid,
   Container,
   CircularProgress,
 } from "@mui/material";

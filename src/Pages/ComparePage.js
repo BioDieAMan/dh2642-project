@@ -1,8 +1,7 @@
 import React from "react";
 import CountryComparisonList from "../components/CountryComparisonList";
 import CountryComparisonTable from "../components/CountryComparisonTable";
-import LineChart from "../components/LineChart";
-import { Container, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 
 const ComparePage = () => {
     return (

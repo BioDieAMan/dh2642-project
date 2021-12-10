@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import {
@@ -16,8 +17,7 @@ const Map = ({
   setTooltip,
   getListOfCountries,
   countries,
-  setCountry,
-  currentCountry
+  setCountry
 }) => {
   useEffect(() => {
     if (countries) return;
@@ -59,7 +59,6 @@ const Map = ({
 };
 const mapStateToProps = (state) => {
   return {
-    currentCountry: state.country.currentCountries,
     currentData: state.country.currentData,
     countries: state.country.listOfCountries,
   };

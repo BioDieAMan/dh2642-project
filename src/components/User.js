@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { signUp } from "../redux/actions/authenticationActions";
-import { Container, List, ListItem, Avatar, Typography,  Paper } from '@mui/material';
+import { Container, Avatar, Typography } from '@mui/material';
 
 const User = ({
   signedInEmail,
 }) => {
   return (
-    <Container sx={{ mt: "20px"}}>
-      <Typography sx={{ minWidth: 100}} variant="h4">
-        <Avatar sx={{ width: 40, height: 40, float: "left", mr: "10px"}}>{signedInEmail.substring(0, 1).toUpperCase()}</Avatar>
+    <Container sx={{ mt: "20px" }}>
+      <Typography sx={{ minWidth: 100 }} variant="h4">
+        <Avatar sx={{ width: 40, height: 40, float: "left", mr: "10px" }}>{signedInEmail.substring(0, 1).toUpperCase()}</Avatar>
         {signedInEmail.charAt(0).toUpperCase() + signedInEmail.substring(1, signedInEmail.lastIndexOf('@'))}
       </Typography>
-      <Typography sx={{ minWidth: 100,  mt: "10px"}}>
+      <Typography sx={{ minWidth: 100, mt: "10px" }}>
         Email: {signedInEmail}
       </Typography>
     </Container>

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Typography, Container, CircularProgress } from "@mui/material";
+import { Container, CircularProgress } from "@mui/material";
 import millify from "millify";
 
 const CountryStatistics = ({

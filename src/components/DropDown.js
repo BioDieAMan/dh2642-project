@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
@@ -7,14 +8,12 @@ import {
   getListOfCountries,
   setCountry
 } from "../redux/actions/countryActions";
-import { useTheme } from "@mui/material/styles";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import { Container, Typography, CircularProgress } from "@mui/material";
+import { Container, CircularProgress } from "@mui/material";
 
 const DropDown = ({
   countries,

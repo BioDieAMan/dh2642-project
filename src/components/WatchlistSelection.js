@@ -1,4 +1,5 @@
-import React, {useEffect} from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Grid, Container, Paper, List, ListItem, ListItemIcon, ListItemText, Button, Checkbox } from '@mui/material';
 import { getListOfCountries } from "../redux/actions/countryActions";
@@ -78,7 +79,7 @@ const WatchlistSelection = ({
                                     tabIndex={-1}
                                     disableRipple
                                     inputProps={{
-                                    'aria-labelledby': labelId,
+                                        'aria-labelledby': labelId,
                                     }}
                                 />
                             </ListItemIcon>
@@ -94,34 +95,34 @@ const WatchlistSelection = ({
     return (
         <Grid container spacing={10} justifyContent="center" alignItems="center">
             {/* Non Selected Country List */}
-            
+
             <Grid item>{customList(left)}</Grid>
 
             {/* Buttons */}
             <Grid item>
                 <Grid container direction="column" alignItems="center">
                     <Button sx={{ my: 0.5 }} variant="outlined" size="small"
-                            onClick={handleAllRight} disabled={left.length === 0} aria-label="move all right"
+                        onClick={handleAllRight} disabled={left.length === 0} aria-label="move all right"
                     >
-                    ≫
+                        ≫
                     </Button>
 
                     <Button sx={{ my: 0.5 }} variant="outlined" size="small"
-                            onClick={handleCheckedRight} disabled={leftChecked.length === 0} aria-label="move selected right"
+                        onClick={handleCheckedRight} disabled={leftChecked.length === 0} aria-label="move selected right"
                     >
-                    &gt;
+                        &gt;
                     </Button>
 
                     <Button sx={{ my: 0.5 }} variant="outlined" size="small"
-                            onClick={handleCheckedLeft} disabled={rightChecked.length === 0} aria-label="move selected left"
+                        onClick={handleCheckedLeft} disabled={rightChecked.length === 0} aria-label="move selected left"
                     >
-                    &lt;
+                        &lt;
                     </Button>
 
                     <Button sx={{ my: 0.5 }} variant="outlined" size="small"
-                            onClick={handleAllLeft} disabled={right.length === 0} aria-label="move all left"
+                        onClick={handleAllLeft} disabled={right.length === 0} aria-label="move all left"
                     >
-                    ≪
+                        ≪
                     </Button>
                 </Grid>
             </Grid>

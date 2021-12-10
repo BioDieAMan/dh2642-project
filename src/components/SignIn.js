@@ -1,5 +1,5 @@
 // import LockOutlinedIcon from '@mui/icons/LockOutlined';
-import { Box, Avatar, FormControlLabel, Grid, TextField, Typography, Button, Link, Paper, Checkbox } from '@mui/material';
+import { Box, Avatar, Grid, TextField, Typography, Button, Link, Paper } from '@mui/material';
 import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { signIn, signOut } from '../redux/actions/authenticationActions';
@@ -25,43 +25,43 @@ const SignIn = ({
                     <h2>Sign In</h2>
                 </Grid>
 
-                <Box    component="form"
-                        sx={{'& .MuiTextField-root': { mb: "10px", mt: "10px"},}}
-                        noValidate
-                        autoComplete="off"
+                <Box component="form"
+                    sx={{ '& .MuiTextField-root': { mb: "10px", mt: "10px" }, }}
+                    noValidate
+                    autoComplete="off"
                 >
-                    {signinError?
+                    {signinError ?
                         <div>
-                            <TextField  onChange={(e) => setEmail(e.target.value)}
-                                        type="email"
-                                        placeholder="Email"
-                                        label="Email"
-                                        fullWidth required
-                                        error
-                                        id="outlined-error"
+                            <TextField onChange={(e) => setEmail(e.target.value)}
+                                type="email"
+                                placeholder="Email"
+                                label="Email"
+                                fullWidth required
+                                error
+                                id="outlined-error"
                             />
-                            <TextField  onChange={(e) => setPassword(e.target.value)}
-                                        type="password"
-                                        placeholder="Password"
-                                        label="Password"
-                                        fullWidth required
-                                        error
-                                        id="outlined-error-helper-text"
-                                        helperText={signinError}
+                            <TextField onChange={(e) => setPassword(e.target.value)}
+                                type="password"
+                                placeholder="Password"
+                                label="Password"
+                                fullWidth required
+                                error
+                                id="outlined-error-helper-text"
+                                helperText={signinError}
                             />
-                        </div>:
+                        </div> :
                         <div>
-                            <TextField  onChange={(e) => setEmail(e.target.value)}
-                                        type="email"
-                                        placeholder="Email"
-                                        label="Email"
-                                        fullWidth required
+                            <TextField onChange={(e) => setEmail(e.target.value)}
+                                type="email"
+                                placeholder="Email"
+                                label="Email"
+                                fullWidth required
                             />
-                            <TextField  onChange={(e) => setPassword(e.target.value)}
-                                        type="password"
-                                        placeholder="Password"
-                                        label="Password"
-                                        fullWidth required
+                            <TextField onChange={(e) => setPassword(e.target.value)}
+                                type="password"
+                                placeholder="Password"
+                                label="Password"
+                                fullWidth required
                             />
                         </div>
                     }
@@ -74,12 +74,12 @@ const SignIn = ({
                 }
                     label="Remember me"
                 /> */}
-                <Button sx={{mb: '10px'}} onClick={() => signIn(email, password)} type="submit" color="primary" variant="contained" fullWidth>Sign in</Button>
+                <Button sx={{ mb: '10px' }} onClick={() => signIn(email, password)} type="submit" color="primary" variant="contained" fullWidth>Sign in</Button>
                 {/* <Typography>
                     <Link href="#">Forgot password?</Link>
                 </Typography> */}
                 <Typography>
-                    <Link sx={{mb: '10px'}} onClick={() => (window.location.hash="SignUp", window.location.reload())}>Register an account</Link>
+                    <Link sx={{ mb: '10px' }} onClick={() => (window.location.hash = "SignUp", window.location.reload())}>Register an account</Link>
                 </Typography>
             </Paper>
         </Grid>

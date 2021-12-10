@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import {
@@ -52,8 +53,8 @@ const CountryComparisonToggle = ({
                     <ListItemText>{countries[cKey]}</ListItemText>
                   </ListItemButton>
                 ) : !countries[cKey]
-                    .toLowerCase()
-                    .includes(countryFilter.toLowerCase()) ? (
+                  .toLowerCase()
+                  .includes(countryFilter.toLowerCase()) ? (
                   <span></span>
                 ) : (
                   <ListItemButton

@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Box, Tooltip, IconButton, Avatar, Menu, MenuItem, Divider, ListItemIcon, Typography, Button, } from "@mui/material";
-import { PersonAdd, Settings, Logout } from '@mui/icons-material';
+import { Logout } from '@mui/icons-material';
 import { connect } from "react-redux";
 import { signOut } from '../redux/actions/authenticationActions';
-import { margin } from "@mui/system";
 
 
 const Navbar = ({

@@ -1,14 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getLocalCovidNews } from "../../redux/actions/covidNewsActions";
 import {
   Typography,
   Card,
-  CardActions,
   CardActionArea,
   CardContent,
   CardMedia,
-  Button,
   CircularProgress,
   Container,
 } from "@mui/material";
@@ -37,7 +36,9 @@ const LocalNewsFeed = ({
         <Container>No data</Container>
       ) : (
         data.map((article) => (
-          <a href={article.url} rel="noreferrer" target="_blank">
+          <a
+            key={article.url}
+            href={article.url} rel="noreferrer" target="_blank">
             <Card className="newsCard">
               <CardActionArea>
                 <CardMedia

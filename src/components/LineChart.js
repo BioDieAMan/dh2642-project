@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
-import { Container, Typography, Button, CircularProgress } from "@mui/material";
+import { Container, Button, CircularProgress } from "@mui/material";
 const LineChart = ({
   currentCountry,
   monthlyData,
@@ -11,7 +11,7 @@ const LineChart = ({
   listOfCountries
 }) => {
   const [graphType, setGraphType] = useState("cases");
-  const [interval, setInterval] = useState("monthly");
+  const [timePeriod, setTimePeriod] = useState("monthly");
 
   const monthlyDataCases = {
     labels: [],
@@ -114,10 +114,10 @@ const LineChart = ({
         <Line
           data={
             graphType === "cases"
-              ? interval === "monthly"
+              ? timePeriod === "monthly"
                 ? monthlyDataCases
                 : sixMonthDataCases
-              : interval === "monthly"
+              : timePeriod === "monthly"
                 ? monthlyDataDeaths
                 : sixMonthDataDeaths
           }
@@ -137,12 +137,12 @@ const LineChart = ({
         <Button
           variant="contained"
           onClick={() =>
-            interval === "monthly"
-              ? setInterval("sixMonth")
-              : setInterval("monthly")
+            timePeriod === "monthly"
+              ? setTimePeriod("sixMonth")
+              : setTimePeriod("monthly")
           }
         >
-          {interval === "monthly" ? "Six Months" : "Last Month"}
+          {timePeriod === "monthly" ? "Six Months" : "Last Month"}
         </Button>
       </Container>
     </Container>

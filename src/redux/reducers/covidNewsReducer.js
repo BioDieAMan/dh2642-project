@@ -2,7 +2,7 @@ const initialState = {
     globalCovidNews: null,
     localCovidNews: null,
     loading: false,
-    error: null,
+    newsError: null,
 }
 
 const covidNewsReducer = (state = initialState, action) => {
@@ -22,7 +22,7 @@ const covidNewsReducer = (state = initialState, action) => {
         case "covidNewsError":
             return {
                 ...state,
-                error: action.payload,
+                newsError: action.payload,
                 loading: false
             }
         case "clearGlobalCovidNews":
@@ -30,14 +30,14 @@ const covidNewsReducer = (state = initialState, action) => {
                 ...state,
                 loading: true,
                 globalCovidNews: null,
-                error: null
+                newsError: null
             }
         case "clearLocalCovidNews":
             return {
                 ...state,
                 loading: true,
                 localCovidNews: null,
-                error: null
+                newsError: null
             }
         default:
             return state;

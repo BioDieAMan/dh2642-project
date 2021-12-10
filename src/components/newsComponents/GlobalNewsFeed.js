@@ -1,19 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getGlobalCovidNews } from "../../redux/actions/covidNewsActions";
 import {
   Typography,
   Card,
-  CardActions,
   CardActionArea,
   CardContent,
   CardMedia,
-  Button,
   Container,
   CircularProgress
 } from "@mui/material";
 
-const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews }) => {
+const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews, newsError }) => {
   useEffect(() => {
     getGlobalCovidNews();
   }, []);
@@ -32,10 +31,12 @@ const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews }) => {
         <Container>No data</Container>
       ) : (
         data.map((article) => (
-          <a href={article.url} rel="noreferrer" target="_blank">
+          <a href={article.url} rel="noreferrer" target="_blank"
+            key={article.url}
+          >
             <Card
               className="newsCard"
-              key={article.url}>
+            >
               <CardActionArea>
                 <CardMedia
                   className="newsImage"
@@ -92,6 +93,7 @@ const mapStateToProps = (state) => {
   return {
     data: state.covidNews.globalCovidNews,
     loading: state.covidNews.loading,
+    newsError: state.covidNews.newsError
   };
 };
 
