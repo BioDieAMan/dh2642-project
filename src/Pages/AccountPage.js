@@ -4,12 +4,16 @@ import { Container } from "@mui/material";
 import SignIn from "../components/SignIn";
 import SignUp from "../components/SignUp";
 import User from "../components/User";
+import WatchlistSelection from "../components/WatchlistSelection";
 
 const AccountPage = ({ uid }) => {
   return (
     <Container>
       {uid ? (
-        <User />
+        <Container>
+          <User />
+          <WatchlistSelection />
+        </Container>
       ) : window.location.hash === "#SignUp" ? (
         <SignUp />
       ) : (

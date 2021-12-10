@@ -25,16 +25,19 @@ const Watchlist = ({
     }
 
     return (
-        <div>
-            {watchlist.map(country => (
+        !listOfCountries?
+            <div></div>:
+            !watchlist?
+                <div></div>:
                 <div>
-                    {listOfCountries[country]}<br />
-                    {/* {loadingCurrent ? <CircularProgress /> : currentData[country].deaths} */}
+                    {watchlist.map(country => (
+                        <div>
+                            {listOfCountries[country]}<br />
+                            {/* {loadingCurrent ? <CircularProgress /> : currentData[country].deaths} */}
+                        </div>
+                    ))}
+                    <Link to="/account">Modify watchlist</Link>
                 </div>
-            ))}
-            <Link to="/account">Modify watchlist</Link>
-        </div>
-
     )
 }
 
