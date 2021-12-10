@@ -22,3 +22,15 @@
 .scrollBar::-webkit-scrollbar {
   display: none;
 }
+
+.watchlist{
+  width: 280px;
+  height: 220px;
+  margin: 10px 10px 0 0;
+}
+
+.watchlistCard{
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+}
