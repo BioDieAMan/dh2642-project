@@ -7,12 +7,26 @@ import DetailPage from "./Pages/DetailPage";
 import ComparePage from "./Pages/ComparePage";
 import Navbar from "./components/Navbar";
 import history from "./history";
-import { useSelector } from "react-redux";
+import { useFirebaseConnect } from "react-redux-firebase"
+import { useSelector, useDispatch } from "react-redux"
+import { setCountry } from "./redux/actions/countryActions"
 
 function App() {
-  const loggedIn = useSelector(
-    (state) => state.firebase.auth.isLoaded && !state.firebase.auth.isEmpty
-  );
+  useFirebaseConnect([
+    { path: "countries" }
+  ])
+  const dispatch = useDispatch()
+  const countries = useSelector(state => state.firebase.data.countries)
+  if (!countries) {
+    return (
+      <div></div>
+    )
+  }
+  //dispatch(firebaseAction)
+  dispatch(setCountry(countries.current))
+
+
+
   return (
     <>
       <CssBaseline />
@@ -33,7 +47,6 @@ function App() {
           <Routes history={history}>
             <Route exact path="/" element={<Homepage />} />
             <Route path="/account" element={<AccountPage />} />
-            {/* <Route path="/map" element={<MapPage />} /> */}
             <Route path="/details" element={<DetailPage />} />
             <Route path="/compare" element={<ComparePage />} />
           </Routes>

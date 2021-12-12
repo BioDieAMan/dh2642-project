@@ -17,12 +17,9 @@ const Map = ({
   setTooltip,
   getListOfCountries,
   countries,
-  setCountry
+  setCountry,
+  loadingCountries
 }) => {
-  useEffect(() => {
-    if (countries) return;
-    getListOfCountries();
-  }, []);
 
   const geograpgyUrl =
     "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
@@ -61,6 +58,7 @@ const mapStateToProps = (state) => {
   return {
     currentData: state.country.currentData,
     countries: state.country.listOfCountries,
+    loadingCountries: state.country.loadingCountries
   };
 };
 

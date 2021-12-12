@@ -1,17 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Box, Tooltip, IconButton, Avatar, Menu, MenuItem, Divider, ListItemIcon, Typography, Button, } from "@mui/material";
 import { Logout } from '@mui/icons-material';
 import { connect } from "react-redux";
 import { signOut } from '../redux/actions/authenticationActions';
+import { getListOfCountries } from "../redux/actions/countryActions";
 
 
 const Navbar = ({
   uid,
   signedInEmail,
   signOut,
-  signoutError,
+  signoutError
 }) => {
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => { setAnchorEl(event.currentTarget); };
@@ -88,7 +90,7 @@ const mapStateToProps = state => {
   return {
     uid: state.firebase.auth.uid,
     signedInEmail: state.firebase.auth.email,
-    signoutError: state.authentication.signoutError
+    signoutError: state.authentication.signoutError,
   }
 }
 

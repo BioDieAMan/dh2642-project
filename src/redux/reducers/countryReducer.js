@@ -19,6 +19,7 @@ const countryReducer = (state = initialState, action) => {
             return {
                 ...state,
                 listOfCountries: action.payload,
+                loadingCountries: false
             }
         case "setCountry":
             return {

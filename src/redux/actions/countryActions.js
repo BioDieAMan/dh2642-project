@@ -4,16 +4,21 @@ import axios from "axios";
 import dateformat from "dateformat";
 
 export const setCountry = (country) => (dispatch, getState, { getFirebase }) => {
-    // const firebase = getFirebase()
-    // const userId = getState().firebase.auth.uid
-    // firebase.database().ref(`${userId}`).set({
-    //     country: country
-    // })
-    //const currentCountries = [country, getState().country.currentCountries[1]]
+    const firebase = getFirebase()
+    const userId = getState().firebase.auth.uid
+    if (userId) {
+        firebase.database().ref(`${userId}/countries`).set({
+            current: country
+        })
+    }
+    if (!getState().country.getListOfCountries) {
+        dispatch(getListOfCountries())
+    }
     dispatch({
         type: "setCountry",
         payload: country
     })
+
 }
 
 
@@ -53,7 +58,7 @@ export const getListOfCountries = () => async dispatch => {
 }
 
 export const getCurrentData = (country) => async (dispatch, getState) => {
-    if (!getState().country.currentData[country]) {
+    if (!getState().country.currentData[country] && country) {
         dispatch({ type: "startSearchCurrentData" })
         const options = {
             method: "GET",
@@ -111,7 +116,7 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
 }
 
 export const getMonthlyData = (country) => async (dispatch, getState) => {
-    if (!getState().country.monthlyData[country]) {
+    if (!getState().country.monthlyData[country] && country) {
         dispatch({ type: "startSearchMonthlyData" })
         const date = new Date()
         date.setDate(date.getDate() - 2)
@@ -159,7 +164,7 @@ export const getMonthlyData = (country) => async (dispatch, getState) => {
 }
 
 export const getSixMonthData = (country) => async (dispatch, getState) => {
-    if (!getState().country.sixMonthData[country]) {
+    if (!getState().country.sixMonthData[country] && country) {
         dispatch({ type: "startSearchSixMonthData" })
         const date = new Date()
         date.setDate(date.getDate() - 2)

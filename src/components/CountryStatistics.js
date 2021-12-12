@@ -1,19 +1,26 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { Container, CircularProgress } from "@mui/material";
 import millify from "millify";
+import { getCurrentData } from "../redux/actions/countryActions";
 
 const CountryStatistics = ({
   currentCountry,
   listOfCountries,
   loadingCurrent,
   currentData,
+  getCurrentData
 }) => {
+  useEffect(() => {
+    if (!currentData[currentCountry])
+      getCurrentData(currentCountry)
+  }, [])
   return (
     <Container>
       {currentCountry ? (
         <Container style={{ textAlign: "center" }}>
-          <h3>Current stats for {listOfCountries[currentCountry]}</h3>{" "}
+          <h3>Current stats for {listOfCountries?.[currentCountry]}</h3>{" "}
           {loadingCurrent ? (
             <CircularProgress />
           ) : currentData[currentCountry] ? (
@@ -51,4 +58,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(CountryStatistics);
+const mapDispatchToProps = dispatch => {
+  return {
+    getCurrentData: country => dispatch(getCurrentData(country))
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CountryStatistics);

@@ -6,6 +6,7 @@ import { getCurrentData, getListOfCountries } from '../redux/actions/countryActi
 import { Grid, Card, CardContent, CardActions, Typography, Button, CircularProgress } from '@mui/material'
 import Carousel from 'react-material-ui-carousel';
 import { height } from '@mui/system'
+import millify from "millify"
 
 
 const Watchlist = ({
@@ -40,49 +41,50 @@ const Watchlist = ({
                 <div></div> :
                 !watchlist ?
                     <div></div> :
-                    <div>
-                        <Carousel className='watchlist' stopAutoPlayOnHover={true} interval={5000} animation={"slide"} navButtonsAlwaysVisible={true}
-                            navButtonsProps={{ style: { backgroundColor: "#6271a3", opacity: 0.2 } }}
-                        >
-                            {watchlist.map(wKey => {
-                                return (
-                                    <Card
-                                        key={wKey}
-                                        className='watchlistCard'>
-                                        <CardContent>
-                                            <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
-                                                {listOfCountries[wKey]}
-                                            </Typography>
+                    loadingCurrent ? <CircularProgress /> :
+                        <div>
+                            <Carousel className='watchlist' stopAutoPlayOnHover={true} interval={5000} animation={"slide"} navButtonsAlwaysVisible={true}
+                                navButtonsProps={{ style: { backgroundColor: "#6271a3", opacity: 0.2 } }}
+                            >
+                                {watchlist.map(wKey => {
+                                    return (
+                                        <Card
+                                            key={wKey}
+                                            className='watchlistCard'>
+                                            <CardContent>
+                                                <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
+                                                    {listOfCountries[wKey]}
+                                                </Typography>
 
-                                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom component={"span"}>
-                                                <table>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Confirmed cases: </td>
-                                                            <td>TODO</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Vaccinated: </td>
-                                                            <td>TODO</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Deaths: </td>
-                                                            <td>TODO</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </Typography>
-                                        </CardContent>
-                                        <CardActions>
-                                            <Button size="small">Learn More</Button>
-                                        </CardActions>
-                                    </Card>
-                                )
-                            })}
-                        </Carousel>
+                                                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom component={"span"}>
+                                                    <table>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Confirmed cases: </td>
+                                                                <td>{currentData[wKey]?.confirmed}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Vaccinated: </td>
+                                                                <td>TODO</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Deaths: </td>
+                                                                <td>{currentData[wKey]?.deaths}</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </Typography>
+                                            </CardContent>
+                                            <CardActions>
+                                                <Button size="small">Learn More</Button>
+                                            </CardActions>
+                                        </Card>
+                                    )
+                                })}
+                            </Carousel>
 
-                        <Link to="/account">Modify watchlist</Link>
-                    </div>
+                            <Link to="/account">Modify watchlist</Link>
+                        </div>
 
 
                 // <div>
