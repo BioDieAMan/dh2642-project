@@ -68,10 +68,11 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
             headers: vacConfig.headers
         }
         try {
-            const response = await axios.request(options)
+            const response = await axios.request(options);
             const vacResponse = await axios.request(vacOptions)
             const vacdata = vacResponse.data.slice(-1)[0];
             const aggregatedData = {
+                countryName:response.data.data[0].region.name,
                 confirmed: 0,
                 deaths: 0,
                 confirmed_diff: 0,
