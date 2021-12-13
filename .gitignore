@@ -8,7 +8,6 @@
 # testing
 /coverage
 
-**/**Config.js/
 # production
 /build
 
@@ -24,8 +23,3 @@ yarn-debug.log*
 yarn-error.log*
 .idea/workspace.xml
 
-src/config/covidApiConfig.js
-src/config/covidNewsApiConfig.js
-src/config/firebaseConfig.js
-src/config/twitterApiConfig.js
-src/config/vaccinatedDataConfig.js
