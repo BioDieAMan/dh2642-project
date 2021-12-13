@@ -1,6 +1,6 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect,useState,useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { connect } from "react-redux";
 import { getCurrentData, setCountry } from "../redux/actions/countryActions";
 import {
@@ -53,8 +53,8 @@ const CountryComparisonTable = ({
     }
     return sortedProducts;
   }, [currentData, sortConfig]);
-  
-  
+
+
   const requestSort = key => {
     let direction = "ascending";
     if (sortConfig.key === key && sortConfig.direction === "ascending") {
@@ -62,7 +62,7 @@ const CountryComparisonTable = ({
     }
     setSortConfig({ key, direction });
   };
-  
+
 
   useEffect(() => {
     selectedCountries.forEach((country) => {
@@ -72,18 +72,18 @@ const CountryComparisonTable = ({
 
 
   return (
-     loadingCurrent ? (<div className='loadingPage' > <CircularProgress /></div >) : (
+    loadingCurrent ? (<div className='loadingPage' > <CircularProgress /></div >) : (
       <TableContainer component={Paper}>
         <Table size="medium" aria-label="simple table" sx={{ maxWidth: 600 }}>
           <TableHead>
             <TableRow>
               <TableCell>Country<Button onClick={() => requestSort('countryName')}>^</Button></TableCell>
               <TableCell>Confirmed<Button onClick={() => requestSort('confirmed')}>^</Button></TableCell>
-              <TableCell>Confirmed/Capita<Button onClick={() => requestSort('confirmed_diff')}>^</Button></TableCell>
+              <TableCell>Cases since yesterday<Button onClick={() => requestSort('confirmed_diff')}>^</Button></TableCell>
               <TableCell>Vaccinated<Button onClick={() => requestSort('vaccinated')}>^</Button></TableCell>
-              <TableCell>Vaccinated/Capita<Button onClick={() => requestSort('vaccinated_per_hundred')}>^</Button></TableCell>
+              <TableCell>% Vaccinated<Button onClick={() => requestSort('vaccinated_per_hundred')}>^</Button></TableCell>
               <TableCell>Deaths<Button onClick={() => requestSort('deaths')}>^</Button></TableCell>
-              <TableCell>Deaths/Capita<Button onClick={() => requestSort('deaths_diff')}>^</Button></TableCell>
+              <TableCell>Deaths since yesterday<Button onClick={() => requestSort('deaths_diff')}>^</Button></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -113,7 +113,7 @@ const mapStateToProps = (state) => {
     selectedCountries: state.country.selectedCountries,
     listOfCountries: state.country.listOfCountries,
     currentData: state.country.currentData,
-    loadingCurrent:state.country.loadingCurrent
+    loadingCurrent: state.country.loadingCurrent
   };
 };
 
