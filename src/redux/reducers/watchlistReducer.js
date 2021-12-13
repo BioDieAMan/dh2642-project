@@ -1,5 +1,5 @@
 const initialState = {
-    watchlist: ["SWE"],
+    watchlist: [],
     watchlistError: null
 }
 
@@ -13,7 +13,17 @@ const watchlistReducer = (state = initialState, action) => {
         case "removeCountryFromWatchlist":
             return {
                 ...state,
-                watchLlist: state.watchlist.filter(country => country !== action.payload)
+                watchlist: state.watchlist.filter(country => country !== action.payload)
+            }
+        case "clearWatchlist":
+            return {
+                ...state,
+                watchlist: []
+            }
+        case "populateWatchlist":
+            return {
+                ...state,
+                watchlist: action.payload
             }
         case "watchlistError":
             return {

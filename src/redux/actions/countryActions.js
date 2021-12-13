@@ -2,23 +2,17 @@ import config from "../../config/covidApiConfig";
 import vacConfig from "../../config/vaccinatedDataConfig"
 import axios from "axios";
 import dateformat from "dateformat";
+import { persistenceUpdateCurrent } from "../../firebasePersistence";
 
 export const setCountry = (country) => (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase()
-    const userId = getState().firebase.auth.uid
-    if (userId) {
-        firebase.database().ref(`${userId}/countries`).set({
-            current: country
-        })
-    }
-    if (!getState().country.getListOfCountries) {
+    if (!getState().country.listOfCountries) {
         dispatch(getListOfCountries())
     }
     dispatch({
         type: "setCountry",
         payload: country
     })
-
+    dispatch(persistenceUpdateCurrent())
 }
 
 
@@ -73,11 +67,10 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
             headers: vacConfig.headers
         }
         try {
-            const response = await axios.request(options);
+            const response = await axios.request(options)
             const vacResponse = await axios.request(vacOptions)
             const vacdata = vacResponse.data.slice(-1)[0];
             const aggregatedData = {
-                countryName:response.data.data[0].region.name,
                 confirmed: 0,
                 deaths: 0,
                 confirmed_diff: 0,

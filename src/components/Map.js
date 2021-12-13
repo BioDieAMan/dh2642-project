@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from "react";
+import React from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import {
   getCurrentData,
   getMonthlyData,
   getSixMonthData,
   setCountry,
-  getListOfCountries,
 } from "../redux/actions/countryActions";
 import { connect } from "react-redux";
 
@@ -15,14 +14,12 @@ const Map = ({
   getMonthlyData,
   getSixMonthData,
   setTooltip,
-  getListOfCountries,
-  countries,
   setCountry,
-  loadingCountries
 }) => {
 
   const geograpgyUrl =
     "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
+
 
   return (
     <ComposableMap data-tip="" projectionConfig={{ scale: 150 }} className="map">
@@ -54,13 +51,6 @@ const Map = ({
     </ComposableMap>
   );
 };
-const mapStateToProps = (state) => {
-  return {
-    currentData: state.country.currentData,
-    countries: state.country.listOfCountries,
-    loadingCountries: state.country.loadingCountries
-  };
-};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -68,8 +58,7 @@ const mapDispatchToProps = (dispatch) => {
     getMonthlyData: (country) => dispatch(getMonthlyData(country)),
     getSixMonthData: (country) => dispatch(getSixMonthData(country)),
     setCountry: (country) => dispatch(setCountry(country)),
-    getListOfCountries: () => dispatch(getListOfCountries()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Map);
+export default connect(null, mapDispatchToProps)(Map);

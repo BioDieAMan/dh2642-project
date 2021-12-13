@@ -7,23 +7,44 @@ import DetailPage from "./Pages/DetailPage";
 import ComparePage from "./Pages/ComparePage";
 import Navbar from "./components/Navbar";
 import history from "./history";
-import { useFirebaseConnect } from "react-redux-firebase"
-import { useSelector, useDispatch } from "react-redux"
-import { setCountry } from "./redux/actions/countryActions"
+import { useDispatch, useSelector } from "react-redux";
+import { useFirebase } from "react-redux-firebase"
+import { persistenceLoader } from "./firebasePersistence"
 
 function App() {
-  useFirebaseConnect([
-    { path: "countries" }
-  ])
   const dispatch = useDispatch()
-  const countries = useSelector(state => state.firebase.data.countries)
-  if (!countries) {
+  const authLoaded = useSelector(state => state.firebase.auth.isLoaded)
+  const firebase = useFirebase()
+
+  if (!authLoaded) {
     return (
       <div></div>
     )
   }
-  //dispatch(firebaseAction)
-  dispatch(setCountry(countries.current))
+  firebase.auth().onAuthStateChanged(() => {
+    dispatch(persistenceLoader())
+  })
+  // useFirebaseConnect([
+  //   { type: "once", path: `${isLoggedIn}/countries` }
+  // ])
+  // const dispatch = useDispatch()
+  // const countries = useSelector(state => state.firebase.data)
+  // if (!isLoaded(countries)) {
+  //   return (
+  //     <div></div>
+  //   )
+  // }
+  // if (isLoggedIn && isLoaded(countries)) {
+  //   dispatch(setCountry(countries[isLoggedIn].countries.current))
+  //   console.log(countries[isLoggedIn].countries.current)
+  // }
+  // if (!countries) {
+  //   return (
+  //     <div></div>
+  //   )
+  // }
+  // //dispatch(firebaseAction)
+  // dispatch(setCountry(countries.current))
 
 
 
