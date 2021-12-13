@@ -10,7 +10,9 @@ export const addToWatchlist = (country) => (dispatch, getState) => {
 
 export const populateWatchlist = (countries) => (dispatch) => {
     dispatch({ type: "populateWatchlist", payload: countries })
+    dispatch(persistenceUpdateWatchlist())
 }
+
 export const clearWatchlist = () => {
     return {
         type: "clearWatchlist"

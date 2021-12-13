@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Grid, Container, Paper, List, ListItem, ListItemIcon, ListItemText, Button, Checkbox } from '@mui/material';
 import { getListOfCountries } from "../redux/actions/countryActions";
+import { populateWatchlist } from "../redux/actions/watchlistActions"
 
 function not(a, b) {
     return a.filter((value) => b.indexOf(value) === -1);
@@ -13,7 +14,7 @@ function intersection(a, b) {
 }
 
 const WatchlistSelection = ({
-
+    populateWatchlist,
     getListOfCountries,
     countries,
     watchlist
@@ -24,7 +25,7 @@ const WatchlistSelection = ({
     }, []);
 
     const [checked, setChecked] = React.useState([]);
-    const [left, setLeft] = React.useState(Object.keys(countries).filter(cKey => cKey != watchlist));
+    const [left, setLeft] = React.useState(Object.keys(countries).filter(cKey => cKey !== watchlist));
     const [right, setRight] = React.useState(watchlist);
 
     const leftChecked = intersection(checked, left);
@@ -41,11 +42,6 @@ const WatchlistSelection = ({
         }
 
         setChecked(newChecked);
-    };
-
-    const handleAllRight = () => {
-        setRight(right.concat(left));
-        setLeft([]);
     };
 
     const handleCheckedRight = () => {
@@ -102,12 +98,6 @@ const WatchlistSelection = ({
             <Grid item>
                 <Grid container direction="column" alignItems="center">
                     <Button sx={{ my: 0.5 }} variant="outlined" size="small"
-                        onClick={handleAllRight} disabled={left.length === 0} aria-label="move all right"
-                    >
-                        ≫
-                    </Button>
-
-                    <Button sx={{ my: 0.5 }} variant="outlined" size="small"
                         onClick={handleCheckedRight} disabled={leftChecked.length === 0} aria-label="move selected right"
                     >
                         &gt;
@@ -123,6 +113,11 @@ const WatchlistSelection = ({
                         onClick={handleAllLeft} disabled={right.length === 0} aria-label="move all left"
                     >
                         ≪
+                    </Button>
+                    <Button sx={{ my: 0.5 }} variant="outlined" size="small"
+                        onClick={() => populateWatchlist(right)} aria-label="Update"
+                    >
+                        Update Watchlist
                     </Button>
                 </Grid>
             </Grid>
@@ -143,6 +138,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getListOfCountries: () => dispatch(getListOfCountries()),
+        populateWatchlist: (countries) => dispatch(populateWatchlist(countries))
     };
 };
 
