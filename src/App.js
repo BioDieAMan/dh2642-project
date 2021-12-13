@@ -64,7 +64,7 @@ function App() {
       </Container>
       <Container maxWidth="xl">
         <BrowserRouter>
-          <Navbar />
+          <Navbar className="navbar" />
           <Routes history={history}>
             <Route exact path="/" element={<Homepage />} />
             <Route path="/account" element={<AccountPage />} />

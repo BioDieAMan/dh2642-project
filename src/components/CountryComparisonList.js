@@ -43,6 +43,7 @@ const CountryComparisonToggle = ({
               {Object.keys(countries).map((cKey) =>
                 countryFilter === "" ? (
                   <ListItemButton
+                    key={cKey}
                     selected={selectedCountries.some((scKey) => scKey === cKey)}
                     onClick={() =>
                       selectedCountries.some((scKey) => scKey === cKey)
@@ -58,6 +59,7 @@ const CountryComparisonToggle = ({
                   <span></span>
                 ) : (
                   <ListItemButton
+                    key={cKey}
                     selected={selectedCountries.some((scKey) => scKey === cKey)}
                     onClick={() =>
                       selectedCountries.some((scKey) => scKey === cKey)

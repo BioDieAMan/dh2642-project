@@ -65,7 +65,7 @@ const Watchlist = ({
                                                             </tr>
                                                             <tr>
                                                                 <td>Vaccinated: </td>
-                                                                <td>TODO</td>
+                                                                <td>{currentData[wKey]?.vaccinated}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>Deaths: </td>

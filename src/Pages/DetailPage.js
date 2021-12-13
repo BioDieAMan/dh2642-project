@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LineChart from "../components/LineChart";
 import LocalNewsFeed from "../components/newsComponents/LocalNewsFeed";
 import DropDown from "../components/DropDown";
-import { Button, Container } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import CountryStatistics from "../components/CountryStatistics";
 import Map from "../components/Map";
 import ReactTooltip from "react-tooltip";
@@ -16,17 +16,17 @@ const DetailPage = ({ currentCountry, setCountry }) => {
 
   if (!currentCountry) {
     return (
-      <Container>
+      <Container >
+        <Container>
+          <Map setTooltip={setTooltip} />
+          <ReactTooltip>{tooltip}</ReactTooltip>
+        </Container>
         <DropDown
           style={{
             display: "flex",
             alignItems: "Left",
           }}
         />
-        <Container>
-          <Map setTooltip={setTooltip} />
-          <ReactTooltip>{tooltip}</ReactTooltip>
-        </Container>
       </Container>
     )
   }

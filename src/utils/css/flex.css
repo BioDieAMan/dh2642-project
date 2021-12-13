@@ -2,3 +2,11 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.flex-row{
+    flex-direction: row;
+}
+
+.flex-column{
+    flex-direction: column;
+}

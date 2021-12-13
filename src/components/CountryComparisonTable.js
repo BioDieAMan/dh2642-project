@@ -37,9 +37,9 @@ const CountryComparisonTable = ({
   getCurrentData
 }) => {
   const [sortConfig, setSortConfig] = useState({ key: 'countryName', direction: 'ascending' });
-  let sortedProducts = [...Object.keys(currentData)]
+  let sortedProducts = [...Object.keys(currentData)].filter(country => selectedCountries.includes(country))
   useMemo(() => {
-    sortedProducts = [...Object.keys(currentData)];
+    sortedProducts = [...Object.keys(currentData)].filter(country => selectedCountries.includes(country))
     if (sortConfig !== null) {
       sortedProducts.sort((a, b) => {
         if (currentData[a][sortConfig.key] < currentData[b][sortConfig.key]) {
@@ -90,7 +90,7 @@ const CountryComparisonTable = ({
             {
               sortedProducts.map((country) => {
                 return (
-                  <TableRow>
+                  <TableRow key={country}>
                     <TableCell>{currentData[country].countryName}</TableCell>
                     <TableCell>{currentData[country].confirmed}</TableCell>
                     <TableCell>{currentData[country].confirmed_diff}</TableCell>
