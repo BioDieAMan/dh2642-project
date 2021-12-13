@@ -1,15 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
 import { Container, Button, CircularProgress } from "@mui/material";
+import { getMonthlyData, getSixMonthData } from "../redux/actions/countryActions";
 const LineChart = ({
   currentCountry,
   monthlyData,
   sixMonthData,
   loadingMonthly,
   currentData,
-  listOfCountries
+  listOfCountries,
+  getMonthlyData,
+  getSixMonthData
 }) => {
+  useEffect(() => {
+    if (!monthlyData[currentCountry]) {
+      getMonthlyData(currentCountry);
+      getSixMonthData(currentCountry)
+    }
+  }, [])
   const [graphType, setGraphType] = useState("cases");
   const [timePeriod, setTimePeriod] = useState("monthly");
 
@@ -99,7 +108,7 @@ const LineChart = ({
 
   if (!currentData[currentCountry] && currentCountry) {
     const noData = {
-      label: `No data for ${listOfCountries[currentCountry]}`,
+      label: `No data for ${listOfCountries?.[currentCountry]}`,
       data: []
     }
     monthlyDataCases.datasets[0] = noData
@@ -160,4 +169,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(LineChart);
+const mapDispatchToProps = dispatch => {
+  return {
+    getMonthlyData: country => dispatch(getMonthlyData(country)),
+    getSixMonthData: country => dispatch(getSixMonthData(country))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LineChart);

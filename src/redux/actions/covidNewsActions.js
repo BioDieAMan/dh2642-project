@@ -39,7 +39,7 @@ export const getLocalCovidNews = () => async (dispatch, getState) => {
         method: "GET",
         url: config.searchUrl,
         params: {
-            q: `covid ${getState().country.listOfCountries[getState().country.currentCountry]}`,
+            q: `covid ${getState().country.listOfCountries?.[getState().country.currentCountry]}`,
             count: '2',
             setLang: 'en',
             //mkt: 'sv-SE',
