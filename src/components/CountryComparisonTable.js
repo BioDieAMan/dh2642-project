@@ -91,7 +91,7 @@ const CountryComparisonTable = ({
               sortedProducts.map((country) => {
                 return (
                   <TableRow>
-                    <TableCell>{listOfCountries[country]}</TableCell>
+                    <TableCell>{currentData[country].countryName}</TableCell>
                     <TableCell>{currentData[country].confirmed}</TableCell>
                     <TableCell>{currentData[country].confirmed_diff}</TableCell>
                     <TableCell>{currentData[country].vaccinated}</TableCell>
