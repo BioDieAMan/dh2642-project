@@ -7,8 +7,10 @@ import Watchlist from "../components/Watchlist";
 const Homepage = () => {
   return (
     <Container>
-      <GlobalStatistics />
-      <Watchlist />
+      <div className="flex-container">
+        <GlobalStatistics />
+        <Watchlist />
+      </div>
       <GlobalNewsFeed />
     </Container>
   );

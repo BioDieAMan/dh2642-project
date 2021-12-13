@@ -33,12 +33,15 @@ const DetailPage = ({ currentCountry, setCountry }) => {
 
   return (
     <Container>
-      <Button
-        variant="contained"
-        onClick={() => setCountry("")}>
-        Choose a different country
-      </Button>
-      <CountryStatistics />
+      <div className="flex-container">
+        <Button
+          sx={{ height: "60px", margin: "auto" }}
+          variant="contained"
+          onClick={() => setCountry("")}>
+          Choose a different country
+        </Button>
+        <CountryStatistics />
+      </div>
       <LineChart />
       <LocalNewsFeed />
     </Container>

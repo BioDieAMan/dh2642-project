@@ -27,9 +27,7 @@ const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews, newsError }) => {
 
       {loading ? (
         <CircularProgress />
-      ) : !data ? (
-        <Container>No data</Container>
-      ) : (
+      ) : data ? (
         data.map((article) => (
           <a href={article.url} rel="noreferrer" target="_blank"
             key={article.url}
@@ -84,7 +82,8 @@ const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews, newsError }) => {
             </Card>
           </a>
         ))
-      )}
+      ) : newsError ? <div>Could not fetch news</div>
+        : <div></div>}
     </Container>
   );
 };

@@ -8,7 +8,7 @@ import {
   Container,
   CircularProgress,
 } from "@mui/material";
-const GlobalStatistics = ({ data, loading, getGlobalData }) => {
+const GlobalStatistics = ({ data, loading, error, getGlobalData }) => {
   useEffect(() => {
     getGlobalData();
   }, []);
@@ -34,9 +34,10 @@ const GlobalStatistics = ({ data, loading, getGlobalData }) => {
             <br />
           </div>
         </Container>
-      ) : (
-        <div></div>
-      )}
+      ) : error ? <div>Could not fetch global data</div>
+        : (
+          <div></div>
+        )}
     </Container>
   );
 };
@@ -45,6 +46,7 @@ const mapStateToProps = (state) => {
   return {
     data: state.globalData.globalData,
     loading: state.globalData.loading,
+    error: state.globalData.error
   };
 };
 

@@ -10,7 +10,8 @@ const CountryStatistics = ({
   listOfCountries,
   loadingCurrent,
   currentData,
-  getCurrentData
+  getCurrentData,
+  error
 }) => {
   useEffect(() => {
     if (!currentData[currentCountry])
@@ -38,13 +39,15 @@ const CountryStatistics = ({
               {currentData[currentCountry].deaths_diff}
               <br />
             </div>
-          ) : (
-            <div>No data for this country</div>
-          )}
+          ) : error ? <div>Could not fetch country data</div>
+            : (
+              <div>No data for this country</div>
+            )}
         </Container>
-      ) : (
-        <div></div>
-      )}
+      )
+        : (
+          <div></div>
+        )}
     </Container>
   );
 };
@@ -55,6 +58,7 @@ const mapStateToProps = (state) => {
     currentCountry: state.country.currentCountry,
     currentData: state.country.currentData,
     listOfCountries: state.country.listOfCountries,
+    error: state.country.error
   };
 };
 

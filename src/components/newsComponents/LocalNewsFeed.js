@@ -17,6 +17,7 @@ const LocalNewsFeed = ({
   loading,
   getLocalCovidNews,
   currentCountry,
+  newsError
 }) => {
   useEffect(() => {
     currentCountry && getLocalCovidNews();
@@ -32,9 +33,7 @@ const LocalNewsFeed = ({
 
       {loading ? (
         <CircularProgress />
-      ) : !data ? (
-        <Container>No data</Container>
-      ) : (
+      ) : data ? (
         data.map((article) => (
           <a
             key={article.url}
@@ -87,7 +86,8 @@ const LocalNewsFeed = ({
             </Card>
           </a>
         ))
-      )}
+      ) : newsError ? <div>Could not fetch news</div>
+        : <div></div>}
     </Container>
   );
 };
@@ -97,6 +97,7 @@ const mapStateToProps = (state) => {
     data: state.covidNews.localCovidNews,
     loading: state.covidNews.loading,
     currentCountry: state.country.currentCountry,
+    newsError: state.covidNews.newsError
   };
 };
 

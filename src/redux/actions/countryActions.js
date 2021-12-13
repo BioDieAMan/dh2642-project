@@ -45,7 +45,7 @@ export const getListOfCountries = () => async dispatch => {
     }
     catch (e) {
         dispatch({
-            type: "countryError",
+            type: "listOfCountriesError",
             payload: e.message
         })
     }
@@ -71,7 +71,7 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
             const vacResponse = await axios.request(vacOptions)
             const vacdata = vacResponse.data.slice(-1)[0];
             const aggregatedData = {
-                countryName:response.data.data[0].region.name,
+                countryName: response.data.data[0].region.name,
                 confirmed: 0,
                 deaths: 0,
                 confirmed_diff: 0,

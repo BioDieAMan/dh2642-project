@@ -2,8 +2,6 @@ const initialState = {
     listOfCountries: null,
     currentCountry: null,
     selectedCountries: [],
-    // selectedCountriesData: [],
-    // watchCountries: [],
     currentData: {},
     monthlyData: {},
     sixMonthData: {},
@@ -15,6 +13,11 @@ const initialState = {
 
 const countryReducer = (state = initialState, action) => {
     switch (action.type) {
+        case "startSearchListOfCountries":
+            return {
+                ...state,
+                loadingCountries: true
+            }
         case "getListOfCountries":
             return {
                 ...state,
@@ -78,16 +81,6 @@ const countryReducer = (state = initialState, action) => {
                 ...state,
                 selectedCountries: state.selectedCountries.filter(element => element !== action.payload)
             }
-        // case "addWatchCountry":
-        //     return {
-        //         ...state,
-        //         watchCountries: [...state.watchCountries, action.payload]
-        //     }
-        // case "removeWatchCountry":
-        //     return {
-        //         ...state,
-        //         watchCountries: state.watchCountries.filter(element => element !== action.payload)
-        //     }
         default:
             return state;
     }
