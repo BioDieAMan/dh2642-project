@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Box, Tooltip, IconButton, Avatar, Menu, MenuItem, Divider, ListItemIcon, Typography, Button, } from "@mui/material";
 import { Logout } from '@mui/icons-material';
 import { connect } from "react-redux";
 import { signOut } from '../redux/actions/authenticationActions';
-import { getListOfCountries } from "../redux/actions/countryActions";
 
 
 const Navbar = ({
@@ -19,19 +18,21 @@ const Navbar = ({
   const handleClick = (event) => { setAnchorEl(event.currentTarget); };
   const handleClose = () => { setAnchorEl(null); };
 
+  const [path, setPath] = useState(window.location.pathname)
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Typography sx={{ minWidth: 100 }}>
-          <Button variant="text" component={Link} to="/">Home</Button>
+          <Button variant="text" component={Link} to="/" sx={{ bgcolor: path === "/" ? "lightblue" : undefined }} onClick={() => setPath("/")}>Home</Button>
         </Typography>
 
         <Typography sx={{ minWidth: 100 }}>
-          <Button variant="text" component={Link} to="/details">Details</Button>
+          <Button variant="text" component={Link} to="/details" sx={{ bgcolor: path === "/details" ? "lightblue" : undefined }} onClick={() => setPath("/details")}>Details</Button>
         </Typography>
 
         <Typography sx={{ minWidth: 100 }}>
-          <Button variant="text" component={Link} to="/compare">Comparison</Button>
+          <Button variant="text" component={Link} to="/compare" sx={{ bgcolor: path === "/compare" ? "lightblue" : undefined }} onClick={() => setPath("/compare")}>Comparison</Button>
         </Typography>
 
         {/* <Typography sx={{ minWidth: 100 }}>

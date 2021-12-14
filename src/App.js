@@ -21,13 +21,15 @@ function App() {
       <div></div>
     )
   }
+
   firebase.auth().onAuthStateChanged(() => {
     dispatch(persistenceLoader())
   })
+
   // useFirebaseConnect([
   //   { type: "once", path: `${isLoggedIn}/countries` }
   // ])
-  // const dispatch = useDispatch()
+  // const dispatch = useDispatch() 
   // const countries = useSelector(state => state.firebase.data)
   // if (!isLoaded(countries)) {
   //   return (

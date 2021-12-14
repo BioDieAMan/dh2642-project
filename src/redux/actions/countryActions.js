@@ -5,7 +5,7 @@ import dateformat from "dateformat";
 import { persistenceUpdateCurrent } from "../../firebasePersistence";
 
 export const setCountry = (country) => (dispatch, getState, { getFirebase }) => {
-    if (!getState().country.listOfCountries) {
+    if (!getState().country.listOfCountries && !getState().country.loadingCountries) {
         dispatch(getListOfCountries())
     }
     dispatch({
@@ -21,6 +21,9 @@ const sortCountries = (a, b) => {
 }
 
 export const getListOfCountries = () => async dispatch => {
+    dispatch({
+        type: "startSearchListOfCountries"
+    })
     const options = {
         method: "GET",
         url: config.regionsUrl,
@@ -52,8 +55,11 @@ export const getListOfCountries = () => async dispatch => {
 }
 
 export const getCurrentData = (country) => async (dispatch, getState) => {
-    if (!getState().country.currentData[country] && country) {
-        dispatch({ type: "startSearchCurrentData" })
+    if (!getState().country.currentData[country] && country && !getState().country.loadingCurrent[country]) {
+        dispatch({
+            type: "startSearchCurrentData",
+            payload: country
+        })
         const options = {
             method: "GET",
             url: config.countryUrl,
@@ -103,7 +109,7 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
         catch (e) {
             dispatch({
                 type: "countryError",
-                payload: e.message
+                payload: [e.message, country]
             })
         }
     }

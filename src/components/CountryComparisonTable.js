@@ -72,42 +72,41 @@ const CountryComparisonTable = ({
 
 
   return (
-    loadingCurrent ? (<div className='loadingPage' > <CircularProgress /></div >)
-      : error ? <div>Could not load country data</div>
-        : (
-          <TableContainer component={Paper}>
-            <Table size="medium" aria-label="simple table" >
-              <TableHead>
-                <TableRow>
-                  <TableCell>Country<Button onClick={() => requestSort('countryName')}>^</Button></TableCell>
-                  <TableCell>Confirmed<Button onClick={() => requestSort('confirmed')}>^</Button></TableCell>
-                  <TableCell>Cases since yesterday<Button onClick={() => requestSort('confirmed_diff')}>^</Button></TableCell>
-                  <TableCell>Vaccinated<Button onClick={() => requestSort('vaccinated')}>^</Button></TableCell>
-                  <TableCell>% Vaccinated<Button onClick={() => requestSort('vaccinated_per_hundred')}>^</Button></TableCell>
-                  <TableCell>Deaths<Button onClick={() => requestSort('deaths')}>^</Button></TableCell>
-                  <TableCell>Deaths since yesterday<Button onClick={() => requestSort('deaths_diff')}>^</Button></TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {
-                  sortedProducts.map((country) => {
-                    return (
-                      <TableRow key={country}>
-                        <TableCell>{currentData[country].countryName}</TableCell>
-                        <TableCell>{currentData[country].confirmed}</TableCell>
-                        <TableCell>{currentData[country].confirmed_diff}</TableCell>
-                        <TableCell>{currentData[country].vaccinated}</TableCell>
-                        <TableCell>{currentData[country].vaccinated_per_hundred}</TableCell>
-                        <TableCell>{currentData[country].deaths}</TableCell>
-                        <TableCell>{currentData[country].deaths_diff}</TableCell>
-                      </TableRow>
-                    )
-                  })
-                }
-              </TableBody>
-            </Table>
-          </TableContainer>
-        ));
+    !Object.values(loadingCurrent).every(item => item === false) ? (<div className='loadingPage' > <CircularProgress /></div >)
+      : (
+        <TableContainer component={Paper}>
+          <Table size="medium" aria-label="simple table" >
+            <TableHead>
+              <TableRow>
+                <TableCell>Country<Button onClick={() => requestSort('countryName')}>^</Button></TableCell>
+                <TableCell>Confirmed<Button onClick={() => requestSort('confirmed')}>^</Button></TableCell>
+                <TableCell>Cases since yesterday<Button onClick={() => requestSort('confirmed_diff')}>^</Button></TableCell>
+                <TableCell>Vaccinated<Button onClick={() => requestSort('vaccinated')}>^</Button></TableCell>
+                <TableCell>% Vaccinated<Button onClick={() => requestSort('vaccinated_per_hundred')}>^</Button></TableCell>
+                <TableCell>Deaths<Button onClick={() => requestSort('deaths')}>^</Button></TableCell>
+                <TableCell>Deaths since yesterday<Button onClick={() => requestSort('deaths_diff')}>^</Button></TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {
+                sortedProducts.map((country) => {
+                  return (
+                    <TableRow key={country}>
+                      <TableCell>{currentData[country].countryName}</TableCell>
+                      <TableCell>{currentData[country].confirmed}</TableCell>
+                      <TableCell>{currentData[country].confirmed_diff}</TableCell>
+                      <TableCell>{currentData[country].vaccinated}</TableCell>
+                      <TableCell>{currentData[country].vaccinated_per_hundred}</TableCell>
+                      <TableCell>{currentData[country].deaths}</TableCell>
+                      <TableCell>{currentData[country].deaths_diff}</TableCell>
+                    </TableRow>
+                  )
+                })
+              }
+            </TableBody>
+          </Table>
+        </TableContainer>
+      ));
 };
 
 const mapStateToProps = (state) => {
