@@ -24,13 +24,18 @@
 }
 
 .watchlist{
-  width: 280px;
+  width: 340px;
   height: 240px;
   margin: 10px 10px 0 0;
 }
 
 .watchlistCard{
-  width: 200px;
+  width: 220px;
   height: 200px;
   margin: 0 auto;
+}
+
+.textRight{
+  text-align: right;
+  padding: 0 0 0 10px;
 }

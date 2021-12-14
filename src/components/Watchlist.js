@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getCurrentData, getListOfCountries } from '../redux/actions/countryActions'
+import { getCurrentData, getListOfCountries, setCountry } from '../redux/actions/countryActions'
 import { Grid, Card, CardContent, CardActions, Typography, Button, CircularProgress } from '@mui/material'
 import Carousel from 'react-material-ui-carousel';
 import { height } from '@mui/system'
@@ -16,6 +16,7 @@ const Watchlist = ({
     listOfCountries,
     getListOfCountries,
     getCurrentData,
+    setCountry,
     loadingCurrent
 }) => {
     useEffect(() => {
@@ -35,10 +36,26 @@ const Watchlist = ({
         )
     }
 
+    if (watchlist === undefined || watchlist.length <= 0){
+        return (
+            <Card className='watchlistCard'>
+                <CardActions>
+                    <CardContent>
+                        <Button size="small" component={Link} to="/account">
+                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                Watchlist is empty, you can add countries to watchlist by pressing this card.
+                            </Typography>
+                        </Button>
+                    </CardContent>
+                </CardActions>
+            </Card>
+        )
+    }
+                    
     return (
         <div>
             {!listOfCountries || !watchlist ?
-                <div></div> :
+                <div></div>:
                 loadingCurrent ? <CircularProgress /> :
                     <div>
                         <Carousel className='watchlist' stopAutoPlayOnHover={true} interval={5000} animation={"slide"} navButtonsAlwaysVisible={true}
@@ -59,22 +76,26 @@ const Watchlist = ({
                                                     <tbody>
                                                         <tr>
                                                             <td>Confirmed cases: </td>
-                                                            <td>{currentData[wKey]?.confirmed}</td>
+                                                            <td className='textRight'>{millify(currentData[wKey]?.confirmed)}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Vaccinated: </td>
-                                                            <td>{currentData[wKey]?.vaccinated}</td>
+                                                            <td className='textRight'>{millify(currentData[wKey]?.vaccinated)}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Deaths: </td>
-                                                            <td>{currentData[wKey]?.deaths}</td>
+                                                            <td className='textRight'>{millify(currentData[wKey]?.deaths)}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </Typography>
                                         </CardContent>
                                         <CardActions>
-                                            <Button size="small">Learn More</Button>
+                                            <Button size="small" component={Link} to="/details"
+                                                    onClick={() => setCountry(wKey)}
+                                            >
+                                                Learn More
+                                            </Button>
                                         </CardActions>
                                     </Card>
                                 )
@@ -83,17 +104,6 @@ const Watchlist = ({
 
                         <Link to="/account">Modify watchlist</Link>
                     </div>
-
-
-                // <div>
-                //     {watchlist.map(country => (
-                //         <div>
-                //             {listOfCountries[country]}<br />
-                //             {/* {loadingCurrent ? <CircularProgress /> : currentData[country].deaths} */}
-                //         </div>
-                //     ))}
-                //     <Link to="/account">Modify watchlist</Link>
-                // </div>
             }
         </div>
     )
@@ -114,7 +124,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getListOfCountries: () => dispatch(getListOfCountries()),
-        getCurrentData: (country) => dispatch(getCurrentData(country))
+        getCurrentData: (country) => dispatch(getCurrentData(country)),
+        setCountry: (country) => dispatch(setCountry(country))
     };
 };
 

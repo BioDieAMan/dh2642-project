@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
-import { Grid, Container, Paper, List, ListItem, ListItemIcon, ListItemText, Button, Checkbox } from '@mui/material';
+import { Grid, Container, Paper, Typography, List, ListItem, ListItemIcon, ListItemText, Button, Checkbox } from '@mui/material';
 import { getListOfCountries } from "../redux/actions/countryActions";
 import { populateWatchlist } from "../redux/actions/watchlistActions"
 
@@ -92,7 +92,12 @@ const WatchlistSelection = ({
         <Grid container spacing={10} justifyContent="center" alignItems="center">
             {/* Non Selected Country List */}
 
-            <Grid item>{customList(left)}</Grid>
+            <Grid item>
+                <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
+                    Countries
+                </Typography>
+                {customList(left)}
+            </Grid>
 
             {/* Buttons */}
             <Grid item>
@@ -123,7 +128,12 @@ const WatchlistSelection = ({
             </Grid>
 
             {/* WatchList */}
-            <Grid item>{customList(right)}</Grid>
+            <Grid item>
+                <Typography sx={{ fontSize: 20 }} color="text.secondary" gutterBottom>
+                    Watchlist
+                </Typography>
+                {customList(right)}
+            </Grid>
         </Grid>
     )
 }
