@@ -4,6 +4,7 @@ import LocalNewsFeed from "../components/newsComponents/LocalNewsFeed";
 import DropDown from "../components/DropDown";
 import { Button, Container, Typography } from "@mui/material";
 import CountryStatistics from "../components/CountryStatistics";
+import WatchlistButton from "../components/WatchlistButton";
 import Map from "../components/Map";
 import ReactTooltip from "react-tooltip";
 import { connect } from "react-redux"
@@ -11,7 +12,10 @@ import { setCountry } from "../redux/actions/countryActions";
 
 //import DropDownMaterial from "../components/DropDownMaterial";
 
-const DetailPage = ({ currentCountry, setCountry }) => {
+const DetailPage = ({
+  currentCountry,
+  setCountry,
+}) => {
   const [tooltip, setTooltip] = useState("");
 
   if (!currentCountry) {
@@ -41,6 +45,7 @@ const DetailPage = ({ currentCountry, setCountry }) => {
           Choose a different country
         </Button>
         <CountryStatistics />
+        <WatchlistButton />
       </div>
       <LineChart />
       <LocalNewsFeed />
