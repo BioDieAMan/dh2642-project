@@ -1,11 +1,12 @@
 const initialState = {
     listOfCountries: null,
+    loadingCountries: false,
     currentCountry: null,
     selectedCountries: [],
     currentData: {},
     monthlyData: {},
     sixMonthData: {},
-    loadingCurrent: false,
+    loadingCurrent: {},
     loadingMonthly: false,
     loadingSixMonth: false,
     error: null
@@ -33,12 +34,12 @@ const countryReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentData: { ...state.currentData, [action.payload[0]]: action.payload[1] },
-                loadingCurrent: false
+                loadingCurrent: { ...state.loadingCurrent, [action.payload[0]]: false }
             }
         case "startSearchCurrentData":
             return {
                 ...state,
-                loadingCurrent: true,
+                loadingCurrent: { ...state.loadingCurrent, [action.payload]: true },
                 error: null
             }
         case "startSearchMonthlyData":
@@ -68,8 +69,8 @@ const countryReducer = (state = initialState, action) => {
         case "countryError":
             return {
                 ...state,
-                loadingCurrent: false,
-                error: action.payload
+                loadingCurrent: { ...state.loadingCurrent, [action.payload[1]]: false },
+                error: action.payload[0]
             }
         case "addSelectedCountry":
             return {

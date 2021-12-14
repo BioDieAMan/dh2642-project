@@ -22,7 +22,7 @@ const CountryStatistics = ({
       {currentCountry ? (
         <Container style={{ textAlign: "center" }}>
           <h3>Current stats for {listOfCountries?.[currentCountry]}</h3>{" "}
-          {loadingCurrent ? (
+          {loadingCurrent[currentCountry] ? (
             <CircularProgress />
           ) : currentData[currentCountry] ? (
             <div>
