@@ -61,20 +61,9 @@ const SignUp = ({ signUp, signupError }) => {
           }
         </Box>
 
-        {/* {signupError ? {signupError}: <span></span>}
-          <TextField sx={{mb: '10px', mt: '10px'}} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" label="Email" fullWidth required />
-          <TextField sx={{mb: '10px'}} onChange={(e) => setPassword(e.target.value)} placeholder="Password" label="Password" type="password" fullWidth required /> */}
-
-        <Button sx={{ mb: '10px' }} onClick={() => signUp(email, password)} type="submit" color="primary" variant="contained" fullWidth>Create Account</Button>
+        <Button sx={{ mb: '10px' }} onClick={() => signUp(email, password)} disabled={(email.length <= 0) || (password.length <= 0)} type="submit" color="primary" variant="contained" fullWidth>Create Account</Button>
       </Paper>
     </Grid>
-    // <>
-    //   <h2>Sign up</h2>
-    //   {signupError ? <p>{signupError}</p> : <div></div>}
-    //   <input onChange={(e) => setEmail(e.target.value)} type="email" />
-    //   <input onChange={(e) => setPassword(e.target.value)} type="text" />
-    //   <button onClick={() => signUp(email, password)}>Sign up</button>
-    // </>
   );
 };
 

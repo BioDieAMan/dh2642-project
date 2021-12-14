@@ -67,39 +67,13 @@ const SignIn = ({
                     }
                 </Box>
 
-                {/* <TextField sx={{mb: '10px'}} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Email" label="Email" fullWidth required />
-                <TextField sx={{mb: '10px'}} onChange={(e) => setPassword(e.target.value)} placeholder="Password" label="Password" type="password" fullWidth required /> */}
-                {/* <FormControlLabel control={
-                    <Checkbox name="checkedB" color="primary" />
-                }
-                    label="Remember me"
-                /> */}
-                <Button sx={{ mb: '10px' }} onClick={() => signIn(email, password)} type="submit" color="primary" variant="contained" fullWidth>Sign in</Button>
-                {/* <Typography>
-                    <Link href="#">Forgot password?</Link>
-                </Typography> */}
+                <Button sx={{ mb: '10px' }} onClick={() => signIn(email, password)} disabled={(email.length <= 0) || (password.length <= 0)} type="submit" color="primary" variant="contained" fullWidth>Sign in</Button>
+
                 <Typography>
                     <Link sx={{ mb: '10px' }} onClick={() => (window.location.hash = "SignUp", window.location.reload())}>Register an account</Link>
                 </Typography>
             </Paper>
         </Grid>
-
-        // <>
-        //     {uid ? <div>Signed in as {signedInEmail} <button onClick={() => signOut()}>Sign out</button></div>
-        //         :
-        //         <div>
-        //             <h2>Sign in</h2>
-        //             {signinError ? <p>{signinError}</p> : <div></div>}
-        //             {signoutError ? <p>{signoutError}</p> : <div></div>}
-        //             <input
-        //                 onChange={(e) => setEmail(e.target.value)}
-        //                 type="email" />
-        //             <input
-        //                 onChange={(e) => setPassword(e.target.value)}
-        //                 type="text" />
-        //             <button onClick={() => signIn(email, password)}>Sign in</button>
-        //         </div>}
-        // </>
     )
 }
 
