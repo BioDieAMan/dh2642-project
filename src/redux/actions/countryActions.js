@@ -2,9 +2,9 @@ import config from "../../config/covidApiConfig";
 import vacConfig from "../../config/vaccinatedDataConfig"
 import axios from "axios";
 import dateformat from "dateformat";
-import { persistenceUpdateCurrent } from "../../firebasePersistence";
+import { persistenceUpdateCurrent, persistenceUpdateSelected } from "../../firebasePersistence";
 
-export const setCountry = (country) => (dispatch, getState, { getFirebase }) => {
+export const setCountry = (country) => (dispatch, getState) => {
     if (!getState().country.listOfCountries && !getState().country.loadingCountries) {
         dispatch(getListOfCountries())
     }
@@ -214,30 +214,31 @@ export const getSixMonthData = (country) => async (dispatch, getState) => {
 }
 
 
-export const addSelectedCountry = (country) => {
-    return {
+export const addSelectedCountry = (country) => dispatch => {
+    dispatch({
         type: "addSelectedCountry",
         payload: country
-    }
+    })
+    dispatch(persistenceUpdateSelected())
 }
 
-export const removeSelectedCountry = (country) => {
-    return {
+export const removeSelectedCountry = (country) => dispatch => {
+    dispatch({
         type: "removeSelectedCountry",
         payload: country
+    })
+    dispatch(persistenceUpdateSelected())
+}
+
+export const populateSelectedCountries = (countries) => {
+    return {
+        type: "populateSelectedCountries",
+        payload: countries
     }
 }
 
-// export const addWatchCountry = (country) => {
-//     return {
-//         type: "addWatchCountry",
-//         payload: country
-//     }
-// }
-
-// export const removeWatchCountry = (country) => {
-//     return {
-//         type: "removeWatchCountry",
-//         payload: country
-//     }
-// }
+export const clearSelectedCountries = () => {
+    return {
+        type: "clearSelectedCountries"
+    }
+}

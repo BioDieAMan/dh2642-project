@@ -82,6 +82,16 @@ const countryReducer = (state = initialState, action) => {
                 ...state,
                 selectedCountries: state.selectedCountries.filter(element => element !== action.payload)
             }
+        case "clearSelectedCountries":
+            return {
+                ...state,
+                selectedCountries: []
+            }
+        case "populateSelectedCountries":
+            return {
+                ...state,
+                selectedCountries: action.payload
+            }
         default:
             return state;
     }

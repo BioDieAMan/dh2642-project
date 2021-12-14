@@ -1,4 +1,4 @@
-import { setCountry } from "./redux/actions/countryActions";
+import { setCountry, populateSelectedCountries, clearSelectedCountries } from "./redux/actions/countryActions";
 import { clearWatchlist, populateWatchlist } from "./redux/actions/watchlistActions";
 
 export const persistenceUpdateCurrent = () => (dispatch, getState, { getFirebase }) => {
@@ -24,6 +24,17 @@ export const persistenceUpdateWatchlist = () => (dispatch, getState, { getFireba
     }
 }
 
+export const persistenceUpdateSelected = () => (dispatch, getState, { getFirebase }) => {
+    const firebase = getFirebase()
+    const userId = getState().firebase.auth.uid
+    if (userId) {
+        const selectedCountries = getState().country.selectedCountries
+        firebase.database().ref(`${userId}/selected`).set({
+            selected: selectedCountries
+        })
+    }
+}
+
 export const persistenceLoader = () => (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase()
     const userId = getState().firebase.auth.uid
@@ -35,10 +46,14 @@ export const persistenceLoader = () => (dispatch, getState, { getFirebase }) => 
             if (data.val()?.watchlist?.watchlist) {
                 dispatch(populateWatchlist(data.val().watchlist.watchlist))
             }
+            if (data.val()?.selected?.selected) {
+                dispatch(populateSelectedCountries(data.val().selected.selected))
+            }
         })
     }
     else {
         dispatch(setCountry(""))
         dispatch(clearWatchlist())
+        dispatch(clearSelectedCountries())
     }
 }
