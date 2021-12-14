@@ -26,7 +26,7 @@ const Watchlist = ({
             <Card className='watchlistCard'>
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                        Log in to add countries to your watchlist and display them on the homepage
+                        <Link to="/account">Sign in</Link> to add countries to your watchlist and display them on the homepage
                     </Typography>
                 </CardContent>
             </Card>
