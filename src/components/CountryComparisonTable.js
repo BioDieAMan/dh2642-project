@@ -64,13 +64,13 @@ const CountryComparisonTable = ({
           <Table size="medium" aria-label="simple table" >
             <TableHead>
               <TableRow>
-                <TableCell>Country<Button onClick={() => requestSort('countryName')}>^</Button></TableCell>
-                <TableCell>Confirmed<Button onClick={() => requestSort('confirmed')}>^</Button></TableCell>
-                <TableCell>Cases since yesterday<Button onClick={() => requestSort('confirmed_diff')}>^</Button></TableCell>
-                <TableCell>Vaccinated<Button onClick={() => requestSort('vaccinated')}>^</Button></TableCell>
-                <TableCell>% Vaccinated<Button onClick={() => requestSort('vaccinated_per_hundred')}>^</Button></TableCell>
-                <TableCell>Deaths<Button onClick={() => requestSort('deaths')}>^</Button></TableCell>
-                <TableCell>Deaths since yesterday<Button onClick={() => requestSort('deaths_diff')}>^</Button></TableCell>
+                <TableCell><Button onClick={() => requestSort('countryName')}>Country</Button></TableCell>
+                <TableCell><Button onClick={() => requestSort('confirmed')}>Confirmed</Button></TableCell>
+                <TableCell><Button onClick={() => requestSort('confirmed_diff')}>Confirmed (Today)</Button></TableCell>
+                <TableCell><Button onClick={() => requestSort('vaccinated')}>Vaccinated</Button></TableCell>
+                <TableCell><Button onClick={() => requestSort('vaccinated_per_hundred')}>%Vaccinated</Button></TableCell>
+                <TableCell><Button onClick={() => requestSort('deaths')}>Deaths</Button></TableCell>
+                <TableCell><Button onClick={() => requestSort('deaths_diff')}>Deaths (Today)</Button></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
