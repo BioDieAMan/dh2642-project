@@ -19,16 +19,11 @@ const DetailPage = ({
   if (!currentCountry) {
     return (
       <Container >
+        <DropDown style={{ display: "flex", alignItems: "Left", }} />
         <Container>
           <Map setTooltip={setTooltip} />
           <ReactTooltip>{tooltip}</ReactTooltip>
         </Container>
-        <DropDown
-          style={{
-            display: "flex",
-            alignItems: "Left",
-          }}
-        />
       </Container>
     )
   }
