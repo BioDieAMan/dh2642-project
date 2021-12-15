@@ -5,6 +5,7 @@ import dateformat from "dateformat";
 import { persistenceUpdateCurrent, persistenceUpdateSelected } from "../../firebasePersistence";
 
 export const setCountry = (country) => (dispatch, getState) => {
+    if (getState().country.currentCountry === country) return;
     if (Object.keys(getState().country.listOfCountries).length === 0 && !getState().country.loadingCountries) {
         dispatch(getListOfCountries())
     }
@@ -241,11 +242,12 @@ export const removeSelectedCountry = (country) => (dispatch, getState) => {
     dispatch(persistenceUpdateSelected())
 }
 
-export const populateSelectedCountries = (countries) => {
-    return {
+export const populateSelectedCountries = (countries) => (dispatch, getState) => {
+    if (getState().country.selectedCountries === countries) return;
+    dispatch({
         type: "populateSelectedCountries",
         payload: countries
-    }
+    })
 }
 
 export const clearSelectedCountries = () => {

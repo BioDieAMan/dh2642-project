@@ -8,7 +8,8 @@ export const addToWatchlist = (country) => (dispatch, getState) => {
     dispatch(persistenceUpdateWatchlist())
 }
 
-export const populateWatchlist = (countries) => (dispatch) => {
+export const populateWatchlist = (countries) => (dispatch, getState) => {
+    if (getState().watchlist.watchlist === countries) return;
     dispatch({ type: "populateWatchlist", payload: countries })
     dispatch(persistenceUpdateWatchlist())
 }

@@ -17,11 +17,12 @@ const LocalNewsFeed = ({
   loading,
   getLocalCovidNews,
   currentCountry,
-  newsError
+  newsError,
+  listOfCountries
 }) => {
   useEffect(() => {
-    currentCountry && getLocalCovidNews();
-  }, [currentCountry]);
+    getLocalCovidNews(currentCountry);
+  }, [listOfCountries]);
 
   return (
     <Container>
@@ -97,13 +98,14 @@ const mapStateToProps = (state) => {
     data: state.covidNews.localCovidNews,
     loading: state.covidNews.loading,
     currentCountry: state.country.currentCountry,
-    newsError: state.covidNews.newsError
+    newsError: state.covidNews.newsError,
+    listOfCountries: state.country.listOfCountries
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getLocalCovidNews: () => dispatch(getLocalCovidNews()),
+    getLocalCovidNews: (country) => dispatch(getLocalCovidNews(country)),
   };
 };
 

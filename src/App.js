@@ -8,45 +8,62 @@ import ComparePage from "./Pages/ComparePage";
 import Navbar from "./components/Navbar";
 import history from "./history";
 import { useDispatch, useSelector } from "react-redux";
-import { useFirebase } from "react-redux-firebase"
-import { persistenceLoader } from "./firebasePersistence"
+import { updateFromFirebase } from "./firebasePersistence"
+import { isLoaded, useFirebaseConnect } from "react-redux-firebase"
 
 function App() {
-  const dispatch = useDispatch()
-  const authLoaded = useSelector(state => state.firebase.auth.isLoaded)
   const loggedIn = useSelector(state => state.firebase.auth.uid)
-  if (!authLoaded) {
-    return <div></div>
+  const dispatch = useDispatch()
+
+  useFirebaseConnect([
+    {
+      type: "once",
+      path: `top/${loggedIn}`
+    }
+  ])
+  const data = useSelector(state => state.firebase.data.top)
+  function DataIsLoaded({ children }) {
+    if (!isLoaded(data)) return <div></div>;
+    return children
   }
+  function AuthIsLoaded({ children }) {
+    const auth = useSelector(state => state.firebase.auth)
+    if (!isLoaded(auth)) return <div></div>;
+    return children
+  }
+  dispatch(updateFromFirebase())
 
-  dispatch(persistenceLoader())
   return (
-    <>
-      <CssBaseline />
+    <AuthIsLoaded>
+      <DataIsLoaded>
+        <>
+          <CssBaseline />
 
-      <Container maxWidth="sm">
-        <Typography
-          variant="h2"
-          align="center"
-          color="textPrimary"
-          gutterBottom
-        >
-          Covindex
-        </Typography>
-      </Container>
-      <Container maxWidth="xl">
-        <BrowserRouter>
-          <Navbar className="navbar" />
-          <Routes history={history}>
-            <Route exact path="/" element={<Homepage />} />
-            <Route path="/account" element={<AccountPage />} />
-            <Route path="/details" element={<DetailPage />} />
-            <Route path="/compare" element={<ComparePage />} />
-          </Routes>
-        </BrowserRouter>
-      </Container>
-    </>
-  );
+          <Container maxWidth="sm">
+            <Typography
+              variant="h2"
+              align="center"
+              color="textPrimary"
+              gutterBottom
+            >
+              Covindex
+            </Typography>
+          </Container>
+          <Container maxWidth="xl">
+            <BrowserRouter>
+              <Navbar className="navbar" />
+              <Routes history={history}>
+                <Route exact path="/" element={<Homepage />} />
+                <Route path="/account" element={<AccountPage />} />
+                <Route path="/details" element={<DetailPage />} />
+                <Route path="/compare" element={<ComparePage />} />
+              </Routes>
+            </BrowserRouter>
+          </Container>
+        </>
+      </DataIsLoaded>
+    </AuthIsLoaded>
+  )
 }
 
 export default App;

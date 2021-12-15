@@ -14,8 +14,7 @@ const rrfProps = {
   config: rrfConfig,
   dispatch: store.dispatch
 }
-
-ReactDOM.render(
+firebase.database().ref("top").once("value").then(() => ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ReactReduxFirebaseProvider {...rrfProps}>
@@ -24,5 +23,5 @@ ReactDOM.render(
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
-);
+));
 

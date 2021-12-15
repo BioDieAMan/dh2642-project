@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from "react";
+import React, { useEffect } from "react";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import {
   getCurrentData,
@@ -16,7 +16,6 @@ const Map = ({
   setTooltip,
   setCountry,
 }) => {
-
   const geograpgyUrl =
     "https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/topojson-maps/world-110m.json";
 

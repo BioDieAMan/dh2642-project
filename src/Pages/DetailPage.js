@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LineChart from "../components/LineChart";
 import LocalNewsFeed from "../components/newsComponents/LocalNewsFeed";
 import DropDown from "../components/DropDown";
@@ -10,13 +10,11 @@ import ReactTooltip from "react-tooltip";
 import { connect } from "react-redux"
 import { setCountry } from "../redux/actions/countryActions";
 
-//import DropDownMaterial from "../components/DropDownMaterial";
-
 const DetailPage = ({
   currentCountry,
   setCountry,
 }) => {
-  const [tooltip, setTooltip] = useState("");
+  const [tooltip, setTooltip] = useState();
 
   if (!currentCountry) {
     return (

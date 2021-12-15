@@ -1,6 +1,7 @@
 const initialState = {
     watchlist: [],
-    watchlistError: null
+    watchlistError: null,
+    testLoad: false
 }
 
 const watchlistReducer = (state = initialState, action) => {
@@ -30,6 +31,7 @@ const watchlistReducer = (state = initialState, action) => {
                 ...state,
                 watchlistError: action.payload
             }
+
         default:
             return state
     }

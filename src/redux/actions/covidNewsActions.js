@@ -32,14 +32,14 @@ export const getGlobalCovidNews = () => async dispatch => {
     }
 }
 
-export const getLocalCovidNews = () => async (dispatch, getState) => {
+export const getLocalCovidNews = (country) => async (dispatch, getState) => {
     dispatch({ type: "clearLocalNews" })
-
+    if (Object.keys(getState().country.listOfCountries).length === 0) return;
     const options = {
         method: "GET",
         url: config.searchUrl,
         params: {
-            q: `covid ${getState().country.listOfCountries?.[getState().country.currentCountry]}`,
+            q: `covid ${getState().country.listOfCountries[country]}`,
             count: '2',
             setLang: 'en',
             //mkt: 'sv-SE',
