@@ -35,7 +35,6 @@ const DetailPage = ({
           <Map setTooltip={setTooltip} />
           <ReactTooltip>{tooltip}</ReactTooltip>
         </Container>
-
       </Container>
     )
   }
