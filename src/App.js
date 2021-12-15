@@ -18,20 +18,23 @@ function App() {
   useFirebaseConnect([
     {
       type: "once",
-      path: `top/${loggedIn}`
+      path: `top`
     }
   ])
-  const data = useSelector(state => state.firebase.data.top)
+
   function DataIsLoaded({ children }) {
+    const data = useSelector(state => state.firebase.data.top)
     if (!isLoaded(data)) return <div></div>;
-    return children
+    else {
+      dispatch(updateFromFirebase())
+      return children
+    }
   }
   function AuthIsLoaded({ children }) {
     const auth = useSelector(state => state.firebase.auth)
     if (!isLoaded(auth)) return <div></div>;
     return children
   }
-  dispatch(updateFromFirebase())
 
   return (
     <AuthIsLoaded>

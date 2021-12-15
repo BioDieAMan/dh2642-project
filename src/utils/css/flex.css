@@ -10,3 +10,7 @@
 .flex-column{
     flex-direction: column;
 }
+
+.float{
+    float: left
+}

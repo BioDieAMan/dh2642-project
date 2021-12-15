@@ -25,7 +25,7 @@ const WatchlistSelection = ({
     }, [])
     useEffect(() => {
         setLeft(
-            Object.keys(countries).filter(cKey => cKey !== watchlist)
+            Object.keys(countries).filter(cKey => !watchlist.includes(cKey))
         )
         setRight(watchlist)
     }, [countries, watchlist]);

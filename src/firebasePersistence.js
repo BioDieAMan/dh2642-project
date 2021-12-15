@@ -15,7 +15,6 @@ export const persistenceUpdateCurrent = () => (dispatch, getState, { getFirebase
 }
 
 export const persistenceUpdateWatchlist = () => (dispatch, getState, { getFirebase }) => {
-    if (getState().watchlist.testLoad) return;
 
     const firebase = getFirebase()
     const userId = getState().firebase.auth.uid
@@ -28,7 +27,6 @@ export const persistenceUpdateWatchlist = () => (dispatch, getState, { getFireba
 }
 
 export const persistenceUpdateSelected = () => (dispatch, getState, { getFirebase }) => {
-    if (getState().watchlist.testLoad) return;
     const firebase = getFirebase()
     const userId = getState().firebase.auth.uid
     if (userId) {
@@ -39,35 +37,16 @@ export const persistenceUpdateSelected = () => (dispatch, getState, { getFirebas
     }
 }
 
-export const persistenceLoader = () => (dispatch, getState, { getFirebase }) => {
-    const firebase = getFirebase()
-    const userId = getState().firebase.auth.uid
-    if (userId) {
-        try {
-            firebase.database().ref(`top/${userId}`).on("value", data => {
-                if (data.val()?.current?.current) {
-                    dispatch(setCountry(data.val().current.current))
-                }
-                if (data.val()?.watchlist?.watchlist) {
-                    dispatch(populateWatchlist(data.val().watchlist.watchlist))
-                }
-                if (data.val()?.selected?.selected) {
-                    dispatch(populateSelectedCountries(data.val().selected.selected))
-                }
-            })
-        }
-        catch (e) {
-            console.log(e.message)
-        }
-    }
-}
-
 export const updateFromFirebase = () => (dispatch, getState) => {
-    const data = getState().firebase.data.top
+    const data = getState().firebase.data
     const uid = getState().firebase.auth.uid
-    if (data) {
-        data[uid]?.current.current ? dispatch(setCountry(data[uid].current.current)) : dispatch(setCountry(null));
-        data[uid]?.selected?.selected ? dispatch(populateSelectedCountries(data[uid].selected.selected)) : dispatch(populateSelectedCountries([]));
-        data[uid]?.watchlist?.watchlist ? dispatch(populateWatchlist(data[uid].watchlist.watchlist)) : dispatch(populateWatchlist([]))
+    let userData = null;
+    if (uid in data.top) {
+        userData = data.top[uid]
+    }
+    if (userData) {
+        data.top[uid].current.current ? dispatch(setCountry(data.top[uid].current.current)) : dispatch(setCountry(null));
+        data.top[uid].selected?.selected ? dispatch(populateSelectedCountries(data.top[uid].selected.selected)) : dispatch(populateSelectedCountries([]));
+        data.top[uid].watchlist?.watchlist ? dispatch(populateWatchlist(data.top[uid].watchlist.watchlist)) : dispatch(populateWatchlist([]))
     }
 }

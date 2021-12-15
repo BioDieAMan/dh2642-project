@@ -38,11 +38,9 @@ const Watchlist = ({
             <Card className='watchlistCard'>
                 <CardActions>
                     <CardContent>
-                        <Button size="small" component={Link} to="/account">
-                            <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                                Watchlist is empty, you can add countries to watchlist by pressing this card.
-                            </Typography>
-                        </Button>
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            Watchlist is currently empty. You can add countries to your watchlist by pressing <Link to="/account">here</Link> or by going to "My Account" under your profile.
+                        </Typography>
                     </CardContent>
                 </CardActions>
             </Card>

@@ -1,7 +1,6 @@
 const initialState = {
     watchlist: [],
     watchlistError: null,
-    testLoad: false
 }
 
 const watchlistReducer = (state = initialState, action) => {

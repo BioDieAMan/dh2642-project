@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import LineChart from "../components/LineChart";
 import LocalNewsFeed from "../components/newsComponents/LocalNewsFeed";
 import DropDown from "../components/DropDown";
-import { Button, Container } from "@mui/material";
+import { Button, Container, Typography } from "@mui/material";
 import CountryStatistics from "../components/CountryStatistics";
 import WatchlistButton from "../components/WatchlistButton";
 import Map from "../components/Map";
@@ -18,17 +18,24 @@ const DetailPage = ({
 
   if (!currentCountry) {
     return (
-      <Container >
+      <Container  >
+        <Container sx={{ width: "70%", float: "left" }}>
+          <div className="flex-container">
+            <DropDown
+              style={{
+                display: "flex",
+                alignItems: "Left",
+                maxWidth: "200px"
+              }}
+            />
+            <Typography variant="h6">Click on a country to see detailed information about it. If you can not find it on the map, use the dropdown menu.</Typography>
+          </div>
+        </Container>
         <Container>
           <Map setTooltip={setTooltip} />
           <ReactTooltip>{tooltip}</ReactTooltip>
         </Container>
-        <DropDown
-          style={{
-            display: "flex",
-            alignItems: "Left",
-          }}
-        />
+
       </Container>
     )
   }

@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   covidNews: covidNewsReducer,
   firebase: firebaseReducer,
   authentication: authenticationReducer,
-  watchlist: watchlistReducer
+  watchlist: watchlistReducer,
 });
 
 export default rootReducer;
