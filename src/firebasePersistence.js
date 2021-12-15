@@ -41,12 +41,18 @@ export const updateFromFirebase = () => (dispatch, getState) => {
     const data = getState().firebase.data
     const uid = getState().firebase.auth.uid
     let userData = null;
+
     if (uid in data.top) {
         userData = data.top[uid]
     }
+    else if (uid) {
+        dispatch(setCountry(null))
+        dispatch(populateSelectedCountries([]))
+        dispatch(populateWatchlist([]))
+    }
     if (userData) {
-        data.top[uid].current.current ? dispatch(setCountry(data.top[uid].current.current)) : dispatch(setCountry(null));
-        data.top[uid].selected?.selected ? dispatch(populateSelectedCountries(data.top[uid].selected.selected)) : dispatch(populateSelectedCountries([]));
-        data.top[uid].watchlist?.watchlist ? dispatch(populateWatchlist(data.top[uid].watchlist.watchlist)) : dispatch(populateWatchlist([]))
+        Object.keys(userData).includes("current") ? dispatch(setCountry(userData.current.current)) : dispatch(setCountry(null));
+        Object.keys(userData).includes("selected") ? dispatch(populateSelectedCountries(userData.selected.selected)) : dispatch(populateSelectedCountries([]))
+        Object.keys(userData).includes("watchlist") ? dispatch(populateWatchlist(userData.watchlist.watchlist)) : dispatch(populateWatchlist([]))
     }
 }

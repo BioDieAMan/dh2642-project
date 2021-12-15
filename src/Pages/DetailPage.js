@@ -28,7 +28,7 @@ const DetailPage = ({
                 maxWidth: "200px"
               }}
             />
-            <Typography variant="h6">Click on a country to see detailed information about it. If you can not find it on the map, use the dropdown menu.</Typography>
+            <Typography variant="h6" align="center">Click on a country to see detailed information about it. If you can not find it on the map, use the dropdown menu.</Typography>
           </div>
         </Container>
         <Container>

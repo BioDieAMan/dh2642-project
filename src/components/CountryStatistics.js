@@ -21,7 +21,7 @@ const CountryStatistics = ({
     <Container>
       {currentCountry ? (
         <Container style={{ textAlign: "center" }}>
-          <h3>Current stats for {listOfCountries?.[currentCountry]}</h3>{" "}
+          <h3>Current stats for {listOfCountries?.[currentCountry] ? listOfCountries?.[currentCountry] : currentCountry}</h3>{" "}
           {loadingCurrent[currentCountry] ? (
             <CircularProgress />
           ) : currentData[currentCountry] ? (
@@ -39,7 +39,7 @@ const CountryStatistics = ({
               {currentData[currentCountry].deaths_diff}
               <br />
             </div>
-          ) : error ? <div>Could not fetch country data</div>
+          ) : error ? <div>Could not fetch data for this country, try another one!</div>
             : (
               <div>No data for this country</div>
             )}

@@ -22,7 +22,7 @@ const WatchlistButton = ({
                 sx={{ height: "60px", width: "200px", margin: "auto" }}
                 variant="contained"
                 onClick={() => addToWatchlist(currentCountry)}>
-                Add to watchlis
+                Add to watchlist
             </Button>
     )
 }
