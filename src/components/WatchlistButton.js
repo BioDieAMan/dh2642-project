@@ -5,11 +5,15 @@ import { Button } from '@mui/material';
 import { addToWatchlist, removeFromWatchlist } from "../redux/actions/watchlistActions"
 
 const WatchlistButton = ({
+    uid,
     addToWatchlist,
     removeFromWatchlist,
     watchlist,
     currentCountry,
 }) => {
+    if (!uid) {
+        return null
+    }
     return (
         (watchlist.filter(wKey => wKey === currentCountry).length > 0) ?
             <Button
@@ -31,6 +35,7 @@ const mapStateToProps = (state) => {
     return {
         watchlist: state.watchlist.watchlist,
         currentCountry: state.country.currentCountry,
+        uid: state.firebase.auth.uid
     };
 };
 
