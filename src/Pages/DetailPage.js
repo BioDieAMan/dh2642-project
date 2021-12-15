@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LineChart from "../components/LineChart";
 import LocalNewsFeed from "../components/newsComponents/LocalNewsFeed";
 import DropDown from "../components/DropDown";
-import { Button, Container, Typography } from "@mui/material";
+import { Button, Container } from "@mui/material";
 import CountryStatistics from "../components/CountryStatistics";
 import WatchlistButton from "../components/WatchlistButton";
 import Map from "../components/Map";

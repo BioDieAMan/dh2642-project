@@ -1,14 +1,15 @@
 const initialState = {
-    listOfCountries: null,
+    listOfCountries: {},
     loadingCountries: false,
+    listError: null,
     currentCountry: null,
     selectedCountries: [],
     currentData: {},
     monthlyData: {},
     sixMonthData: {},
     loadingCurrent: {},
-    loadingMonthly: false,
-    loadingSixMonth: false,
+    loadingMonthly: {},
+    loadingSixMonth: {},
     error: null
 }
 
@@ -17,13 +18,20 @@ const countryReducer = (state = initialState, action) => {
         case "startSearchListOfCountries":
             return {
                 ...state,
-                loadingCountries: true
+                loadingCountries: true,
+                listError: null
             }
         case "getListOfCountries":
             return {
                 ...state,
                 listOfCountries: action.payload,
-                loadingCountries: false
+                loadingCountries: false,
+                listError: null
+            }
+        case "listOfCountriesError":
+            return {
+                ...state,
+                listError: action.payload
             }
         case "setCountry":
             return {
@@ -45,26 +53,26 @@ const countryReducer = (state = initialState, action) => {
         case "startSearchMonthlyData":
             return {
                 ...state,
-                loadingMonthly: true,
+                loadingMonthly: { ...state.loadingMonthly, [action.payload]: true },
                 error: null
             }
         case "startSearchSixMonthData":
             return {
                 ...state,
-                loadingSixMonth: true,
+                loadingSixMonth: { ...state.loadingSixMonth, [action.payload]: true },
                 error: null
             }
         case "getMonthlyData":
             return {
                 ...state,
                 monthlyData: { ...state.monthlyData, [action.payload[0]]: action.payload[1] },
-                loadingMonthly: false
+                loadingMonthly: { ...state.loadingMonthly, [action.payload[0]]: false }
             }
         case "getSixMonthData":
             return {
                 ...state,
                 sixMonthData: { ...state.sixMonthData, [action.payload[0]]: action.payload[1] },
-                loadingSixMonth: false
+                loadingSixMonth: { ...state.loadingSixMonth, [action.payload[0]]: false }
             }
         case "countryError":
             return {

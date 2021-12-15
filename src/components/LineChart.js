@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { connect } from "react-redux";
@@ -94,7 +95,7 @@ const LineChart = ({
     });
   }
 
-  if (loadingMonthly) {
+  if (loadingMonthly[currentCountry]) {
     return (
       <CircularProgress />
     )
@@ -141,7 +142,7 @@ const LineChart = ({
               : setGraphType("cases")
           }
         >
-          {graphType === "cases" ? "Deaths" : "Cases"}
+          {graphType === "cases" ? "See deaths" : "See cases"}
         </Button>
         <Button
           variant="contained"
@@ -151,7 +152,7 @@ const LineChart = ({
               : setTimePeriod("monthly")
           }
         >
-          {timePeriod === "monthly" ? "Six Months" : "Last Month"}
+          {timePeriod === "monthly" ? "See last six months" : "See last month"}
         </Button>
       </Container>
     </Container>

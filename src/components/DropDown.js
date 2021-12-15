@@ -24,7 +24,6 @@ const DropDown = ({
   setCountry,
 }) => {
   useEffect(() => {
-    if (countries) return;
     getListOfCountries();
   }, []);
   return (

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
-import { Grid, Container, Paper, Typography, List, ListItem, ListItemIcon, ListItemText, Button, Checkbox } from '@mui/material';
+import { Grid, Paper, Typography, List, ListItem, ListItemIcon, ListItemText, Button, Checkbox, CircularProgress } from '@mui/material';
 import { getListOfCountries } from "../redux/actions/countryActions";
 import { populateWatchlist } from "../redux/actions/watchlistActions"
 
@@ -17,16 +17,21 @@ const WatchlistSelection = ({
     populateWatchlist,
     getListOfCountries,
     countries,
+    loadingCountries,
     watchlist
 }) => {
     useEffect(() => {
-        if (countries) return;
-        getListOfCountries();
-    }, []);
-
-    const [checked, setChecked] = React.useState([]);
-    const [left, setLeft] = React.useState(Object.keys(countries).filter(cKey => cKey !== watchlist));
-    const [right, setRight] = React.useState(watchlist);
+        getListOfCountries()
+    }, [])
+    useEffect(() => {
+        setLeft(
+            Object.keys(countries).filter(cKey => cKey !== watchlist)
+        )
+        setRight(watchlist)
+    }, [countries, watchlist]);
+    const [checked, setChecked] = useState([]);
+    const [left, setLeft] = useState([]);
+    const [right, setRight] = useState([]);
 
     const leftChecked = intersection(checked, left);
     const rightChecked = intersection(checked, right);
@@ -64,7 +69,7 @@ const WatchlistSelection = ({
     const customList = (items) => (
         <Paper sx={{ width: "300px", height: "500px", overflow: 'auto' }}>
             <List dense component="div" role="list">
-                {items.map((value) => {
+                {items?.map((value) => {
                     const labelId = `transfer-list-item-${value}-label`;
 
                     return (
@@ -87,7 +92,11 @@ const WatchlistSelection = ({
             </List>
         </Paper>
     );
-
+    if (loadingCountries) {
+        return (
+            <CircularProgress />
+        )
+    }
     return (
         <Grid container spacing={10} justifyContent="center" alignItems="center">
             {/* Non Selected Country List */}
@@ -103,19 +112,19 @@ const WatchlistSelection = ({
             <Grid item>
                 <Grid container direction="column" alignItems="center">
                     <Button sx={{ my: 0.5 }} variant="outlined" size="small"
-                        onClick={handleCheckedRight} disabled={leftChecked.length === 0} aria-label="move selected right"
+                        onClick={() => handleCheckedRight()} disabled={leftChecked.length === 0} aria-label="move selected right"
                     >
                         &gt;
                     </Button>
 
                     <Button sx={{ my: 0.5 }} variant="outlined" size="small"
-                        onClick={handleCheckedLeft} disabled={rightChecked.length === 0} aria-label="move selected left"
+                        onClick={() => handleCheckedLeft()} disabled={rightChecked.length === 0} aria-label="move selected left"
                     >
                         &lt;
                     </Button>
 
                     <Button sx={{ my: 0.5 }} variant="outlined" size="small"
-                        onClick={handleAllLeft} disabled={right.length === 0} aria-label="move all left"
+                        onClick={() => handleAllLeft()} disabled={right.length === 0} aria-label="move all left"
                     >
                         ≪
                     </Button>
@@ -141,6 +150,7 @@ const WatchlistSelection = ({
 const mapStateToProps = (state) => {
     return {
         countries: state.country.listOfCountries,
+        loadingCountries: state.country.loadingCountries,
         watchlist: state.watchlist.watchlist
     };
 };

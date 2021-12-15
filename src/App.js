@@ -14,42 +14,12 @@ import { persistenceLoader } from "./firebasePersistence"
 function App() {
   const dispatch = useDispatch()
   const authLoaded = useSelector(state => state.firebase.auth.isLoaded)
-  const firebase = useFirebase()
-
+  const loggedIn = useSelector(state => state.firebase.auth.uid)
   if (!authLoaded) {
-    return (
-      <div></div>
-    )
+    return <div></div>
   }
 
-  firebase.auth().onAuthStateChanged(() => {
-    dispatch(persistenceLoader())
-  })
-
-  // useFirebaseConnect([
-  //   { type: "once", path: `${isLoggedIn}/countries` }
-  // ])
-  // const dispatch = useDispatch() 
-  // const countries = useSelector(state => state.firebase.data)
-  // if (!isLoaded(countries)) {
-  //   return (
-  //     <div></div>
-  //   )
-  // }
-  // if (isLoggedIn && isLoaded(countries)) {
-  //   dispatch(setCountry(countries[isLoggedIn].countries.current))
-  //   console.log(countries[isLoggedIn].countries.current)
-  // }
-  // if (!countries) {
-  //   return (
-  //     <div></div>
-  //   )
-  // }
-  // //dispatch(firebaseAction)
-  // dispatch(setCountry(countries.current))
-
-
-
+  dispatch(persistenceLoader())
   return (
     <>
       <CssBaseline />

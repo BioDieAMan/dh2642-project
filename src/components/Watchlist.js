@@ -72,15 +72,15 @@ const Watchlist = ({
                                                 <tbody>
                                                     <tr>
                                                         <td>Confirmed cases: </td>
-                                                        <td className='textRight'>{loadingCurrent[wKey] ? <CircularProgress /> : !currentData[wKey] ? "" : millify(currentData[wKey].confirmed)}</td>
+                                                        <td className='textRight'>{loadingCurrent[wKey] ? <CircularProgress /> : !currentData[wKey] ? "No data" : millify(currentData[wKey].confirmed)}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Vaccinated: </td>
-                                                        <td className='textRight'>{loadingCurrent[wKey] ? <CircularProgress /> : !currentData[wKey] ? "" : millify(currentData[wKey].vaccinated)}</td>
+                                                        <td className='textRight'>{loadingCurrent[wKey] ? <CircularProgress /> : !currentData[wKey] ? "No data" : millify(currentData[wKey].vaccinated)}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Deaths: </td>
-                                                        <td className='textRight'>{loadingCurrent[wKey] ? <CircularProgress /> : !currentData[wKey] ? "" : millify(currentData[wKey].deaths)}</td>
+                                                        <td className='textRight'>{loadingCurrent[wKey] ? <CircularProgress /> : !currentData[wKey] ? "No data" : millify(currentData[wKey].deaths)}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

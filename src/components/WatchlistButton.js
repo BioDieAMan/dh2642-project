@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux';
 import { Button } from '@mui/material';
 import { addToWatchlist, removeFromWatchlist } from "../redux/actions/watchlistActions"
@@ -11,13 +11,13 @@ const WatchlistButton = ({
     currentCountry,
 }) => {
     return (
-        (watchlist.filter(wKey => wKey === currentCountry).length > 0)?
+        (watchlist.filter(wKey => wKey === currentCountry).length > 0) ?
             <Button
                 sx={{ height: "60px", width: "200px", margin: "auto" }}
                 variant="outlined"
                 onClick={() => removeFromWatchlist(currentCountry)}>
                 Remove from watchlist
-            </Button>:
+            </Button> :
             <Button
                 sx={{ height: "60px", width: "200px", margin: "auto" }}
                 variant="contained"

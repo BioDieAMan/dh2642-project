@@ -6,12 +6,8 @@ import { signIn, signOut } from '../redux/actions/authenticationActions';
 
 
 const SignIn = ({
-    uid,
-    signedInEmail,
     signIn,
-    signOut,
     signinError,
-    signoutError
 }) => {
 
     const [email, setEmail] = useState("");

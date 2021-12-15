@@ -12,7 +12,6 @@ const Navbar = ({
   signOut,
   signoutError
 }) => {
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => { setAnchorEl(event.currentTarget); };
@@ -34,11 +33,6 @@ const Navbar = ({
         <Typography sx={{ minWidth: 100 }}>
           <Button variant="text" component={Link} to="/compare" sx={{ bgcolor: path === "/compare" ? "lightblue" : undefined }} onClick={() => setPath("/compare")}>Comparison</Button>
         </Typography>
-
-        {/* <Typography sx={{ minWidth: 100 }}>
-          <Button variant="text" component={Link} to="/map">Map</Button>
-        </Typography> */}
-
         <Typography sx={{ minWidth: 100, position: "absolute", right: "10%" }}>
           {uid ?
             <span>
@@ -51,7 +45,7 @@ const Navbar = ({
             </span> :
             <span className="loginNavBar">
               {signoutError ? { signoutError } : <span></span>}
-              <Button variant="text" component={Link} to="/account">Sign in</Button>
+              <Button variant="text" component={Link} to="/account" >Sign in</Button>
             </span>
           }
         </Typography>

@@ -25,7 +25,6 @@ const CountryComparisonToggle = ({
   const [countryFilter, setCountryFilter] = useState("");
 
   useEffect(() => {
-    if (countries) return;
     getListOfCountries();
   }, []);
   return (

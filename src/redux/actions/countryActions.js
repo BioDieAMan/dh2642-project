@@ -5,7 +5,7 @@ import dateformat from "dateformat";
 import { persistenceUpdateCurrent, persistenceUpdateSelected } from "../../firebasePersistence";
 
 export const setCountry = (country) => (dispatch, getState) => {
-    if (!getState().country.listOfCountries && !getState().country.loadingCountries) {
+    if (Object.keys(getState().country.listOfCountries).length === 0 && !getState().country.loadingCountries) {
         dispatch(getListOfCountries())
     }
     dispatch({
@@ -20,39 +20,44 @@ const sortCountries = (a, b) => {
     return (a.name < b.name) ? -1 : (b.name < a.name) ? 1 : 0
 }
 
-export const getListOfCountries = () => async dispatch => {
-    dispatch({
-        type: "startSearchListOfCountries"
-    })
-    const options = {
-        method: "GET",
-        url: config.regionsUrl,
-        params: {},
-        headers: config.headers
-    }
-    try {
-        const response = await axios.request(options)
-        const filteredCountries = response.data.data.filter(country => (
-            country.name !== "Cruise Ship"
-            && country.name !== "Diamond Princess"
-            && country.name !== "MS Zaandam"
-            && country.name !== "Others"
-            && country.name !== "Reunion"
-        ))
-        const sortedCountries = filteredCountries.sort(sortCountries)
-        const sortedCountriesObject = sortedCountries.reduce((obj, item) => (obj[item.iso] = item.name, obj), {})
-        dispatch({
-            type: "getListOfCountries",
-            payload: sortedCountriesObject
-        })
-    }
-    catch (e) {
-        dispatch({
-            type: "listOfCountriesError",
-            payload: e.message
-        })
+export const getListOfCountries = () => async (dispatch, getState) => {
+    if (Object.keys(getState().country.listOfCountries).length === 0 && !getState().country.loadingCountries) {
+        if (!getState().country.loadingCountries) {
+            dispatch({
+                type: "startSearchListOfCountries"
+            })
+            const options = {
+                method: "GET",
+                url: config.regionsUrl,
+                params: {},
+                headers: config.headers
+            }
+            try {
+                const response = await axios.request(options)
+                const filteredCountries = response.data.data.filter(country => (
+                    country.name !== "Cruise Ship"
+                    && country.name !== "Diamond Princess"
+                    && country.name !== "MS Zaandam"
+                    && country.name !== "Others"
+                    && country.name !== "Reunion"
+                ))
+                const sortedCountries = filteredCountries.sort(sortCountries)
+                const sortedCountriesObject = sortedCountries.reduce((obj, item) => (obj[item.iso] = item.name, obj), {})
+                dispatch({
+                    type: "getListOfCountries",
+                    payload: sortedCountriesObject
+                })
+            }
+            catch (e) {
+                dispatch({
+                    type: "listOfCountriesError",
+                    payload: e.message
+                })
+            }
+        }
     }
 }
+
 
 export const getCurrentData = (country) => async (dispatch, getState) => {
     if (!getState().country.currentData[country] && country && !getState().country.loadingCurrent[country]) {
@@ -117,8 +122,11 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
 }
 
 export const getMonthlyData = (country) => async (dispatch, getState) => {
-    if (!getState().country.monthlyData[country] && country) {
-        dispatch({ type: "startSearchMonthlyData" })
+    if (!getState().country.monthlyData[country] && country && !getState().country.loadingMonthly[country]) {
+        dispatch({
+            type: "startSearchMonthlyData",
+            payload: country
+        })
         const date = new Date()
         date.setDate(date.getDate() - 2)
         let options = {
@@ -165,8 +173,11 @@ export const getMonthlyData = (country) => async (dispatch, getState) => {
 }
 
 export const getSixMonthData = (country) => async (dispatch, getState) => {
-    if (!getState().country.sixMonthData[country] && country) {
-        dispatch({ type: "startSearchSixMonthData" })
+    if (!getState().country.sixMonthData[country] && country && !getState().country.loadingSixMonth[country]) {
+        dispatch({
+            type: "startSearchSixMonthData",
+            payload: country
+        })
         const date = new Date()
         date.setDate(date.getDate() - 2)
         let options = {
@@ -214,7 +225,7 @@ export const getSixMonthData = (country) => async (dispatch, getState) => {
 }
 
 
-export const addSelectedCountry = (country) => dispatch => {
+export const addSelectedCountry = (country) => (dispatch, getState) => {
     dispatch({
         type: "addSelectedCountry",
         payload: country
@@ -222,7 +233,7 @@ export const addSelectedCountry = (country) => dispatch => {
     dispatch(persistenceUpdateSelected())
 }
 
-export const removeSelectedCountry = (country) => dispatch => {
+export const removeSelectedCountry = (country) => (dispatch, getState) => {
     dispatch({
         type: "removeSelectedCountry",
         payload: country

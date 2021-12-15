@@ -20,7 +20,6 @@ export const persistenceUpdateWatchlist = () => (dispatch, getState, { getFireba
         firebase.database().ref(`${userId}/watchlist`).set({
             watchlist: watchlistCountries
         })
-
     }
 }
 

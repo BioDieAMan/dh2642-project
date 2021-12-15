@@ -15,26 +15,12 @@ import {
   Button
 } from "@mui/material";
 
-const TableContent = (props) => {
-  return (
-    <TableRow>
-      <TableCell>{props.currentData.countryName}<Button></Button></TableCell>
-      <TableCell>{props.currentData.confirmed}</TableCell>
-      <TableCell>{props.currentData.confirmed_diff}</TableCell>
-      <TableCell>{props.currentData.vaccinated}</TableCell>
-      <TableCell>{props.currentData.vaccinated_per_hundred}</TableCell>
-      <TableCell>{props.currentData.deaths}</TableCell>
-      <TableCell>{props.currentData.deaths_diff}</TableCell>
-    </TableRow>
-  );
-};
 
 const CountryComparisonTable = ({
   selectedCountries,
   loadingCurrent,
   currentData,
   getCurrentData,
-  error
 }) => {
   const [sortConfig, setSortConfig] = useState({ key: 'countryName', direction: 'ascending' });
   let sortedProducts = [...Object.keys(currentData)].filter(country => selectedCountries.includes(country))
@@ -112,7 +98,6 @@ const CountryComparisonTable = ({
 const mapStateToProps = (state) => {
   return {
     selectedCountries: state.country.selectedCountries,
-    listOfCountries: state.country.listOfCountries,
     currentData: state.country.currentData,
     loadingCurrent: state.country.loadingCurrent,
     error: state.country.error
