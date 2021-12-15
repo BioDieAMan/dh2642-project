@@ -2,7 +2,6 @@ import { setCountry, populateSelectedCountries } from "./redux/actions/countryAc
 import { populateWatchlist } from "./redux/actions/watchlistActions";
 
 export const persistenceUpdateCurrent = () => (dispatch, getState, { getFirebase }) => {
-    if (getState().watchlist.testLoad) return;
 
     const firebase = getFirebase()
     const userId = getState().firebase.auth.uid

@@ -17,7 +17,7 @@ function App() {
 
   useFirebaseConnect([
     {
-      type: "once",
+      type: "value",
       path: `top`
     }
   ])
