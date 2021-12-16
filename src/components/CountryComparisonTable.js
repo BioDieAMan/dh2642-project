@@ -1,5 +1,3 @@
-/* eslint-disable array-callback-return */
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useMemo } from "react";
 import { connect } from "react-redux";
 import {
@@ -26,17 +24,10 @@ const CountryComparisonTable = ({
   getListOfCountries,
   listOfCountries,
 }) => {
-  const [sortConfig, setSortConfig] = useState({
-    key: "countryName",
-    direction: "ascending",
-  });
-  let sortedProducts = [...Object.keys(currentData)].filter((country) =>
-    selectedCountries.includes(country)
-  );
+  const [sortConfig, setSortConfig] = useState({ key: 'countryName', direction: 'ascending' });
+  let sortedProducts = [...Object.keys(currentData)].filter(country => selectedCountries.includes(country))
   useMemo(() => {
-    sortedProducts = [...Object.keys(currentData)].filter((country) =>
-      selectedCountries.includes(country)
-    );
+    sortedProducts = [...Object.keys(currentData)].filter(country => selectedCountries.includes(country))
     if (sortConfig !== null) {
       sortedProducts.sort((a, b) => {
         if (currentData[a][sortConfig.key] < currentData[b][sortConfig.key]) {
