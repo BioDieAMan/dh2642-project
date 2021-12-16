@@ -9,7 +9,7 @@ import {
   CardContent,
   CardMedia,
   Container,
-  CircularProgress
+  CircularProgress,
 } from "@mui/material";
 
 const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews, newsError }) => {
@@ -19,8 +19,13 @@ const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews, newsError }) => {
 
   return (
     <Container>
-      <Container>
-        <Typography variant="h6" align="left" color="textPrimary" gutterBottom>
+      <Container align="center" justifyContent="center">
+        <Typography
+          variant="h6"
+          align="center"
+          color="textPrimary"
+          gutterBottom
+        >
           Covid News
         </Typography>
       </Container>
@@ -29,12 +34,13 @@ const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews, newsError }) => {
         <CircularProgress />
       ) : data ? (
         data.map((article) => (
-          <a href={article.url} rel="noreferrer" target="_blank"
+          <a
+            href={article.url}
+            rel="noreferrer"
+            target="_blank"
             key={article.url}
           >
-            <Card
-              className="newsCard"
-            >
+            <Card className="newsCard">
               <CardActionArea>
                 <CardMedia
                   className="newsImage"
@@ -82,8 +88,13 @@ const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews, newsError }) => {
             </Card>
           </a>
         ))
-      ) : newsError ? <div>Could not fetch news</div>
-        : <div></div>}
+      ) : newsError ? (
+        <Container alignItems="center" justifyContent="center">
+          Could not fetch news
+        </Container>
+      ) : (
+        <div></div>
+      )}
     </Container>
   );
 };
@@ -92,7 +103,7 @@ const mapStateToProps = (state) => {
   return {
     data: state.covidNews.globalCovidNews,
     loading: state.covidNews.loading,
-    newsError: state.covidNews.newsError
+    newsError: state.covidNews.newsError,
   };
 };
 

@@ -6,7 +6,7 @@ import {
   getMonthlyData,
   getSixMonthData,
   getListOfCountries,
-  setCountry
+  setCountry,
 } from "../redux/actions/countryActions";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -31,13 +31,13 @@ const DropDown = ({
       {!countries ? (
         <CircularProgress />
       ) : (
-        <FormControl sx={{ m: 1, minWidth: 180 }}>
+        <FormControl sx={{ minWidth: 200, maxWidth: 200 }}>
           <InputLabel id="select-country">Select Country</InputLabel>
           <Select
             id="dropdown"
             label="Select Country"
             onChange={(event) => {
-              setCountry(event.target.value)
+              setCountry(event.target.value);
               getCurrentData(event.target.value);
               getMonthlyData(event.target.value);
               getSixMonthData(event.target.value);

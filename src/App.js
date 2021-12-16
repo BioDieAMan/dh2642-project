@@ -8,32 +8,37 @@ import ComparePage from "./Pages/ComparePage";
 import Navbar from "./components/Navbar";
 import history from "./history";
 import { useDispatch, useSelector } from "react-redux";
-import { updateFromFirebase } from "./firebasePersistence"
-import { isLoaded, useFirebaseConnect } from "react-redux-firebase"
+import { updateFromFirebase } from "./firebasePersistence";
+import { isLoaded, useFirebaseConnect } from "react-redux-firebase";
 
 function App() {
+<<<<<<< HEAD
   const loggedIn = useSelector(state => !state.firebase.auth.isEmpty)
   const dispatch = useDispatch()
+=======
+  const loggedIn = useSelector((state) => state.firebase.auth.uid);
+  const dispatch = useDispatch();
+>>>>>>> 4485cb8ca9de5e82d946f8f06b4221a49e6c3d0b
 
   useFirebaseConnect([
     {
       type: "value",
-      path: `top`
-    }
-  ])
+      path: `top`,
+    },
+  ]);
 
   function DataIsLoaded({ children }) {
-    const data = useSelector(state => state.firebase.data.top)
+    const data = useSelector((state) => state.firebase.data.top);
     if (!isLoaded(data)) return <div></div>;
     else {
-      dispatch(updateFromFirebase())
-      return children
+      dispatch(updateFromFirebase());
+      return children;
     }
   }
   function AuthIsLoaded({ children }) {
-    const auth = useSelector(state => state.firebase.auth)
+    const auth = useSelector((state) => state.firebase.auth);
     if (!isLoaded(auth)) return <div></div>;
-    return children
+    return children;
   }
 
   return (
@@ -42,7 +47,7 @@ function App() {
         <>
           <CssBaseline />
 
-          <Container maxWidth="sm">
+          <Container maxWidth="xl">
             <Typography
               variant="h2"
               align="center"
@@ -66,7 +71,7 @@ function App() {
         </>
       </DataIsLoaded>
     </AuthIsLoaded>
-  )
+  );
 }
 
 export default App;

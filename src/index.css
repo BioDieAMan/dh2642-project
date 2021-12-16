@@ -23,19 +23,19 @@
   display: none;
 }
 
-.watchlist{
+.watchlist {
   width: 340px;
   height: 240px;
   margin: 10px 10px 0 0;
 }
 
-.watchlistCard{
+.watchlistCard {
   width: 220px;
   height: 200px;
   margin: 0 auto;
 }
 
-.textRight{
+.textRight {
   text-align: right;
   padding: 0 0 0 10px;
 }

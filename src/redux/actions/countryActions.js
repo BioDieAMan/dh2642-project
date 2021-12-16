@@ -3,7 +3,6 @@ import vacConfig from "../../config/vaccinatedDataConfig"
 import axios from "axios";
 import dateformat from "dateformat";
 import { persistenceUpdateCurrent, persistenceUpdateSelected } from "../../firebasePersistence";
-
 export const setCountry = (country) => (dispatch, getState) => {
     if (getState().country.currentCountry === country) return;
     if (Object.keys(getState().country.listOfCountries).length === 0 && !getState().country.loadingCountries) {
@@ -15,12 +14,9 @@ export const setCountry = (country) => (dispatch, getState) => {
     })
     dispatch(persistenceUpdateCurrent())
 }
-
-
 const sortCountries = (a, b) => {
     return (a.name < b.name) ? -1 : (b.name < a.name) ? 1 : 0
 }
-
 export const getListOfCountries = () => async (dispatch, getState) => {
     if (Object.keys(getState().country.listOfCountries).length === 0 && !getState().country.loadingCountries) {
         if (!getState().country.loadingCountries) {
@@ -58,7 +54,6 @@ export const getListOfCountries = () => async (dispatch, getState) => {
         }
     }
 }
-
 export const getCurrentData = (country) => async (dispatch, getState) => {
     if (!getState().country.currentData[country] && country && !getState().country.loadingCurrent[country]) {
         dispatch({
@@ -124,138 +119,148 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
             })
         }
     }
-
 }
 export const getMonthlyData = (country) => async (dispatch, getState) => {
-    if (!getState().country.monthlyData[country] && country && !getState().country.loadingMonthly[country]) {
+    if (
+        !getState().country.monthlyData[country] &&
+        country &&
+        !getState().country.loadingMonthly[country]
+    ) {
         dispatch({
             type: "startSearchMonthlyData",
-            payload: country
-        })
-        const date = new Date()
-        date.setDate(date.getDate() - 2)
+            payload: country,
+        });
+        const date = new Date();
+        date.setDate(date.getDate() - 2);
         let options = {
             method: "GET",
             url: config.countryUrl,
             params: {
                 iso: country,
-                date: ""
+                date: "",
             },
-            headers: config.headers
-        }
+            headers: config.headers,
+        };
         try {
             const monthlyData = {};
             for (let i = 0; i < 15; i++) {
-                options = { ...options, params: { ...options.params, date: dateformat(date, "isoDate") } }
-                const response = await axios.request(options)
+                options = {
+                    ...options,
+                    params: { ...options.params, date: dateformat(date, "isoDate") },
+                };
+                const response = await axios.request(options);
                 const aggregatedData = {
                     confirmed: 0,
                     deaths: 0,
                     confirmed_diff: 0,
-                    deaths_diff: 0
-                }
+                    deaths_diff: 0,
+                };
                 response.data.data.forEach((region) => {
                     aggregatedData.confirmed += region.confirmed;
                     aggregatedData.deaths += region.deaths;
                     aggregatedData.confirmed_diff += region.confirmed_diff;
                     aggregatedData.deaths_diff += region.deaths_diff;
-                })
-                monthlyData[date] = aggregatedData
-                date.setDate(date.getDate() - 2)
+                });
+                monthlyData[date] = aggregatedData;
+                date.setDate(date.getDate() - 2);
             }
             dispatch({
                 type: "getMonthlyData",
-                payload: [country, monthlyData]
-            })
-        }
-        catch (e) {
+                payload: [country, monthlyData],
+            });
+        } catch (e) {
             dispatch({
                 type: "countryError",
-                payload: e.message
-            })
+                payload: e.message,
+            });
         }
     }
-}
+};
 
 export const getSixMonthData = (country) => async (dispatch, getState) => {
-    if (!getState().country.sixMonthData[country] && country && !getState().country.loadingSixMonth[country]) {
+    if (
+        !getState().country.sixMonthData[country] &&
+        country &&
+        !getState().country.loadingSixMonth[country]
+    ) {
         dispatch({
             type: "startSearchSixMonthData",
-            payload: country
-        })
-        const date = new Date()
-        date.setDate(date.getDate() - 2)
+            payload: country,
+        });
+        const date = new Date();
+        date.setDate(date.getDate() - 2);
         let options = {
             method: "GET",
             url: config.countryUrl,
             params: {
                 iso: country,
-                date: dateformat(date, "isoDate")
+                date: dateformat(date, "isoDate"),
             },
-            headers: config.headers
-        }
+            headers: config.headers,
+        };
         try {
             const sixMonthData = {};
             for (let i = 0; i < 15; i++) {
-                options = { ...options, params: { ...options.params, date: dateformat(date, "isoDate") } }
-                const response = await axios.request(options)
+                options = {
+                    ...options,
+                    params: { ...options.params, date: dateformat(date, "isoDate") },
+                };
+                const response = await axios.request(options);
                 const aggregatedData = {
                     confirmed: 0,
                     deaths: 0,
                     confirmed_diff: 0,
-                    deaths_diff: 0
-                }
+                    deaths_diff: 0,
+                };
                 response.data.data.forEach((region) => {
                     aggregatedData.confirmed += region.confirmed;
                     aggregatedData.deaths += region.deaths;
                     aggregatedData.confirmed_diff += region.confirmed_diff;
                     aggregatedData.deaths_diff += region.deaths_diff;
-                })
-                sixMonthData[date] = aggregatedData
-                date.setDate(date.getDate() - 12)
+                });
+                sixMonthData[date] = aggregatedData;
+                date.setDate(date.getDate() - 12);
             }
             dispatch({
                 type: "getSixMonthData",
-                payload: [country, sixMonthData]
-            })
-
-        }
-        catch (e) {
+                payload: [country, sixMonthData],
+            });
+        } catch (e) {
             dispatch({
                 type: "countryError",
-                payload: e.message
-            })
+                payload: e.message,
+            });
         }
     }
-}
-
+};
 
 export const addSelectedCountry = (country) => (dispatch, getState) => {
     dispatch({
         type: "addSelectedCountry",
-        payload: country
-    })
-    dispatch(persistenceUpdateSelected())
-}
+        payload: country,
+    });
+    dispatch(persistenceUpdateSelected());
+};
 
 export const removeSelectedCountry = (country) => (dispatch, getState) => {
     dispatch({
         type: "removeSelectedCountry",
-        payload: country
-    })
-    dispatch(persistenceUpdateSelected())
-}
+        payload: country,
+    });
+    dispatch(persistenceUpdateSelected());
+};
 
-export const populateSelectedCountries = (countries) => (dispatch, getState) => {
-    if (getState().country.selectedCountries === countries) return;
-    dispatch({
-        type: "populateSelectedCountries",
-        payload: countries
-    })
-}
+export const populateSelectedCountries =
+    (countries) => (dispatch, getState) => {
+        if (getState().country.selectedCountries === countries) return;
+        dispatch({
+            type: "populateSelectedCountries",
+            payload: countries,
+        });
+    };
 
 export const clearSelectedCountries = () => {
     return {
-        type: "clearSelectedCountries"
-    }
-}
+        type: "clearSelectedCountries",
+    };
+};

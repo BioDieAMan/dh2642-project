@@ -7,7 +7,17 @@ import {
   Typography,
   Container,
   CircularProgress,
+  CardContent,
+  Card,
 } from "@mui/material";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { grey } from "@mui/material/colors";
 const GlobalStatistics = ({ data, loading, error, getGlobalData }) => {
   useEffect(() => {
     getGlobalData();
@@ -15,29 +25,68 @@ const GlobalStatistics = ({ data, loading, error, getGlobalData }) => {
 
   return (
     <Container>
-      <Typography variant="h4">Global Covid-19 stats</Typography>
-      {loading ? (
-        <CircularProgress />
-      ) : data ? (
-        <Container>
-          <div>
-            Total confirmed cases: {millify(data.confirmed)}
-            <br />
-            Increase in cases since yesterday: {millify(data.confirmed_diff)}
-            <br />
-            Total confirmed deaths: {millify(data.deaths)}
-            <br />
-            Increase in deaths since yesterday: {millify(data.deaths_diff)}
-            <br />
-            <br />
-            Last updated: {data.last_update} GMT
-            <br />
-          </div>
-        </Container>
-      ) : error ? <div>Could not fetch global data</div>
-        : (
-          <div></div>
-        )}
+      <Card
+        sx={{ minHeight: 275, maxHeight: 800, minWidth: 400, maxWidth: 400 }}
+      >
+        <CardContent>
+          {loading ? (
+            <CircularProgress />
+          ) : data ? (
+            <Container align="left">
+              <Typography variant="h5" align="center" gutterBottom>
+                Global Covid-19 stats
+              </Typography>
+              <TableContainer>
+                <Table size="small" sx={{ borderBottom: "none" }}>
+                  <TableRow>
+                    <TableCell
+                      sx={{ borderBottom: "none" }}
+                      color="text.secondary"
+                    >
+                      Confirmed cases:
+                    </TableCell>
+                    <TableCell sx={{ borderBottom: "none" }}>
+                      {millify(data.confirmed)}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell sx={{ borderBottom: "none" }}>
+                      Increase in cases since yesterday:
+                    </TableCell>
+                    <TableCell sx={{ borderBottom: "none" }}>
+                      {millify(data.confirmed_diff)}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell sx={{ borderBottom: "none" }}>
+                      Confirmed deaths:
+                    </TableCell>
+                    <TableCell sx={{ borderBottom: "none" }}>
+                      {millify(data.deaths)}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell sx={{ borderBottom: "none" }}>
+                      Increase in deaths since yesterday:
+                    </TableCell>
+                    <TableCell sx={{ borderBottom: "none" }}>
+                      {millify(data.deaths_diff)}
+                    </TableCell>
+                  </TableRow>
+                </Table>
+              </TableContainer>
+
+              <Typography component="p" variant="body5" align="center">
+                Last updated: {data.last_update}
+              </Typography>
+            </Container>
+          ) : error ? (
+            <div>Could not fetch global data</div>
+          ) : (
+            <div></div>
+          )}
+        </CardContent>
+      </Card>
     </Container>
   );
 };
@@ -46,7 +95,7 @@ const mapStateToProps = (state) => {
   return {
     data: state.globalData.globalData,
     loading: state.globalData.loading,
-    error: state.globalData.error
+    error: state.globalData.error,
   };
 };
 
