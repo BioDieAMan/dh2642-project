@@ -83,7 +83,7 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
             const vacResponse = await axios.request(vacOptions)
             const vacdata = vacResponse.data.slice(-1)[0];
             const aggregatedData = {
-                countryName: response.data.data[0].region.name,
+                countryName: '',
                 confirmed: 0,
                 deaths: 0,
                 confirmed_diff: 0,
@@ -91,26 +91,32 @@ export const getCurrentData = (country) => async (dispatch, getState) => {
                 vaccinated: 0,
                 vaccinated_per_hundred: 0
             }
-            response.data.data.forEach((region) => {
-                aggregatedData.confirmed += region.confirmed;
-                aggregatedData.deaths += region.deaths;
-                aggregatedData.confirmed_diff += region.confirmed_diff;
-                aggregatedData.deaths_diff += region.deaths_diff;
+            if (response.data.data.length) {
+                aggregatedData.countryName = response.data.data[0].region.name;
+                response.data.data.forEach((region) => {
+                    aggregatedData.confirmed += region.confirmed;
+                    aggregatedData.deaths += region.deaths;
+                    aggregatedData.confirmed_diff += region.confirmed_diff;
+                    aggregatedData.deaths_diff += region.deaths_diff;
+                })
+            } else {
+                aggregatedData.confirmed = "no data";
+                aggregatedData.deaths = 'no data';
+                aggregatedData.confirmed_diff = 'no data';
+                aggregatedData.deaths_diff = 'no data';
+            }
+            if (!isNaN(parseInt(vacdata.people_fully_vaccinated))) {
+                aggregatedData.vaccinated += parseInt(vacdata.people_fully_vaccinated);
+                aggregatedData.vaccinated_per_hundred += parseFloat(vacdata.people_fully_vaccinated_per_hundred);
+            } else {
+                aggregatedData.vaccinated = 'no data';
+                aggregatedData.vaccinated_per_hundred ='no data';
+            }
+
+            dispatch({
+                type: "getCurrentData",
+                payload: [country, aggregatedData]
             })
-            aggregatedData.vaccinated += parseInt(vacdata.people_fully_vaccinated);
-            aggregatedData.vaccinated_per_hundred += parseFloat(vacdata.people_fully_vaccinated_per_hundred);
-            if (aggregatedData.confirmed === 0) {
-                dispatch({
-                    type: "getCurrentData",
-                    payload: [country, null]
-                })
-            }
-            else {
-                dispatch({
-                    type: "getCurrentData",
-                    payload: [country, aggregatedData]
-                })
-            }
         }
         catch (e) {
             dispatch({

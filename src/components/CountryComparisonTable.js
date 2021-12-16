@@ -2,7 +2,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useMemo } from "react";
 import { connect } from "react-redux";
-import { getCurrentData } from "../redux/actions/countryActions";
+import { getCurrentData, getListOfCountries } from "../redux/actions/countryActions";
 import {
   TableContainer,
   Table,
@@ -21,6 +21,8 @@ const CountryComparisonTable = ({
   loadingCurrent,
   currentData,
   getCurrentData,
+  getListOfCountries,
+  listOfCountries
 }) => {
   const [sortConfig, setSortConfig] = useState({ key: 'countryName', direction: 'ascending' });
   let sortedProducts = [...Object.keys(currentData)].filter(country => selectedCountries.includes(country))
@@ -51,6 +53,7 @@ const CountryComparisonTable = ({
 
 
   useEffect(() => {
+    getListOfCountries();
     selectedCountries.forEach((country) => {
       if (!currentData[country]) getCurrentData(country);
     });
@@ -78,7 +81,7 @@ const CountryComparisonTable = ({
                 sortedProducts.map((country) => {
                   return (
                     <TableRow key={country}>
-                      <TableCell>{currentData[country].countryName}</TableCell>
+                      <TableCell>{listOfCountries[country]}</TableCell>
                       <TableCell>{currentData[country].confirmed}</TableCell>
                       <TableCell>{currentData[country].confirmed_diff}</TableCell>
                       <TableCell>{currentData[country].vaccinated}</TableCell>
@@ -100,13 +103,15 @@ const mapStateToProps = (state) => {
     selectedCountries: state.country.selectedCountries,
     currentData: state.country.currentData,
     loadingCurrent: state.country.loadingCurrent,
-    error: state.country.error
+    error: state.country.error,
+    listOfCountries:state.country.listOfCountries
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getCurrentData: (country) => dispatch(getCurrentData(country)),
+    getListOfCountries: () => dispatch(getListOfCountries()),
   };
 };
 
