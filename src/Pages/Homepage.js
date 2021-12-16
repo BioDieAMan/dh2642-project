@@ -6,7 +6,7 @@ import Watchlist from "../components/Watchlist";
 
 const Homepage = () => {
   return (
-    <Container maxWidth="xl" alignItems="center" justifyContent="center">
+    <Container maxWidth="xl" alignitems="center" justifycontent="center">
       <Grid container spacing={2} direction="row" sx={{ pb: 2, p: 2 }}>
         <Grid item xs={12} lg={6} align="center">
           <GlobalStatistics />

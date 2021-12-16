@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LineChart from "../components/LineChart";
 import LocalNewsFeed from "../components/newsComponents/LocalNewsFeed";
 import DropDown from "../components/DropDown";
-import { Container, Typography, Card, CardContent, Grid } from "@mui/material";
+import { Container, Typography, Card, CardContent, Grid, Button } from "@mui/material";
 import CountryStatistics from "../components/CountryStatistics";
 import WatchlistButton from "../components/WatchlistButton";
 import Map from "../components/Map";
@@ -15,13 +15,13 @@ const DetailPage = ({ currentCountry, setCountry }) => {
 
   if (!currentCountry) {
     return (
-      <Container maxWidth="lg" alignItems="center" justifyContent="center">
+      <Container maxWidth="lg" alignitems="center" justifycontent="center">
         <Grid container spacing={2} direction="row" sx={{ pb: 2, p: 2 }}>
-          <Grid item alignItems="center">
+          <Grid item alignitems="center">
             <DropDown
               style={{
                 display: "flex",
-                alignItems: "Left",
+                alignitems: "Left",
               }}
             />
           </Grid>
@@ -35,22 +35,26 @@ const DetailPage = ({ currentCountry, setCountry }) => {
               </CardContent>
             </Card>
           </Grid>
-          <Grid item>
-            <Map setTooltip={setTooltip} />
-            <ReactTooltip>{tooltip}</ReactTooltip>
-          </Grid>
+          <Map setTooltip={setTooltip} />
+          <ReactTooltip>{tooltip}</ReactTooltip>
         </Grid>
       </Container>
     );
   }
 
   return (
-    <Container maxWidth="xl" align="center" justifyContent="center">
+    <Container maxWidth="xl" align="center" justifycontent="center">
       <Grid container spacing={2} direction="row" sx={{ pb: 2, p: 2 }}>
-        <Grid item xs={12} xl={6} align="center" justifyContent="center">
-          <DropDown />
+        <Grid item xs={12} xl={6} align="center" justifycontent="center">
+          <Button
+            sx={{ height: "60px", width: "200px", margin: "auto" }}
+            variant="contained"
+            onClick={() => setCountry("")}
+          >
+            Choose another country
+          </Button>
         </Grid>
-        <Grid item xs={12} xl={6} align="center" justifyContent="center">
+        <Grid item xs={12} xl={6} align="center" justifycontent="center">
           <WatchlistButton />
         </Grid>
       </Grid>
@@ -59,7 +63,7 @@ const DetailPage = ({ currentCountry, setCountry }) => {
         xs={12}
         lg={12}
         align="center"
-        justifyContent="center"
+        justifycontent="center"
         sx={{ pb: 2, p: 2 }}
       >
         <CountryStatistics />

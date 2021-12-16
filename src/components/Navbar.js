@@ -31,7 +31,7 @@ const Navbar = ({ loggedIn, signedInEmail, signOut, signoutError }) => {
 
   return (
     <Container sx={{ pb: 8 }}>
-      <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
+      <Box sx={{ display: "flex", alignitems: "center", textAlign: "center" }}>
         <Typography sx={{ minWidth: 100 }}>
           <Button
             variant="text"

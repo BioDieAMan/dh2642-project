@@ -98,7 +98,7 @@ const WatchlistSelection = ({
         )
     }
     return (
-        <Grid container spacing={10} justifyContent="center" alignItems="center">
+        <Grid container spacing={10} justifycontent="center" alignitems="center">
             {/* Non Selected Country List */}
 
             <Grid item>
@@ -110,7 +110,7 @@ const WatchlistSelection = ({
 
             {/* Buttons */}
             <Grid item>
-                <Grid container direction="column" alignItems="center">
+                <Grid container direction="column" alignitems="center">
                     <Button sx={{ my: 0.5 }} variant="outlined" size="small"
                         onClick={() => handleCheckedRight()} disabled={leftChecked.length === 0} aria-label="move selected right"
                     >

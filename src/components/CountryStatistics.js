@@ -79,6 +79,22 @@ const CountryStatistics = ({
                           {currentData[currentCountry].deaths_diff}
                         </TableCell>
                       </TableRow>
+                      <TableRow>
+                        <TableCell sx={{ borderBottom: "none" }}>
+                          Vaccinated:{" "}
+                        </TableCell>
+                        <TableCell sx={{ borderBottom: "none" }}>
+                          {isNaN(currentData[currentCountry].vaccinated) ? currentData[currentCountry].vaccinated : millify(currentData[currentCountry].vaccinated)}
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell sx={{ borderBottom: "none" }}>
+                          Percentage of people vaccinated:{" "}
+                        </TableCell>
+                        <TableCell sx={{ borderBottom: "none" }}>
+                          {isNaN(currentData[currentCountry].vaccinated_per_hundred) ? currentData[currentCountry].vaccinated_per_hundred : millify(currentData[currentCountry].vaccinated_per_hundred)} %
+                        </TableCell>
+                      </TableRow>
                     </Table>
                   </TableContainer>
                 </Container>

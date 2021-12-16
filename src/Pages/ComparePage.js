@@ -5,7 +5,7 @@ import { Grid, Container } from "@mui/material";
 
 const ComparePage = () => {
   return (
-    <Container maxWidth="xl" alignItems="center" justifyContent="center">
+    <Container maxWidth="xl" alignitems="center" justifycontent="center">
       <Grid container spacing={2} direction="row" sx={{ pb: 2, p: 8 }}>
         <Grid item xs={4} xl={3} align="center">
           <CountryComparisonList />

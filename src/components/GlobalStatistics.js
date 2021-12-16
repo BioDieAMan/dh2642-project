@@ -9,6 +9,7 @@ import {
   CircularProgress,
   CardContent,
   Card,
+  TableBody,
 } from "@mui/material";
 import Table from "@mui/material/Table";
 import TableCell from "@mui/material/TableCell";
@@ -35,41 +36,43 @@ const GlobalStatistics = ({ data, loading, error, getGlobalData }) => {
               </Typography>
               <TableContainer>
                 <Table size="small" sx={{ borderBottom: "none" }}>
-                  <TableRow>
-                    <TableCell
-                      sx={{ borderBottom: "none" }}
-                      color="text.secondary"
-                    >
-                      Confirmed cases:
-                    </TableCell>
-                    <TableCell sx={{ borderBottom: "none" }}>
-                      {millify(data.confirmed)}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell sx={{ borderBottom: "none" }}>
-                      Increase in cases since yesterday:
-                    </TableCell>
-                    <TableCell sx={{ borderBottom: "none" }}>
-                      {millify(data.confirmed_diff)}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell sx={{ borderBottom: "none" }}>
-                      Confirmed deaths:
-                    </TableCell>
-                    <TableCell sx={{ borderBottom: "none" }}>
-                      {millify(data.deaths)}
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell sx={{ borderBottom: "none" }}>
-                      Increase in deaths since yesterday:
-                    </TableCell>
-                    <TableCell sx={{ borderBottom: "none" }}>
-                      {millify(data.deaths_diff)}
-                    </TableCell>
-                  </TableRow>
+                  <TableBody>
+                    <TableRow>
+                      <TableCell
+                        sx={{ borderBottom: "none" }}
+                        color="text.secondary"
+                      >
+                        Confirmed cases:
+                      </TableCell>
+                      <TableCell sx={{ borderBottom: "none" }}>
+                        {millify(data.confirmed)}
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell sx={{ borderBottom: "none" }}>
+                        Increase in cases since yesterday:
+                      </TableCell>
+                      <TableCell sx={{ borderBottom: "none" }}>
+                        {millify(data.confirmed_diff)}
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell sx={{ borderBottom: "none" }}>
+                        Confirmed deaths:
+                      </TableCell>
+                      <TableCell sx={{ borderBottom: "none" }}>
+                        {millify(data.deaths)}
+                      </TableCell>
+                    </TableRow>
+                    <TableRow>
+                      <TableCell sx={{ borderBottom: "none" }}>
+                        Increase in deaths since yesterday:
+                      </TableCell>
+                      <TableCell sx={{ borderBottom: "none" }}>
+                        {millify(data.deaths_diff)}
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
                 </Table>
               </TableContainer>
 

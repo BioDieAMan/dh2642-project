@@ -19,7 +19,7 @@ const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews, newsError }) => {
 
   return (
     <Container>
-      <Container align="center" justifyContent="center">
+      <Container align="center" justifycontent="center">
         <Typography
           variant="h6"
           align="center"
@@ -89,7 +89,7 @@ const GlobalNewsFeed = ({ data, loading, getGlobalCovidNews, newsError }) => {
           </a>
         ))
       ) : newsError ? (
-        <Container alignItems="center" justifyContent="center">
+        <Container alignitems="center" justifycontent="center">
           Could not fetch news
         </Container>
       ) : (

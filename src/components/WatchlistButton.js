@@ -8,13 +8,13 @@ import {
 } from "../redux/actions/watchlistActions";
 
 const WatchlistButton = ({
-    uid,
+    loggedIn,
     addToWatchlist,
     removeFromWatchlist,
     watchlist,
     currentCountry,
 }) => {
-    if (!uid) {
+    if (!loggedIn) {
         return null;
     }
     return watchlist.filter((wKey) => wKey === currentCountry).length > 0 ? (
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => {
     return {
         watchlist: state.watchlist.watchlist,
         currentCountry: state.country.currentCountry,
-        uid: state.firebase.auth.uid,
+        loggedIn: !state.firebase.auth.isEmpty,
     };
 };
 

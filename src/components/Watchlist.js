@@ -20,7 +20,7 @@ import Carousel from "react-material-ui-carousel";
 import millify from "millify";
 
 const Watchlist = ({
-    uid,
+    loggedIn,
     watchlist,
     currentData,
     listOfCountries,
@@ -32,10 +32,10 @@ const Watchlist = ({
         watchlist.forEach((country) => getCurrentData(country));
     }, [watchlist]);
 
-    if (!uid) {
+    if (!loggedIn) {
         return (
             <Card
-                sx={{ minHeight: 400, maxHeight: 800, minWidth: 400, maxWidth: 400 }}
+                sx={{ minHeight: 275, maxHeight: 275, minWidth: 400, maxWidth: 400 }}
             >
                 <CardContent>
                     <Typography sx={{ fontSize: 14 }} gutterBottom>
@@ -50,7 +50,7 @@ const Watchlist = ({
     if (watchlist === undefined || watchlist.length <= 0) {
         return (
             <Card
-                sx={{ minHeight: 400, maxHeight: 800, minWidth: 400, maxWidth: 400 }}
+                sx={{ minHeight: 275, maxHeight: 275, minWidth: 400, maxWidth: 400 }}
             >
                 <CardActions>
                     <CardContent>
@@ -97,7 +97,7 @@ const Watchlist = ({
                                         key={wKey}
                                         sx={{
                                             minHeight: 275,
-                                            maxHeight: 400,
+                                            maxHeight: 275,
                                             minWidth: 400,
                                             maxWidth: 400,
                                         }}
@@ -190,7 +190,7 @@ const Watchlist = ({
 
 const mapStateToProps = (state) => {
     return {
-        uid: state.firebase.auth.uid,
+        loggedIn: !state.firebase.auth.isEmpty,
         watchlist: state.watchlist.watchlist,
         currentData: state.country.currentData,
         listOfCountries: state.country.listOfCountries,
