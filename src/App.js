@@ -12,13 +12,8 @@ import { updateFromFirebase } from "./firebasePersistence";
 import { isLoaded, useFirebaseConnect } from "react-redux-firebase";
 
 function App() {
-<<<<<<< HEAD
   const loggedIn = useSelector(state => !state.firebase.auth.isEmpty)
   const dispatch = useDispatch()
-=======
-  const loggedIn = useSelector((state) => state.firebase.auth.uid);
-  const dispatch = useDispatch();
->>>>>>> 4485cb8ca9de5e82d946f8f06b4221a49e6c3d0b
 
   useFirebaseConnect([
     {
