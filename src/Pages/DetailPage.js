@@ -11,6 +11,7 @@ import { connect } from "react-redux"
 import { setCountry } from "../redux/actions/countryActions";
 
 const DetailPage = ({
+  loggedIn,
   currentCountry,
   setCountry,
 }) => {
@@ -49,7 +50,7 @@ const DetailPage = ({
           Choose a different country
         </Button>
         <CountryStatistics />
-        <WatchlistButton />
+        {loggedIn && <WatchlistButton />}
       </div>
       <LineChart />
       <LocalNewsFeed />
@@ -59,7 +60,8 @@ const DetailPage = ({
 
 const mapStateToProps = state => {
   return {
-    currentCountry: state.country.currentCountry
+    currentCountry: state.country.currentCountry,
+    loggedIn: !state.firebase.auth.isEmpty
   }
 }
 

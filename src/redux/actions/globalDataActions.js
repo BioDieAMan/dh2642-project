@@ -3,9 +3,6 @@ import axios from "axios"
 
 export const getGlobalData = () => async dispatch => {
     dispatch({ type: "clearGlobalData" })
-    // const date = new Date();
-    // date.setDate(date.getDate() - 1);
-    // const dateString = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     const options = {
         method: "GET",
         url: config.globalUrl,

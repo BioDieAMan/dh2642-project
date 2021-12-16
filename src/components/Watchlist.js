@@ -9,7 +9,7 @@ import millify from "millify"
 
 
 const Watchlist = ({
-    uid,
+    loggedIn,
     watchlist,
     currentData,
     listOfCountries,
@@ -21,7 +21,7 @@ const Watchlist = ({
         watchlist.forEach(country => getCurrentData(country))
     }, [watchlist]);
 
-    if (!uid) {
+    if (!loggedIn) {
         return (
             <Card className='watchlistCard'>
                 <CardContent>
@@ -107,7 +107,7 @@ const Watchlist = ({
 
 const mapStateToProps = (state) => {
     return {
-        uid: state.firebase.auth.uid,
+        loggedIn: !state.firebase.auth.isEmpty,
         watchlist: state.watchlist.watchlist,
         currentData: state.country.currentData,
         listOfCountries: state.country.listOfCountries,

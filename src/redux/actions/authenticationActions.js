@@ -7,8 +7,8 @@ export const signIn = (email, password) => {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(() => {
                 dispatch({ type: "signinSuccess" })
-                history.go(-1)
             })
+            .then(history.go(-1))
             .catch(e => {
                 dispatch({ type: "signinError", payload: e.message })
             })
@@ -22,8 +22,8 @@ export const signUp = (email, password) => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(() => {
                 dispatch({ type: "signupSuccess" })
-                history.go(-1)
             })
+            .then(history.go(-1))
             .catch(e => {
                 dispatch({ type: "signupError", payload: e.message })
             })

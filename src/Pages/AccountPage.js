@@ -6,10 +6,10 @@ import SignUp from "../components/SignUp";
 import User from "../components/User";
 import WatchlistSelection from "../components/WatchlistSelection";
 
-const AccountPage = ({ uid }) => {
+const AccountPage = ({ loggedIn }) => {
   return (
     <Container>
-      {uid ? (
+      {loggedIn ? (
         <Container>
           <User />
           <WatchlistSelection />
@@ -25,7 +25,7 @@ const AccountPage = ({ uid }) => {
 
 const mapStateToProps = (state) => {
   return {
-    uid: state.firebase.auth.uid,
+    loggedIn: !state.firebase.auth.isEmpty,
   };
 };
 

@@ -75,8 +75,6 @@ const SignIn = ({
 
 const mapStateToProps = state => {
     return {
-        uid: state.firebase.auth.uid,
-        signedInEmail: state.firebase.auth.email,
         signinError: state.authentication.signinError,
         signoutError: state.authentication.signoutError
     }

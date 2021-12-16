@@ -107,7 +107,7 @@ const LineChart = ({
     )
   }
 
-  if (!currentData[currentCountry] && currentCountry) {
+  if (!currentData[currentCountry] && currentCountry || (currentData[currentCountry].confirmed === "no data")) {
     const noData = {
       label: `No data for ${listOfCountries?.[currentCountry]}`,
       data: []

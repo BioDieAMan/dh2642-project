@@ -7,12 +7,12 @@ import { signOut } from '../redux/actions/authenticationActions';
 
 
 const Navbar = ({
-  uid,
+  loggedIn,
   signedInEmail,
   signOut,
   signoutError
 }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => { setAnchorEl(event.currentTarget); };
   const handleClose = () => { setAnchorEl(null); };
@@ -34,7 +34,7 @@ const Navbar = ({
           <Button variant="text" component={Link} to="/compare" sx={{ bgcolor: path === "/compare" ? "lightblue" : undefined }} onClick={() => setPath("/compare")}>Comparison</Button>
         </Typography>
         <Typography sx={{ minWidth: 100, position: "absolute", right: "10%" }}>
-          {uid ?
+          {loggedIn ?
             <span>
               <Tooltip title="Account settings">
                 <IconButton onClick={handleClick} size="small" sx={{ ml: 2 }}>
@@ -45,7 +45,7 @@ const Navbar = ({
             </span> :
             <span className="loginNavBar">
               {signoutError ? { signoutError } : <span></span>}
-              <Button variant="text" component={Link} to="/account" >Sign in</Button>
+              <Button variant="text" component={Link} to="/account" sx={{ bgcolor: path === "/account" ? "lightblue" : undefined }} onClick={() => setPath("/account")}>Sign in</Button>
             </span>
           }
         </Typography>
@@ -83,7 +83,7 @@ const Navbar = ({
 
 const mapStateToProps = state => {
   return {
-    uid: state.firebase.auth.uid,
+    loggedIn: !state.firebase.auth.isEmpty,
     signedInEmail: state.firebase.auth.email,
     signoutError: state.authentication.signoutError,
   }

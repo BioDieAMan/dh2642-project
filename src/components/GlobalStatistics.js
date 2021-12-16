@@ -30,7 +30,7 @@ const GlobalStatistics = ({ data, loading, error, getGlobalData }) => {
             Increase in deaths since yesterday: {millify(data.deaths_diff)}
             <br />
             <br />
-            Last updated: {data.last_update}
+            Last updated: {data.last_update} GMT
             <br />
           </div>
         </Container>

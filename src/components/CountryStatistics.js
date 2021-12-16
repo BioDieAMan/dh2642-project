@@ -27,17 +27,25 @@ const CountryStatistics = ({
           ) : currentData[currentCountry] ? (
             <div>
               Total confirmed cases:{" "}
-              {millify(currentData[currentCountry].confirmed)}
+              {isNaN(currentData[currentCountry].confirmed) ? currentData[currentCountry].confirmed : millify(currentData[currentCountry].confirmed)}
               <br />
               Increase in cases since yesterday:{" "}
-              {millify(currentData[currentCountry].confirmed_diff)}
+              {isNaN(currentData[currentCountry].confirmed_diff) ? currentData[currentCountry].confirmed_diff : millify(currentData[currentCountry].confirmed_diff)}
               <br />
               Total confirmed deaths:{" "}
-              {millify(currentData[currentCountry].deaths)}
+              {isNaN(currentData[currentCountry].deaths) ? currentData[currentCountry].deaths : millify(currentData[currentCountry].deaths)}
               <br />
               Increase in deaths since yesterday:{" "}
               {currentData[currentCountry].deaths_diff}
               <br />
+              Total vaccinations:{" "}
+              {isNaN(currentData[currentCountry].vaccinated) ? currentData[currentCountry].vaccinated : millify(currentData[currentCountry].vaccinated)}
+              <br />
+              Percent of population vaccinated:{" "}
+              {currentData[currentCountry].vaccinated_per_hundred}
+              <br /><br />
+              {currentData[currentCountry].last_update ? `Last updated: ${currentData[currentCountry].last_update}` : null}
+
             </div>
           ) : error ? <div>Could not fetch data for this country, try another one!</div>
             : (
